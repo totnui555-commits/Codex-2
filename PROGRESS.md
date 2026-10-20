@@ -87,3 +87,7 @@ Founder asked to handle all remaining setup after the THB 100 initial-test recom
 - Backend tests: 30 passed, including encrypted storage, production denial, billing metadata capture and coding endpoint selection. TypeScript checks rerun. Source/evidence are being preserved in a private draft PR; no production merge/release is authorized by that PR.
 
 Remaining owner-only setup is consolidated in docs/FOUNDER_SETUP_TH.md and Founder Inbox: Daytona login/account-specific API credentials and an authorized reachable HTTPS gateway deployment. The environment has no Daytona connection, and the connected browser-control tool is unavailable. Application Gmail OAuth and cloud S3 still require their own production credentials/consent; chat connectors are not exported as application OAuth tokens. No account registration, new service contract, purchase, public tunnel or public app launch was performed.
+
+## Review handoff — 2026-10-20
+
+Private draft PR: https://github.com/totnui555-commits/Codex-2/pull/1 . Source pushed on codex/company-os-implementation; no merge or production launch. Sent the consolidated missing-account/gateway setup request to the authorized founder address using the connected Gmail chat connector; connector reported action completed but returned no message ID, so no application delivery receipt is claimed. Paid execution remains disabled.
