@@ -1,0 +1,26 @@
+{
+  "verification_projects_paused": [
+    "59951a2a-245e-4faf-99cb-3c9ca3daed26",
+    "9868fb8d-ed42-462d-9b32-e6f04524622a",
+    "7a67fa1b-58cc-4dd0-86d9-d9c9ff4d23e8"
+  ],
+  "audit_valid": true,
+  "paid_execution_authorized": false,
+  "monthly_spend": "0.1241",
+  "services": {
+    "worker": {
+      "last_seen_at": "2026-10-20T15:12:36.413592+00:00",
+      "state": "live"
+    },
+    "scheduler": {
+      "last_seen_at": "2026-10-20T15:12:41.139006+00:00",
+      "state": "live"
+    },
+    "watchtower": {
+      "last_seen_at": "2026-10-20T15:12:42.970959+00:00",
+      "state": "live"
+    }
+  },
+  "hosted_coding_executed": false,
+  "new_model_calls": 0
+}

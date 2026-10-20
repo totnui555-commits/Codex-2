@@ -35,3 +35,26 @@ Original Blender sources and a reproducible generator are under `assets/kingdom/
 Unit tests check stable scoped identities, authentic running-task/run pairs, approval/quarantine projection, incident severity, registry destinations and deterministic route connectivity. Asset validation checks GLB structure, twelve landmark identities, named villager parts, no external dependencies and ordered LOD triangle budgets.
 
 The browser acceptance uses real authenticated services, actual existing records, landmark/citizen navigation, camera controls, fallback, a zero-cost internal task event, persisted reload and legacy Office/mobile checks. Its internal task is cancelled afterward. It never fabricates a running agent or incident. A new live hosted-coding animation cannot be certified while Daytona/public gateway remain disconnected; existing model advisory history is shown honestly. Software Chromium render observations and a recorded walkthrough are evidence of interaction, not hardware GPU, load-test or artistic production sign-off.
+
+
+```mermaid
+sequenceDiagram
+    participant W as Durable worker
+    participant D as PostgreSQL
+    participant E as Authenticated event gateway
+    participant U as Founder browser
+    participant S as Kingdom projection / scene
+    W->>D: Commit actual task/run + event/outbox
+    E->>D: Read tenant-authorized event history
+    E-->>U: Replayable company event
+    U->>E: Fetch authoritative snapshot
+    E-->>U: Tasks, runs, incidents, budgets, evidence
+    U->>S: Read-only citizen / landmark projection
+    S->>S: Deterministic paths and cosmetic animation
+    Note over W,S: Browser closure stops visuals, never durable workers
+```
+
+Latest software-renderer measurement: balanced, 25 citizens, 200 draw calls, 208,529 triangles, ~44.7 MB JS heap; warmed RAF ~1.66 FPS on ANGLE/SwiftShader. This does **not** establish production frame-budget compliance. Hardware/mobile testing, full collision/navigation stress, richer choreography/foliage and formal accessibility/art review remain pending. See `docs/evidence/kingdom-performance.json`. The 40-second walkthrough is an actual interaction excerpt accelerated 3×.
+
+
+Native standalone packaging was also checked after a full production build: copy `apps/web/public` to `apps/web/.next/standalone/apps/web/public` and `.next/static` to the corresponding standalone `.next/static`, then run the standalone `server.js` on an isolated loopback port. Actual HTTP/proxy/checksum results are in `docs/evidence/kingdom-standalone.json`. The production Dockerfiles perform these public/static copies. No Docker/Render deployment is implied by this local process check.
