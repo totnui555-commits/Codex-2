@@ -13,6 +13,8 @@ with sync_playwright() as p:
     page.get_by_label("Email", exact=True).fill(credentials["email"])
     page.get_by_label("Password", exact=True).fill(credentials["password"])
     page.get_by_role("button", name="Enter mission control").click()
+    page.get_by_role("heading", name="Kingdom", exact=True).wait_for()
+    page.get_by_role("button", name="Office", exact=True).click()
     page.get_by_role("heading", name="Mission Control").wait_for()
     page.wait_for_timeout(2500)
     page.screenshot(path="docs/evidence/office-desktop.png", full_page=True)
@@ -25,7 +27,7 @@ with sync_playwright() as p:
     page.goto("http://localhost:3000/inbox", wait_until="networkidle")
     page.get_by_role("heading", name="Founder Inbox", exact=True).wait_for()
     page.screenshot(path="docs/evidence/founder-inbox.png", full_page=True)
-    page.goto("http://localhost:3000", wait_until="networkidle")
+    page.goto("http://localhost:3000/office", wait_until="networkidle")
     page.set_viewport_size({"width": 390, "height": 844})
     page.wait_for_timeout(1500)
     assert page.locator("body").evaluate("(e)=>e.scrollWidth") <= 390

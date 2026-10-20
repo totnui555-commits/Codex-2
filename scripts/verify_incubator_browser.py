@@ -16,7 +16,7 @@ with sync_playwright() as p:
     page.get_by_label("Email", exact=True).fill(credentials["email"])
     page.get_by_label("Password", exact=True).fill(credentials["password"])
     page.get_by_role("button", name="Enter mission control").click()
-    page.get_by_role("heading", name="Mission Control").wait_for(timeout=120000)
+    page.get_by_role("heading", name="Kingdom", exact=True).wait_for(timeout=120000)
     page.get_by_role("button", name="Opportunities", exact=True).click()
     section = page.get_by_role("region", name="Product Incubator")
     section.get_by_text("Define an experiment", exact=True).click()

@@ -1,6 +1,10 @@
 # AI COMPANY OS
 
-A persistent, founder-governed venture studio with a live isometric office. Built from an empty repository. **This is an implemented local platform with explicitly blocked external-provider milestones, not a completed production autonomous company.** See [PROGRESS.md](PROGRESS.md) and [the acceptance plan](docs/IMPLEMENTATION_PLAN.md).
+A persistent, founder-governed venture studio with a live interactive island kingdom and a preserved legacy Office view. Built from an empty repository. **This is an implemented local platform with explicitly blocked external-provider milestones, not a completed production autonomous company.** See [PROGRESS.md](PROGRESS.md) and [the acceptance plan](docs/IMPLEMENTATION_PLAN.md).
+
+## Kingdom Edition
+
+The default landing view is an original interactive fantasy island. Twelve landmarks open real company dashboards; persistent citizen identities project actual task/run evidence. Original Blender sources, three GLB quality tiers, animated water, deterministic paths, instanced citizens, camera presets/follow and an accessible operational map are included. The original Office remains available at `/office`. [World contracts and verification limits](docs/KINGDOM_EDITION.md) · [Original art pipeline](assets/kingdom/README.md).
 
 ## Run locally
 

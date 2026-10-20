@@ -16,3 +16,12 @@ The selected repository is /workspace/Codex-2, branch work, an empty Git reposit
 
 ## Reversible defaults
 Modular monolith + dedicated Temporal, scheduler and Watchtower processes. PostgreSQL is authoritative. No SQLite production fallback. Empty installation, research_only, zero paid execution authorization until founder configures approved limits; THB 2,000/500/100/30 limits are policy proposals only. No automatic publication, external outreach, contracts or spending. Owner sessions are HttpOnly cookies; bearer service tokens are scoped and hash stored. Independent deterministic policy gates cannot be edited by agent APIs.
+
+## Kingdom Edition v2 — additive visual migration (2026-10-20)
+
+Founder directs preservation of the old Office as a separate version. Kingdom is the flagship default; Office remains available independently. Preserve all operational contracts and provider status. See ADR 002.
+
+1. Map all twelve functional landmarks and persistent citizen identities to existing domain state; record status/evidence/navigation contracts.
+2. Author original Blender island/building/environment and citizen source assets, export optimized GLB packs. Northern keep/library, western ridge lighthouse, central guild/post/plaza, eastern crafts, southern harbor/shipyard, treasury near keep. Water/path/citizen animation remains a deterministic client layer.
+3. Integrate bounded camera presets, selection/follow, real dashboard links, incident beacon, honest finance/status HUD, quality/reduced-motion controls and accessible map/list fallback. Preserve Office.
+4. Verify identity/state/incident/path contracts; authenticate browser against real services; inspect all landmarks and a citizen; reload/reconnect; check mobile, fallback and legacy Office. Record screenshots, short walkthrough and observed frame/render budgets; run tests/typecheck/build/CI. Record artistic/performance limitations without self-certifying visual production acceptance.

@@ -22,6 +22,7 @@ COPY config ./config
 COPY infrastructure/staging_entrypoint.py ./infrastructure/staging_entrypoint.py
 COPY --from=web /app/apps/web/.next/standalone ./
 COPY --from=web /app/apps/web/.next/static ./apps/web/.next/static
+COPY --from=web /app/apps/web/public ./apps/web/public
 RUN useradd -m -u 10001 company && chmod -R a+rX /app
 USER company
 ENV NODE_ENV=production HOSTNAME=0.0.0.0 RUNTIME=staging SECURE_COOKIES=true

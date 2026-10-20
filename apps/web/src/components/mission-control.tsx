@@ -55,6 +55,10 @@ import {
 } from "@/lib/domain";
 import { Incubator } from "./incubator";
 import { ProductPortfolio } from "./product-portfolio";
+const Kingdom = dynamic(() => import("./kingdom"), {
+  ssr: false,
+  loading: () => <div className="scene-loading">Opening your kingdom…</div>,
+});
 const Office = dynamic(() => import("./office"), {
   ssr: false,
   loading: () => (
@@ -65,6 +69,7 @@ const Office = dynamic(() => import("./office"), {
   ),
 });
 const nav = [
+  { name: "Kingdom", icon: Globe },
   { name: "Office", icon: Box },
   { name: "Overview", icon: LayoutDashboard },
   { name: "Projects", icon: FolderKanban },
@@ -121,7 +126,7 @@ export default function MissionControl() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null),
     [auth, setAuth] = useState(false),
     [boot, setBoot] = useState(false),
-    [page, setPage] = useState("Office"),
+    [page, setPage] = useState("Kingdom"),
     [error, setError] = useState(""),
     [toast, setToast] = useState(""),
     [busy, setBusy] = useState(false),
@@ -150,7 +155,7 @@ export default function MissionControl() {
       const match = nav.find(
         (n) => "/" + n.name.toLowerCase().replaceAll(" ", "-") === path,
       );
-      setPage(path === "/inbox" ? "Founder Inbox" : match?.name || "Office");
+      setPage(path === "/inbox" ? "Founder Inbox" : match?.name || "Kingdom");
     };
     sync();
     window.addEventListener("popstate", sync);
@@ -256,7 +261,7 @@ export default function MissionControl() {
     window.history.pushState(
       null,
       "",
-      name === "Office"
+      name === "Kingdom"
         ? "/"
         : name === "Founder Inbox"
           ? "/inbox"
@@ -407,7 +412,7 @@ export default function MissionControl() {
   return (
     <div className={"app " + (sidebar ? "sidebar-open" : "")}>
       <aside className="sidebar">
-        <a className="wordmark" href="#" onClick={() => go("Office")}>
+        <a className="wordmark" href="#" onClick={() => go("Kingdom")}>
           <div className="brand-icon">
             <Box size={24} />
           </div>
@@ -433,7 +438,11 @@ export default function MissionControl() {
             >
               <Icon size={17} />
               {name}
-              {name === "Office" && <span className="tiny">3D</span>}
+              {name === "Office" && (
+                <span className="tiny" aria-hidden="true">
+                  3D
+                </span>
+              )}
             </button>
           ))}
         </nav>
@@ -550,7 +559,9 @@ export default function MissionControl() {
             <div className="eyebrow">YOUR COMPANY, IN MOTION</div>
             <h1>
               {page === "Office" ? "Mission Control" : page}
-              <span className="heading-dot">.</span>
+              <span className="heading-dot" aria-hidden="true">
+                .
+              </span>
             </h1>
             <p>
               {page === "Office"
@@ -671,7 +682,9 @@ export default function MissionControl() {
             </p>
           </div>
         </section>
-        {page === "Office" ? (
+        {page === "Kingdom" ? (
+          <Kingdom snapshot={s} connected={connected} onVisit={go} />
+        ) : page === "Office" ? (
           <div className="office-layout">
             <section className="office-panel">
               <div className="office-toolbar">
