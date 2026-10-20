@@ -58,3 +58,10 @@ Latest software-renderer measurement: balanced, 25 citizens, 200 draw calls, 208
 
 
 Native standalone packaging was also checked after a full production build: copy `apps/web/public` to `apps/web/.next/standalone/apps/web/public` and `.next/static` to the corresponding standalone `.next/static`, then run the standalone `server.js` on an isolated loopback port. Actual HTTP/proxy/checksum results are in `docs/evidence/kingdom-standalone.json`. The production Dockerfiles perform these public/static copies. No Docker/Render deployment is implied by this local process check.
+
+
+## Island-first interface
+
+The canvas fills the viewport. Floating system-style glass navigation and a compact operational inspector keep the island central. Search finds real landmarks and configured citizens; Enter selects the first match and Escape closes search or restores Focus. Focus hides navigation, inspector and metric HUD, while safety notices remain visible. Buildings opens the landmark directory; Display controls quality and reduced motion. On mobile, selecting a landmark/citizen opens a dismissible inspector sheet; Overview returns to kingdom metrics. The accessible view and preserved Office remain available.
+
+Repeated notification notices are coalesced for readable activity, with source timestamps and occurrence counts. Security incidents remain individually visible; no event records are removed. Latest real browser evidence: `docs/evidence/kingdom-apple-browser.json`; wide and mobile screenshots use the `kingdom-apple-` prefix. This interface change does not resolve the measured software-renderer performance limitation above.
