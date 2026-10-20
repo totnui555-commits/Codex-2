@@ -33,5 +33,5 @@ jobs:
       - run: docker run -d -p 7233:7233 temporalio/temporal:1.4.1 server start-dev --ip 0.0.0.0
       - run: python scripts/wait_temporal.py
       - run: RUN_TEMPORAL_TESTS=1 pytest -q
-      - run: ruff check apps/api/company_os scripts
+      - run: ruff check apps/api/company_os scripts infrastructure/staging_entrypoint.py
       - run: npm ci && npm run test && npm run typecheck && npm run build

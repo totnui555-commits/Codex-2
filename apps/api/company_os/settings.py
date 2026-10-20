@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-from pydantic import AliasChoices, Field
+from pydantic import AliasChoices, Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -14,6 +14,8 @@ class Settings(BaseSettings):
     founder_email: str = "traisorn.th@gmail.com"
     temporal_address: str = "localhost:7233"
     temporal_namespace: str = "default"
+    temporal_tls: bool = False
+    temporal_api_key: str = ""
     model_provider: str = "openai"
     openrouter_api_key: str = ""
     openai_api_key: str = ""
@@ -51,6 +53,15 @@ class Settings(BaseSettings):
     research_daily_hour_utc: int = 2
     worker_poll_seconds: int = 15
     runtime: str = "development"
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def use_installed_postgres_driver(cls, value):
+        if isinstance(value, str):
+            for prefix in ("postgres://", "postgresql://"):
+                if value.startswith(prefix):
+                    return "postgresql+psycopg://" + value[len(prefix) :]
+        return value
 
 
 @lru_cache

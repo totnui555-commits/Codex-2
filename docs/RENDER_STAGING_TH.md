@@ -1,0 +1,41 @@
+# Render staging: สถานะจริงและขั้นตอนเปิดใช้งาน
+
+ผู้ก่อตั้งยืนยัน workspace **My Workspace — totnui555@gmail.com** แล้ว (tea-dbbj2qbbc2fs73bcelb0) งบ **100 USD เป็นงบ OpenRouter เท่านั้น** ไม่ใช่การอนุมัติงบโฮสต์รายเดือน จึงยังไม่มีการสร้าง compute แบบเสียเงิน
+
+## สร้างแล้ว
+
+PostgreSQL **company-os-staging-db**, plan **free**, region **Singapore**, PostgreSQL 17, ID dpg-dbbj5h0u01pc73dvnm5g-a สถานะ available หมดอายุ **19 พฤศจิกายน 2026** บัญชีนี้ยังไม่มี web service ก่อนเริ่มงาน ไม่ได้เปลี่ยนทรัพยากรของโปรเจกต์อื่น
+
+## โค้ดที่เตรียมแล้ว
+
+`render.yaml` สร้างเว็บ staging แบบ free เพียงบริการเดียว และอ้างฐานข้อมูลที่สร้างแล้วด้วย `fromDatabase` จึงไม่ต้องเปิดเผยรหัสฐานข้อมูลให้แชต ไม่ประกาศฐานข้อมูลซ้ำใน Blueprint ส่วน SESSION_SECRET และ BOOTSTRAP_TOKEN ให้ Render สุ่มค่าเอง ไม่มี secret ใน Git
+
+`infrastructure/staging.Dockerfile` รวม Next.js standalone กับ FastAPI แบบ non-root ส่วน supervisor ทำ migrations/seed ก่อนเปิดบริการ ส่งต่อสัญญาณปิด และปิดทั้งคู่หากโปรเซสใดล้ม ไม่รัน Temporal/scheduler/worker ใน free web container
+
+โค้ดรองรับ PostgreSQL URL ของผู้ให้บริการผ่านไดรเวอร์ psycopg ที่ติดตั้งจริง, Temporal Cloud API key บน TLS, private host:port สำหรับ proxy และค่าใช้จ่ายต่ำกว่าหนึ่งบาทที่ไม่ถูกปัดแสดงเป็นศูนย์ หน้า staging แสดงข้อจำกัดของ environment อย่างชัดเจน
+
+## ตรวจแล้ว / ยังไม่ตรวจ
+
+- Backend 37 tests ผ่าน รวม Temporal จริง; frontend 6 tests, typechecks และ production build ผ่าน
+- Native staging process smoke ผ่าน: migrations, PostgreSQL, Next standalone, same-origin proxy, owner login, 25 roles, audit chain และ graceful shutdown โดยใช้ฐานข้อมูล integration test แยกจากข้อมูลจริง
+- Blueprint ผ่าน JSON Schema ทางการปัจจุบัน
+- ติดตั้ง Render CLI v2.30.0 จาก release ทางการพร้อมตรวจ SHA-256 แต่ platform validation ต้อง login CLI เพิ่ม การเชื่อม OAuth ของ connector ไม่ใช่ credential ที่ส่งต่อให้ CLI ได้
+- **ยังไม่มี Render web deployment และยังไม่ได้สร้าง/ทดสอบ container image นี้บน Render** การทดสอบ process ในเครื่องไม่ใช้แทนการยืนยัน deployment
+
+## ขั้นตอนใน Dashboard ที่เหลือ
+
+เปิด https://dashboard.render.com/blueprint/new?repo=https://github.com/totnui555-commits/Codex-2
+
+1. ใช้ workspace My Workspace และเชื่อม GitHub repository หาก Render ขอสิทธิ์อ่าน repo ส่วนตัว
+2. เลือก branch **codex/company-os-implementation**, Blueprint Path **render.yaml** (default branch main ยังเป็นฐาน review จึงไม่พบไฟล์นี้)
+3. ตรวจรายการว่ามี **company-os-staging / Free** และอ้างฐานข้อมูล **company-os-staging-db** เดิม ไม่สร้างฐานข้อมูลฟรีซ้ำ ไม่เลือก paid plan
+4. ให้ Dashboard ตรวจ Blueprint แล้วกด Deploy Blueprint จากนั้นผู้ดำเนินการตรวจ deploy ID จนเป็น live และทดสอบ HTTPS/login/persistence อีกครั้ง จึงจะยืนยันว่าเปิดใช้สำเร็จ
+5. การตั้ง owner ครั้งแรกใช้ BOOTSTRAP_TOKEN จาก secure Render environment และรหัสผ่านที่เจ้าของกำหนดเอง ผ่าน bootstrap API ที่ป้องกันด้วย token ห้ามส่งค่า secret ในอีเมลหรือใส่ลง Git
+
+ขั้นตอน Dashboard นี้เป็นข้อจำกัดของช่องทางเชื่อมต่อปัจจุบัน ไม่ใช่การขออนุญาตครอบคลุมซ้ำ Render MCP สร้างทรัพยากรบางชนิดได้ แต่ไม่สร้าง Blueprint และไม่รองรับการตั้งค่า `fromDatabase` ในคำสั่งสร้างเว็บ ส่วน fresh headless browser ไม่มี authenticated Dashboard session
+
+## ขอบเขต staging
+
+Free web sleeps หลังไม่มีคนใช้และไม่ใช่ runtime 24/7 ฐานข้อมูลฟรีมีอายุ 30 วันและไม่มี managed backup ห้ามเก็บ production/customer data หรือย้ายข้อมูลจริงจาก workspace ไปโดยถือเป็น backup ไม่มี OpenRouter key, Daytona key, email OAuth หรือ billing secret ถูกส่งไปยัง staging แผนนี้ไม่แทน hardened hosted coding benchmark หรือ production release gate
+
+Production ยังต้องมีงบโฮสต์แยก, role-scoped PostgreSQL connections, production Temporal, private object storage, worker/scheduler/Watchtower แยกบริการ, Daytona และ deployment verification ที่ผ่านจริง

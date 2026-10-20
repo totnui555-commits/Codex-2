@@ -121,3 +121,22 @@ Both GitHub workflow runs for commit 602c8a8 succeeded on independent GitHub run
 Latest code/script/CI commit **9fd5531** passed independent GitHub CI: https://github.com/totnui555-commits/Codex-2/actions/runs/39397093487 . This final documentation/evidence update does not change executable code. API snapshot verifies worker/scheduler/Watchtower live, audit chain valid, paid execution disabled, THB 100 limit and THB 0.0843 recorded spend. Two experiments contain zero customer observations. Model/GitHub/development artifacts are configured; sandbox, application email and billing remain disconnected.
 
 Inspected the official Daytona sign-in flow in a fresh private headless browser using the connected account identity. It requires password authentication or Google/GitHub OAuth; an authenticated browser session is not available. No password reset, account creation, API-key acquisition, service purchase or sandbox provisioning occurred. This is a verified authentication blocker, not missing user permission. Render remains unconnected. Updated Founder Inbox accordingly; existing founder setup email remains the notification record, with no repeated email sent in this continuation.
+
+## Render connected and staging preparation — 2026-10-20
+
+Founder confirmed Render workspace My Workspace / totnui555@gmail.com, tea-dbbj2qbbc2fs73bcelb0. Clarified USD 100 is for OpenRouter API, not recurring hosting. No paid hosting or worker resource was purchased. Existing local execution remains research_only with paid execution disabled; the general THB 100 initial-test ceiling was not silently reallocated into a hosting allowance.
+
+Created actual Render PostgreSQL company-os-staging-db (free, Singapore, PostgreSQL 17), dpg-dbbj5h0u01pc73dvnm5g-a. Status available; expires 2026-11-19. No web services or other databases existed in this workspace when checked. The existing free DB is referenced from render.yaml rather than redeclared, to avoid duplicate free-instance creation.
+
+Implemented cloud transport/deployment code:
+
+- Normalize postgres:// and postgresql:// DSNs to the installed psycopg driver without losing escaped credentials or SSL parameters.
+- Shared Temporal connection helper with namespace/API-key/TLS settings; reject API-key transport without TLS. Actual Temporal integration verification now uses that helper.
+- Normalize Render private hostport to a proper HTTP API origin; reject credential-bearing origins, unsupported schemes and path/query ambiguity.
+- Preserve up to four decimal places for sub-baht costs, instead of showing a real nonzero spend as zero.
+- Management-only free staging Docker topology and supervisor (API + Next standalone), migrations/role seeding, signal forwarding and fail-together process management. Staging requires persistent PostgreSQL and private setup/session secrets; it does not run autonomous workers. UI explicitly labels staging limitations.
+- Local native staging runtime smoke verified real PostgreSQL migration, Next server, proxy, authenticated login/snapshot, 25 roles, audit chain and graceful shutdown. No mock database or invented activity. The Docker image/Render deployment itself remains unverified.
+
+Validation: 37 backend tests including actual Temporal passed; six frontend tests passed; TypeScript and production builds passed; Ruff passed. render.yaml passed the current official JSON Schema. Installed official Render CLI v2.30.0 with release SHA-256 verification; CLI platform validation is blocked by separate CLI authentication, not schema acceptance. Render MCP OAuth is not exported to CLI or copied into files.
+
+Blocking platform action: current connector cannot create/apply a Blueprint or set a fromDatabase reference when creating a web service. Dashboard flow must connect the private Git source, choose codex/company-os-implementation and apply render.yaml. No web deployment/live URL, external gateway or hosted coding run is claimed. docs/RENDER_STAGING_TH.md gives the concrete remaining action and verified free-plan limitations. Daytona password/OAuth authentication, production storage/email/hosting and the remaining release gate remain outstanding.

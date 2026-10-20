@@ -1,11 +1,12 @@
 import os
+
 import pytest
-from temporalio.client import Client
-from temporalio.worker import Worker
-from company_os.orchestration import TaskWorkflow, execute_task
 from company_os.db import Session
 from company_os.models import Task
+from company_os.orchestration import TaskWorkflow, execute_task
+from company_os.temporal_connection import connect_temporal
 from conftest import create_task
+from temporalio.worker import Worker
 
 
 @pytest.mark.skipif(
@@ -14,7 +15,7 @@ from conftest import create_task
 )
 async def test_real_temporal_worker_fails_closed_without_providers(owner_client, project):
     task = create_task(owner_client, project, agent_role="backend_engineer")
-    client = await Client.connect("localhost:7233")
+    client = await connect_temporal()
     async with Worker(
         client, task_queue="company-os-tests", workflows=[TaskWorkflow], activities=[execute_task]
     ):

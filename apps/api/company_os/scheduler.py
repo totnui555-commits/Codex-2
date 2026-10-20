@@ -3,7 +3,6 @@ import logging
 from datetime import timedelta
 
 from sqlalchemy import select
-from temporalio.client import Client
 from temporalio.exceptions import WorkflowAlreadyStartedError
 
 from .db import Session
@@ -13,6 +12,7 @@ from .notifications import deliver_pending
 from .orchestration import TaskWorkflow
 from .research import public_source_research, store_research
 from .settings import settings
+from .temporal_connection import connect_temporal
 
 log = logging.getLogger(__name__)
 
@@ -74,7 +74,7 @@ async def daily_research():
 
 async def main():
     logging.basicConfig(level=logging.INFO)
-    client = await Client.connect(settings().temporal_address, namespace=settings().temporal_namespace)
+    client = await connect_temporal()
     while True:
         service_heartbeat("scheduler")
         for operation in [lambda: dispatch(client), deliver_pending, daily_research]:

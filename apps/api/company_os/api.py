@@ -220,6 +220,7 @@ def snapshot(m=Depends(tenant), db=Depends(get_db)):
     }
     return {
         "services": services,
+        "deployment": {"runtime": settings().runtime},
         "organization": record(org),
         "projects": rows(Project),
         "tasks": tasks,

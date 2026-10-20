@@ -1,15 +1,14 @@
 import asyncio
 
-from temporalio.client import Client
 from temporalio.worker import Worker
 
 from .health import service_heartbeat
 from .orchestration import TaskWorkflow, execute_task
-from .settings import settings
+from .temporal_connection import connect_temporal
 
 
 async def main():
-    client = await Client.connect(settings().temporal_address, namespace=settings().temporal_namespace)
+    client = await connect_temporal()
     worker = Worker(
         client,
         task_queue="company-os",

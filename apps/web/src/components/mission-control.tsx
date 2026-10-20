@@ -576,6 +576,14 @@ export default function MissionControl() {
             </Button>
           </div>
         </div>
+        {s.deployment?.runtime === "staging" && (
+          <div className="info-strip" role="status">
+            <AlertTriangle size={17} />
+            Staging workspace. Free hosting may sleep; the database expires
+            after 30 days. Background workers are not deployed here. Keep
+            production and customer data out of this environment.
+          </div>
+        )}
         {s.organization.stopped && (
           <div className="stop-banner">
             <Power size={17} />

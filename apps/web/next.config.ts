@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
+import { apiOrigin } from "./src/lib/api-origin";
 const config: NextConfig = {
   output: "standalone",
   async rewrites() {
     return [
       {
         source: "/api/:path*",
-        destination: `${process.env.API_URL || "http://127.0.0.1:8000"}/:path*`,
+        destination: `${apiOrigin(process.env.API_URL)}/:path*`,
       },
     ];
   },

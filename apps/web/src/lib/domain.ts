@@ -5,6 +5,7 @@ export type Row = {
   [key: string]: any;
 };
 export interface Snapshot {
+  deployment?: { runtime: string };
   services?: Record<string, { last_seen_at: string; state: string }>;
   organization: Row;
   projects: Row[];
@@ -115,6 +116,7 @@ export function money(value: number | string, currency = "THB") {
   return new Intl.NumberFormat("en", {
     style: "currency",
     currency,
-    maximumFractionDigits: 0,
+    maximumFractionDigits:
+      Math.abs(Number(value)) > 0 && Math.abs(Number(value)) < 1 ? 4 : 2,
   }).format(Number(value));
 }
