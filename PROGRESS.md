@@ -91,3 +91,19 @@ Remaining owner-only setup is consolidated in docs/FOUNDER_SETUP_TH.md and Found
 ## Review handoff — 2026-10-20
 
 Private draft PR: https://github.com/totnui555-commits/Codex-2/pull/1 . Source pushed on codex/company-os-implementation; no merge or production launch. Sent the consolidated missing-account/gateway setup request to the authorized founder address using the connected Gmail chat connector; connector reported action completed but returned no message ID, so no application delivery receipt is claimed. Paid execution remains disabled.
+
+## Authorized continuation: Product Incubator — 2026-10-20
+
+Founder authorized continuing all setup/implementation. This supplies authorization to proceed; it does not supply missing external account credentials. Rechecked the managed environment: no Daytona or cloud outbound identity/secret binding exists. Plugin discovery found Render and Railway hosting integrations but no callable Daytona connection; Render was suggested as the smallest useful hosting connection and is not installed/connected. No deployment or account onboarding is claimed.
+
+Implemented the Product Incubator vertical slice, rather than stopping at the hosted-sandbox blocker:
+
+- Strict authenticated experiment contracts, tenant/project scope, predeclared thresholds and minimum sample sizes, version checks, serialized writes and draft/running/paused/concluded transitions.
+- Persistent owner-reported evidence receipts with same-project checksummed artifact provenance; duplicate batches cannot inflate counts. No measurement is represented as independently verified demand or provider-confirmed revenue.
+- Wilson 95% interval recommendations with an explicit inconclusive state; STOP ALL/project pause gates new evidence. Concluded results are frozen. No experiment action grants external execution permission.
+- Interactive forms, evidence receipt inspector, actual statistics, lifecycle controls and responsive styling in Opportunities. Real event snapshots refresh the view.
+- Linked an actual existing public-source opportunity to a paused validation project/backlog and draft experiment, with proposed criteria and zero customer observations. Preserved the dated source and identifiers in docs/evidence/source-to-incubator.json.
+- Real browser persistence/lifecycle verification passed with zero browser errors and mobile horizontal overflow absent. The internal check recorded zero customer observations and an inconclusive result; it is not customer research.
+- Full backend verification including the actual Temporal service: **35 passed**. Frontend: **3 passed**. Both TypeScript workspaces passed and web/Codex production builds succeeded. Ruff passed. No additional paid inference was used; the existing THB 100 ceiling remains and paid execution is disabled.
+
+Remaining blockers: Daytona account credentials/snapshot setup and a connected HTTPS gateway host for the real hosted coding benchmark; application-owned email OAuth and cloud object storage for production; remaining product/funnel/office and production release acceptance work. Founder Inbox now explicitly distinguishes missing account connections from permission, which the founder has already granted. See docs/INCUBATOR.md for concrete behavior and limitations.

@@ -2352,3 +2352,67 @@ textarea::placeholder {
 .office-labels .floor-tag span {
   max-width: 90px;
 }
+
+.incubator {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.incubator h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.incubator > p {
+  color: #657656;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  max-width: 850px;
+}
+.incubator details {
+  margin: 16px 0;
+}
+.incubator summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #526346;
+  padding: 6px 0;
+}
+.incubator form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.incubator label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  color: #657656;
+  min-width: 0;
+}
+.incubator input,
+.incubator select,
+.incubator textarea {
+  width: 100%;
+  min-width: 0;
+}
+.incubator form button {
+  align-self: end;
+}
+.incubator .list-card {
+  min-width: 0;
+}
+.incubator .list-card > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.incubator .list-card > .secondary {
+  margin-top: 16px;
+}
+.incubator .list-card p {
+  overflow-wrap: anywhere;
+}

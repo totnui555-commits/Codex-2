@@ -17,6 +17,7 @@ export interface Snapshot {
   messages: Row[];
   deliveries: Row[];
   opportunities: Row[];
+  experiments?: Row[];
   revenue: Row[];
   usage: Row[];
   incidents: Row[];

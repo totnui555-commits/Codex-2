@@ -1,0 +1,22 @@
+{
+  "opportunity_id": "f5d5479f-e07f-4d58-8739-891cf629b556",
+  "source_evidence": [
+    {
+      "title": "Show HN: Workflow automation and collaborative document editing tools",
+      "url": "https://news.ycombinator.com/item?id=39357755",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2024-02-13T14:12:51Z",
+      "retrieved_at": "2026-10-20T07:15:09.935498+00:00",
+      "excerpt": "I have been a daily HN reader and would like to use this as a starting point to show SimWorkflow so that the HN community can get to know SimWorkflow.<p>This project has been the love child of myself for the past year or so.<p>A bit of background: Previously, I worked as a consultant specializing in designing, implementing, and maintaining Business Process Management and Content Management Solutions. I was surprised at the effort required to implement such solutions; specifically, the time it took, the number of people involved, and the amount of custom code. I thought: What if we could make this easier and make it work with HTTP APIs? So SimWorkflow was eventually born from it.<p>Please feel free to ask any questions. Your feedback is extremely valued, so please let me know what you think!<p>To get started, a new SimWorkflow account comes with an Issue Management solution.<p>Thanks, Tai",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2024-09-20T16:26:48Z"
+    }
+  ],
+  "project_id": "561420f3-8d5a-4cbb-a828-6df958e48f2e",
+  "experiment_id": "e8ab87c3-7c75-4f32-b9c4-6bd8037fd78f",
+  "state": "draft",
+  "project_paused": true,
+  "observations": 0,
+  "criteria": "proposed defaults, not observed facts or authorization for customer outreach",
+  "execution": "backlog persisted; no model or campaign launched"
+}

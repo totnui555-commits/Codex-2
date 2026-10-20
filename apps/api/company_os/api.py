@@ -25,6 +25,7 @@ from .contracts import (
 )
 from .db import Session, get_db
 from .domain import PROTECTED, add_dependency, emit, inbox, lock_org, scoped, transition, verify_audit
+from .experiments import router as experiments_router
 from .gateway import router as gateway_router
 from .models import (
     AgentRole,
@@ -35,6 +36,7 @@ from .models import (
     Decisions,
     Delivery,
     Event,
+    Experiments,
     Incident,
     Membership,
     Message,
@@ -229,6 +231,7 @@ def snapshot(m=Depends(tenant), db=Depends(get_db)):
         "messages": rows(Message),
         "deliveries": rows(Delivery),
         "opportunities": rows(Opportunity),
+        "experiments": rows(Experiments),
         "revenue": rows(Revenue),
         "usage": usage,
         "incidents": rows(Incident),
@@ -554,6 +557,7 @@ if settings().telemetry_enabled:
 
 
 app.include_router(gateway_router)
+app.include_router(experiments_router)
 
 
 @app.get("/events/history")

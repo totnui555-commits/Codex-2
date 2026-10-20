@@ -53,6 +53,7 @@ import {
   type Row,
   type Snapshot,
 } from "@/lib/domain";
+import { Incubator } from "./incubator";
 const Office = dynamic(() => import("./office"), {
   ssr: false,
   loading: () => (
@@ -1224,6 +1225,9 @@ export default function MissionControl() {
                   )}
                 </div>
               </>
+            )}
+            {page === "Opportunities" && (
+              <Incubator snapshot={s} refresh={refresh} />
             )}
             {page === "Watchtower" && (
               <>
