@@ -17,3 +17,6 @@ GRANT UPDATE (status) ON agent_runs TO company_watchtower;
 GRANT UPDATE (data) ON sandboxes TO company_watchtower;
 -- Neither worker role can change owner policy, budgets, role capabilities or approvals.
 GRANT INSERT,UPDATE ON decisions TO company_watchtower;
+
+-- Research workers append source snapshots; no update/delete grant.
+GRANT INSERT ON research_evidence TO company_worker;

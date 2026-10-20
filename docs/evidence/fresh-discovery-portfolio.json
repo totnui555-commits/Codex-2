@@ -1,0 +1,151 @@
+{
+  "scope": "actual bounded official API collection; unvalidated public discussions, no customer outreach",
+  "source_count": 8,
+  "sources": [
+    {
+      "title": "Automating Your \"Markdown to static site\"",
+      "url": "https://news.ycombinator.com/item?id=49706314",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-09-15T00:51:29+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-09-15T01:21:22Z"
+    },
+    {
+      "title": "Show HN: M0saic \u2013 deterministic video compiler (CLI, web, desktop)",
+      "url": "https://news.ycombinator.com/item?id=49786497",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-09-21T12:36:26+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "Hi HN!\n<a href=\"https:&#x2F;&#x2F;m0saic.io&#x2F;go&#x2F;hn-make-hello\" rel=\"nofollow\">https:&#x2F;&#x2F;m0saic.io&#x2F;go&#x2F;hn-make-hello</a><p>I&#x27;m Quentin. I&#x27;ve just published my longterm project - excited to share!\nm0saic is a video compiler. Typescript programs define an explicit spatial layout via a string DSL (m0), and configure what goes into each independent rect over a shared timeline. This media intent IR gets lowered to a series of ffmpeg invocations, which produce the intended media artifact deterministically.<p>I got interested in this originally when I was younger and made Call of Duty montages on YouTube. I made compilations and whatnot and found it tedious to do some of the &quot;structural&quot; work I suppose (like making a 2x2 layout, other effects). I had saved project files to help me make similar style content over time, but found myself wanting more control. Around then sometime I stumbled into ffmpeg and got into media production and automation as a hobby.<p>I later designed a string DSL for layout, answering roughly how could I represent any arbitrary set of rectangles in an arbitrary canvas in one blob? This led to the m0 DSL. If interested, b",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-09-26T20:27:30Z"
+    },
+    {
+      "title": "Show HN: Ox \u2013 A local agent that uses the internet for you",
+      "url": "https://news.ycombinator.com/item?id=49818914",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-09-23T16:47:35+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "I\u2019ve been building Ox, a local, open-source agent that uses the internet for you.<p>Ox acts as an intelligent proxy between you and the internet. It uses websites and apps on your behalf, freeing you from attention-hungry interfaces and slow legacy services. As it works, it can turn what it learns into reusable actions (basically function calls), making future interactions deterministic and way faster.<p>Most service integrations today are still built ahead of time: someone writes an API integration, connector, MCP server, or browser automation and then maintains it as the service changes.<p>But the internet is becoming more dynamic so have our agents.<p>With Ox, instead of waiting for a connector, you can say something like:<p>\u201cConnect to &lt;service&gt;.\u201d<p>Ox can study a website or workflow through capabilities it already has, turn what it learns into typed actions and reusable skills, validate them, and make them available immediately.<p>That pushed me toward local agents.<p>A local agent operates from your own device, network, and existing authenticated browser sessions instead of relying on shared datacenter infrastructure. This also makes it less likely to hit blocks aimed a",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-09-25T20:41:41Z"
+    },
+    {
+      "title": "I made DevGo to manage all projects and servers",
+      "url": "https://news.ycombinator.com/item?id=49892480",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-09-29T13:01:06+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "I use several machines and my workflow moves around Windows with WSL, Mac, Ubuntu Desktop and Ubuntu Server for different purposes. Managing projects, opening terminals, editors, agents, and everything else was really a nightmare for me.<p>First, I used to do it on Windows and WSL by simply hardcoding PowerShell scripts, and obviously, it wasn&#x27;t that satisfying. So I created DevGo with Tauri 2, Rust, and React 19. FYI, DevGo was first a simple WinForms app built with C#, and it still exists.<p>Now the Tauri build of DevGo serves me in so many ways and has made me much more productive. I have added server management to DevGo too. Not that there aren&#x27;t free and open-source GUIs for managing servers, but you know what? DevGo doesn&#x27;t ask you for any credentials or secrets to store. It detects your SSH config and adds the servers automatically. Then helps you do many of the things that we manually do repeatedly.<p>I remember setting up my first Ubuntu server only a few years ago. Every setup task felt like hell, and sometimes like a trap when one thing broke another. Later, I automated those server tasks with scripts. Now I have implemented that automation in the DevGo GU",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-09-29T13:04:24Z"
+    },
+    {
+      "title": "Show HN: AilaFlow \u2013 AI workflow automation for teams with Human-AI interfaces",
+      "url": "https://news.ycombinator.com/item?id=49908260",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-09-30T12:56:07+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-10-03T22:25:53Z"
+    },
+    {
+      "title": "Show HN: KubeZap \u2013 Declarative workflow automation for Kubernetes",
+      "url": "https://news.ycombinator.com/item?id=49947309",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-10-03T20:07:37+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-10-06T13:41:33Z"
+    },
+    {
+      "title": "Reliable web access for AI agents and automation workflows",
+      "url": "https://news.ycombinator.com/item?id=50147061",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-10-19T00:46:38+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-10-20T04:26:14Z"
+    },
+    {
+      "title": "Launch HN: Laminar (YC S24) \u2013 RL-trained model that finds errors in agent traces",
+      "url": "https://news.ycombinator.com/item?id=50154029",
+      "source": "Hacker News / Algolia public API",
+      "published_at": "2026-10-19T16:00:18+00:00",
+      "retrieved_at": "2026-10-20T14:20:01.424925+00:00",
+      "collection_window_days": 90,
+      "collection_method": "official_search_by_date_with_local_timestamp_validation",
+      "excerpt": "Hi HN, we\u2019re Robert and Din from Laminar (<a href=\"https:&#x2F;&#x2F;laminar.sh\">https:&#x2F;&#x2F;laminar.sh</a>). We\u2019ve been building open-source observability for AI agents since 2024. Recently, we released flow-1, a model trained with RL to find errors in agent traces. On our benchmark (<a href=\"https:&#x2F;&#x2F;laminar.sh&#x2F;blog&#x2F;flow-1\">https:&#x2F;&#x2F;laminar.sh&#x2F;blog&#x2F;flow-1</a>), it matches GPT-6-sol in detection quality while being 23x cheaper. This makes it affordable to analyze every production agent trace, without sampling.<p>Here\u2019s a one-minute walkthrough: <a href=\"https:&#x2F;&#x2F;youtu.be&#x2F;KJa3h6ZJNLQ\" rel=\"nofollow\">https:&#x2F;&#x2F;youtu.be&#x2F;KJa3h6ZJNLQ</a><p>We also put together a post with example traces and analyses from flow-1 and other models: <a href=\"https:&#x2F;&#x2F;laminar.sh&#x2F;blog&#x2F;flow-1-in-action\">https:&#x2F;&#x2F;laminar.sh&#x2F;blog&#x2F;flow-1-in-action</a><p>Agent observability is crowded, so instead of a bullet list of how Laminar differs from X, we\u2019ll explain how we\u2019re solving agent observability from first principles.<p>Agents now run for many steps and fail implicitly. An agent can click the wrong button o",
+      "quality": "unvalidated_public_discussion",
+      "content_version": "2026-10-20T14:16:46Z"
+    }
+  ],
+  "snapshots": [
+    {
+      "id": "763c3189-9bff-4b43-b221-a91c3e6e8181",
+      "sha256": "a98d38ec19b89358c0c198f278a6dae8768bc9d768615e42d2ab09d563915455",
+      "url": "https://news.ycombinator.com/item?id=49706314"
+    },
+    {
+      "id": "296a3935-23bc-4575-b034-808f0fef4aba",
+      "sha256": "4cc9456ab24412a4d8ca0f1d94b736267ac14ce0dad54a90002949c73c62a7dd",
+      "url": "https://news.ycombinator.com/item?id=49786497"
+    },
+    {
+      "id": "931d8726-abe1-45fd-8df5-1266d930b467",
+      "sha256": "93f78db0eb408b518748aafdb722d7b88106dda5a06902bdf9d39aa93d674be3",
+      "url": "https://news.ycombinator.com/item?id=49818914"
+    },
+    {
+      "id": "da1639d8-d05a-46bb-96aa-3db93e4da47e",
+      "sha256": "5f17eaf80581107dc91e048f74e3000af82c46e59758ef20396cf7df14e82a5d",
+      "url": "https://news.ycombinator.com/item?id=49892480"
+    },
+    {
+      "id": "6486f7eb-dc8c-4b32-aaed-5f3fada1f8d6",
+      "sha256": "a24f78286b71f3de5ac200ea8a41210f9fd208f8a7728fe6eabff12a69167cd1",
+      "url": "https://news.ycombinator.com/item?id=49908260"
+    },
+    {
+      "id": "4981343c-5a29-473d-a36b-89b3addb228c",
+      "sha256": "49f8463cb5c346fad3296097f0b74b8f6d5f2711eaacebf7a2f8b4c69f84007e",
+      "url": "https://news.ycombinator.com/item?id=49947309"
+    },
+    {
+      "id": "6e26e676-de28-4771-837f-8a8e78d0c6ad",
+      "sha256": "56a4b350a94f3e016f7a1218d69a460b3e3d6e725533b5ae1462519ad64d7467",
+      "url": "https://news.ycombinator.com/item?id=50147061"
+    },
+    {
+      "id": "9657c5cd-6661-4918-8e81-b74e2ea30e0b",
+      "sha256": "5030de542484dc755ff0a1fef805e69f0c3b6bc4da6bdde8bd4fa76c6d8a3e82",
+      "url": "https://news.ycombinator.com/item?id=50154029"
+    }
+  ],
+  "selected_opportunity_id": "b9df5591-59dd-4085-8dc1-c6e7cb55152b",
+  "project_id": "43351a80-0c7a-4416-bc11-00dcdfe3d6cd",
+  "experiment_id": "56a90bc6-0131-40b1-94c5-0b072999fb4f",
+  "project_paused": true,
+  "observations": 0,
+  "model_calls": 0,
+  "paid_execution_authorized": false
+}

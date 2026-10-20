@@ -1,8 +1,13 @@
+import hashlib
+import json
+import re
+from datetime import UTC, datetime, timedelta
+
 import httpx
 from sqlalchemy import select
 
 from .domain import emit, lock_org
-from .models import Opportunity, now
+from .models import Opportunity, ResearchEvidence, now
 
 DIMENSIONS = {
     "evidence_strength": 15,
@@ -26,26 +31,43 @@ def opportunity_score(dimensions):
     return round(sum(dimensions[k] * w for k, w in DIMENSIONS.items()) / 100)
 
 
-async def public_source_research(query="Ask HN business workflow automation"):
+async def public_source_research(query="workflow automation"):
     # Official public search API: bounded read, no scraping, no third-party contact.
+    observed = now()
+    cutoff = observed - timedelta(days=90)
     async with httpx.AsyncClient(timeout=20, follow_redirects=False) as client:
         r = await client.get(
-            "https://hn.algolia.com/api/v1/search", params={"query": query, "tags": "story", "hitsPerPage": 8}
+            "https://hn.algolia.com/api/v1/search_by_date",
+            params={
+                "query": query,
+                "tags": "story",
+                "hitsPerPage": 8,
+                "numericFilters": f"created_at_i>{int(cutoff.timestamp())}",
+            },
         )
         r.raise_for_status()
     result = []
-    for hit in r.json().get("hits", []):
+    for hit in r.json().get("hits", [])[:8]:
+        if not isinstance(hit, dict):
+            continue
+        timestamp = hit.get("created_at_i")
+        if type(timestamp) is not int or not cutoff.timestamp() <= timestamp <= observed.timestamp() + 300:
+            continue
         object_id = hit.get("objectID", "")
         if not str(object_id).isdigit():
             continue
         result.append(
             {
-                "title": hit.get("title") or "Public discussion",
+                "title": hit["title"]
+                if isinstance(hit.get("title"), str) and hit["title"]
+                else "Public discussion",
                 "url": f"https://news.ycombinator.com/item?id={object_id}",
                 "source": "Hacker News / Algolia public API",
-                "published_at": hit.get("created_at"),
-                "retrieved_at": now().isoformat(),
-                "excerpt": (hit.get("story_text") or "")[:1200],
+                "published_at": datetime.fromtimestamp(timestamp, UTC).isoformat(),
+                "retrieved_at": observed.isoformat(),
+                "collection_window_days": 90,
+                "collection_method": "official_search_by_date_with_local_timestamp_validation",
+                "excerpt": hit["story_text"][:1200] if isinstance(hit.get("story_text"), str) else "",
                 "quality": "unvalidated_public_discussion",
                 "content_version": str(hit.get("updated_at") or hit.get("created_at")),
             }
@@ -55,13 +77,58 @@ async def public_source_research(query="Ask HN business workflow automation"):
 
 def store_research(db, org_id, sources):
     lock_org(db, org_id)
+    existing = db.scalars(select(Opportunity).where(Opportunity.organization_id == org_id)).all()
+    by_url = {e.get("url"): opportunity for opportunity in existing for e in opportunity.evidence}
+    snapshots = db.scalars(select(ResearchEvidence).where(ResearchEvidence.organization_id == org_id)).all()
+    fingerprints = {s.data.get("snapshot_sha256") for s in snapshots}
     rows = []
     for source in sources:
-        # Source-backed candidate; scoring is explicitly a heuristic, never demand proof.
-        if not source.get("url", "").startswith("https://news.ycombinator.com/item?id="):
+        url = source.get("url", "")
+        if not re.fullmatch(r"https://news\.ycombinator\.com/item\?id=[0-9]+", url):
             continue
-        existing = db.scalars(select(Opportunity).where(Opportunity.organization_id == org_id)).all()
-        if any(any(e.get("url") == source["url"] for e in o.evidence) for o in existing):
+        canonical = {
+            key: source.get(key)
+            for key in ("title", "url", "source", "published_at", "excerpt", "quality", "content_version")
+        }
+        fingerprint = hashlib.sha256(json.dumps(canonical, sort_keys=True).encode()).hexdigest()
+        if fingerprint not in fingerprints:
+            snapshot = ResearchEvidence(
+                organization_id=org_id,
+                data={
+                    **source,
+                    "snapshot_sha256": fingerprint,
+                    "trust": "unvalidated_public_discussion_not_customer_demand",
+                },
+            )
+            db.add(snapshot)
+            db.flush()
+            fingerprints.add(fingerprint)
+            emit(
+                db,
+                org_id,
+                "research_evidence",
+                snapshot.id,
+                "research.source_observed",
+                {
+                    "url": url,
+                    "snapshot_sha256": fingerprint,
+                    "published_at": source.get("published_at"),
+                    "retrieved_at": source.get("retrieved_at"),
+                },
+            )
+        if url in by_url:
+            opportunity = by_url[url]
+            previous = opportunity.evidence[0] if opportunity.evidence else {}
+            if any(previous.get(key) != canonical[key] for key in canonical):
+                opportunity.evidence = [source]
+                emit(
+                    db,
+                    org_id,
+                    "opportunity",
+                    opportunity.id,
+                    "opportunity.evidence_refreshed",
+                    {"url": url, "snapshot_sha256": fingerprint},
+                )
             continue
         dimensions = {k: 20 for k in DIMENSIONS}
         dimensions["evidence_strength"] = 30
@@ -82,17 +149,13 @@ def store_research(db, org_id, sources):
         db.add(row)
         db.flush()
         rows.append(row)
+        by_url[url] = row
         emit(
             db,
             org_id,
             "opportunity",
             row.id,
             "opportunity.discovered",
-            {
-                "title": row.title,
-                "score": row.score,
-                "source_url": source["url"],
-                "scoring": "preliminary_heuristic",
-            },
+            {"title": row.title, "score": row.score, "source_url": url, "scoring": "preliminary_heuristic"},
         )
     return rows

@@ -42,6 +42,7 @@ from .models import (
     Message,
     Opportunity,
     Organization,
+    Products,
     Project,
     Reservation,
     Revenue,
@@ -51,6 +52,7 @@ from .models import (
     User,
     now,
 )
+from .products import router as products_router
 from .security import current_user, dummy_password_hash, owner, passwords, redact, session_token, tenant
 from .settings import settings
 
@@ -233,6 +235,7 @@ def snapshot(m=Depends(tenant), db=Depends(get_db)):
         "deliveries": rows(Delivery),
         "opportunities": rows(Opportunity),
         "experiments": rows(Experiments),
+        "products": rows(Products),
         "revenue": rows(Revenue),
         "usage": usage,
         "incidents": rows(Incident),
@@ -559,6 +562,7 @@ if settings().telemetry_enabled:
 
 app.include_router(gateway_router)
 app.include_router(experiments_router)
+app.include_router(products_router)
 
 
 @app.get("/events/history")

@@ -2416,3 +2416,9 @@ textarea::placeholder {
 .incubator .list-card p {
   overflow-wrap: anywhere;
 }
+.incubator li {
+  overflow-wrap: anywhere;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #657656;
+}

@@ -1,12 +1,15 @@
 import asyncio
+import logging
 
 from sqlalchemy import select
 
 from .db import Session
 from .domain import emit, inbox, verify_audit
 from .health import service_heartbeat
-from .models import AgentRun, Artifact, Incident, Organization, Sandboxes, Task, now
+from .models import AgentRun, Artifact, Incident, Organization, Project, Sandboxes, Task, now
 from .security import redact
+
+log = logging.getLogger(__name__)
 
 
 # Stop-only enforcement. This service cannot approve, spend, publish, or release.
@@ -17,8 +20,17 @@ def inspect_organization(db, org_id):
         findings.append(("audit_integrity", "critical", None, {"reason": "Hash chain verification failed"}))
     tasks = db.scalars(select(Task).where(Task.organization_id == org_id)).all()
     for task in tasks:
-        if task.status == "running" and task.lease_until and task.lease_until < now():
-            findings.append(("stalled_worker", "high", task, {"reason": "Worker lease expired"}))
+        if task.status == "running":
+            if not task.lease_until or task.lease_until < now():
+                findings.append(
+                    ("stalled_worker", "high", task, {"reason": "Worker lease missing or expired"})
+                )
+            elif org.stopped or not org.paid_execution_authorized or db.get(Project, task.project_id).paused:
+                findings.append(("execution_revoked", "high", task, {"reason": "Execution policy revoked"}))
+            elif task.agent_role in {"frontend_engineer", "backend_engineer"} and org.mode == "research_only":
+                findings.append(
+                    ("execution_revoked", "high", task, {"reason": "Coding not permitted in research mode"})
+                )
         if task.attempts > task.max_attempts:
             findings.append(("retry_limit", "high", task, {"attempts": task.attempts}))
         if task.status == "completed":
@@ -34,7 +46,31 @@ def inspect_organization(db, org_id):
             )
     for kind, severity, task, details in findings:
         key = f"{org_id}:{kind}:{task.id if task else 'company'}"
-        if db.scalar(select(Incident).where(Incident.dedupe_key == key)):
+        # Enforcement is independent of notification/incident deduplication.
+        changed = False
+        if task:
+            if task.status not in {"cancelled", "quarantined"}:
+                task.status = "quarantined"
+                changed = True
+            for run in db.scalars(
+                select(AgentRun).where(AgentRun.task_id == task.id, AgentRun.status == "running")
+            ).all():
+                run.status = "quarantined"
+                changed = True
+        if severity == "critical" and not org.stopped:
+            org.stopped = True
+            changed = True
+        existing = db.scalar(select(Incident).where(Incident.dedupe_key == key))
+        if existing:
+            if changed:
+                emit(
+                    db,
+                    org_id,
+                    "incident",
+                    existing.id,
+                    "watchtower.enforcement_reapplied",
+                    {"kind": kind, "task_id": task.id if task else None},
+                )
             continue
         incident = Incident(
             organization_id=org_id,
@@ -46,15 +82,6 @@ def inspect_organization(db, org_id):
         )
         db.add(incident)
         db.flush()
-        if task:
-            if task.status not in {"cancelled", "quarantined"}:
-                task.status = "quarantined"
-            for run in db.scalars(
-                select(AgentRun).where(AgentRun.task_id == task.id, AgentRun.status == "running")
-            ).all():
-                run.status = "quarantined"
-        if severity == "critical":
-            org.stopped = True
         emit(
             db,
             org_id,
@@ -93,16 +120,34 @@ async def reclaim_revoked_sandboxes():
             run = db.get(AgentRun, row.data["run_id"])
             task = db.get(Task, run.task_id) if run else None
             org = db.get(Organization, row.organization_id)
-            if run and run.status == "running" and task and task.status == "running" and not org.stopped:
+            project = db.get(Project, task.project_id) if task else None
+            if (
+                run
+                and run.status == "running"
+                and task
+                and task.status == "running"
+                and task.lease_until
+                and task.lease_until > now()
+                and org
+                and not org.stopped
+                and org.paid_execution_authorized
+                and org.mode in {"build_autopilot", "approved_growth"}
+                and project
+                and not project.paused
+            ):
                 continue
             attempts = row.data.get("stop_attempts", 0) + 1
-            try:
-                sandbox = await asyncio.to_thread(client.get, row.data["provider_id"])
+
+            async def delete_remote(provider_id):
+                sandbox = await asyncio.to_thread(client.get, provider_id)
                 await asyncio.to_thread(client.delete, sandbox, wait=True)
+
+            try:
+                await asyncio.wait_for(delete_remote(row.data["provider_id"]), timeout=30)
                 state = "deleted"
             except DaytonaNotFoundError:
                 state = "deleted"
-            except DaytonaError:
+            except (DaytonaError, TimeoutError):
                 state = "stop_failed"
             row.data = {
                 **row.data,
@@ -129,13 +174,31 @@ async def reclaim_revoked_sandboxes():
                 )
 
 
-async def main():
-    while True:
-        service_heartbeat("watchtower")
-        with Session.begin() as db:
-            for org_id in db.scalars(select(Organization.id)).all():
+async def monitor_once():
+    service_heartbeat("watchtower")
+    with Session() as db:
+        organizations = db.scalars(select(Organization.id)).all()
+    for org_id in organizations:
+        try:
+            with Session.begin() as db:
                 inspect_organization(db, org_id)
+        except Exception as error:
+            # One corrupt/unavailable tenant must not disable other checks.
+            log.warning("Organization check failed: org=%s type=%s", org_id, type(error).__name__)
+    try:
         await reclaim_revoked_sandboxes()
+    except Exception as error:
+        # Provider failure must not kill independent database/policy monitoring.
+        log.warning("Sandbox reclamation failed: type=%s", type(error).__name__)
+
+
+async def main():
+    logging.basicConfig(level=logging.INFO)
+    while True:
+        try:
+            await monitor_once()
+        except Exception as error:
+            log.warning("Watchtower cycle failed: type=%s", type(error).__name__)
         await asyncio.sleep(15)
 
 

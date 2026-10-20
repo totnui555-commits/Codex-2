@@ -54,6 +54,7 @@ import {
   type Snapshot,
 } from "@/lib/domain";
 import { Incubator } from "./incubator";
+import { ProductPortfolio } from "./product-portfolio";
 const Office = dynamic(() => import("./office"), {
   ssr: false,
   loading: () => (
@@ -1236,6 +1237,9 @@ export default function MissionControl() {
             )}
             {page === "Opportunities" && (
               <Incubator snapshot={s} refresh={refresh} />
+            )}
+            {page === "Opportunities" && (
+              <ProductPortfolio snapshot={s} refresh={refresh} />
             )}
             {page === "Watchtower" && (
               <>

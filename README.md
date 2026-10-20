@@ -41,8 +41,9 @@ The scheduler needs Temporal at `TEMPORAL_ADDRESS`; the browser is never the wor
 - Atomic company/project/task/run reservations, explicit paid-execution opt-in, single-use immutable-artifact approvals and emergency stop.
 - Real Temporal activity dispatch; a job with missing providers durably blocks and creates an Inbox request without invoking a model.
 - Configured OpenAI Agents SDK Chief of Staff planning and specialist invocation, Daytona/Codex factory, scoped model gateway, independent CRUD harness, private checksum-verified artifacts and GitHub draft PR adapters.
-- Independent Watchtower process, persistent Founder Inbox, bounded Gmail delivery retries/unknown-outcome handling.
-- Daily bounded public-source discovery with actual URLs/dates, clearly heuristic scoring, idempotent opportunity-to-project/backlog creation.
+- Independent Watchtower with repeat policy enforcement and tenant/provider failure isolation; persistent Founder Inbox and bounded Gmail delivery states.
+- Daily bounded public-source discovery with a 90-day window, versioned source checksums, clearly heuristic scoring and idempotent opportunity-to-backlog creation.
+- Persistent experiment lifecycle and product portfolio: defined MVP hypotheses, explicit unknown economics, validation links and independently checked prototype gates. See [the product evidence guide](docs/PRODUCT_PORTFOLIO.md).
 - Signed live Stripe webhook ledger; test events, invalid signatures, stale signatures, duplicates and tenant mismatches are rejected/ignored correctly.
 - Original six-floor R3F office, agent/floor selection, orbit/zoom/reset, accessible 2D view and operational screens tied to persisted state.
 
@@ -67,14 +68,10 @@ No model, hosted sandbox or autonomous coding PR has been executed without crede
 
 See [deployment](docs/DEPLOYMENT.md), [operations](docs/OPERATIONS.md), [founder guide](docs/FOUNDER_GUIDE.md), [API contracts](docs/CONTRACTS.md) and [cost controls](docs/COST_CONTROLS.md).
 
-## Latest activation checkpoint
+## Current verification checkpoint
 
-OpenRouter now executed two real bounded specialist jobs through Temporal, with encrypted persistent local artifacts and a founder review gate. GitHub is connected through the inherited authorized identity. The current development artifact store is local encrypted storage (see docs/LOCAL_ARTIFACT_STORAGE.md), not cloud S3. Initial research verification consumed approximately THB 0.03 for these two jobs; the second has provider-reported USD cost. Paid execution was disabled again after verification. Current setup guidance in Thai: docs/FOUNDER_SETUP_TH.md. The hosted coding/Daytona benchmark is still blocked; OpenRouter Codex routing is prepared but not live-verified in a sandbox.
+The complete local suite passes **79 backend tests** with real PostgreSQL and Temporal, six frontend tests, TypeScript/build and Ruff. Product Portfolio browser verification confirms real draft creation, same-project experiment linking, reload persistence, visible release blockers and mobile layout with no page errors. Actual recent-source collection retained eight versioned discussion records. See [product evidence](docs/PRODUCT_PORTFOLIO.md) and [detailed progress](PROGRESS.md).
 
-The Product Incubator now supports persistent, versioned experiment criteria, owner-reported checksummed evidence receipts, idempotent counts, stop/continue/inconclusive recommendations and lifecycle controls in Opportunities. See [the concrete workflow and limitations](docs/INCUBATOR.md). Full local backend verification including real Temporal: 35 tests passed; hosted coding and production provider setup remain incomplete.
+Six bounded real OpenRouter advisory calls have run through Temporal, including planner/specialist delegation and a checksummed dependency-artifact handoff. Total recorded model spend is approximately THB 0.1241; paid execution is currently disabled. Artifacts use real encrypted local development storage, not cloud S3. GitHub is connected through the inherited authorized identity. No hosted Codex/Daytona coding benchmark has run.
 
-Render is now authenticated in the founder-confirmed workspace. A real free staging PostgreSQL instance is available; the management-only `render.yaml` and combined staging runtime are prepared. See [the exact remaining Dashboard action and limitations](docs/RENDER_STAGING_TH.md). This is not a live Render web deployment or a 24/7 production worker topology. Latest code validation: 37 backend and six frontend tests plus independent GitHub CI passed.
-
-The coding gateway now enforces tenant-bound expiring capabilities, actual PostgreSQL RLS context, live lease/budget/policy checks and in-flight output revocation. Full backend verification is now 51 tests, with complete independent GitHub CI passing. `scripts/start_local_services.py` restores detached development services without enabling spending. These checks do not replace the still-unexecuted hosted Codex/Daytona benchmark.
-
-Verified agent-to-agent handoffs now load selected checksummed artifacts from completed dependencies, enforce tenant/project/state/input-size boundaries and record exact source provenance. One real OpenRouter/Temporal specialist consumed the prior planner artifact and cited its identifiers/hash. Full backend verification: 59 tests; complete independent GitHub CI passed. Advisory output remains owner-reviewed, and hosted coding/deployment gates remain incomplete.
+Render is authenticated in the founder-confirmed workspace and an actual free staging PostgreSQL instance exists. The management-only Blueprint is prepared; [the remaining Dashboard action](docs/RENDER_STAGING_TH.md) has not been completed. There is no live Render web deployment or production worker topology. Daytona account authentication, public HTTPS model gateway, production artifact storage and application email OAuth remain external setup gates. [Thai setup guide](docs/FOUNDER_SETUP_TH.md).
