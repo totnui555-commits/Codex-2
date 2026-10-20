@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-20",
+  "workspace_id": "tea-dbbj2qbbc2fs73bcelb0",
+  "postgres_status": "available",
+  "requested_plan": "free",
+  "requested_region": "singapore",
+  "repository_visibility": "PRIVATE",
+  "docker_service_creation": "rejected",
+  "provider_status": 400,
+  "provider_message": "repository URL invalid or unfetchable",
+  "web_services_after_attempt": 0,
+  "public_url": null,
+  "required_account_action": "Grant Render GitHub App repository access; apply committed Blueprint linking existing database",
+  "paid_service_created": false
+}

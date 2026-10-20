@@ -16,7 +16,7 @@ PostgreSQL **company-os-staging-db**, plan **free**, region **Singapore**, Postg
 
 ## ตรวจแล้ว / ยังไม่ตรวจ
 
-- Backend ล่าสุด 79 tests ผ่าน รวม PostgreSQL/Temporal จริง; frontend 6 tests, typechecks และ production build ผ่าน
+- Backend ล่าสุด 79 tests ผ่าน รวม PostgreSQL/Temporal จริง; frontend 15 tests, typechecks และ production build ผ่าน
 - Native staging process smoke ผ่าน: migrations, PostgreSQL, Next standalone, same-origin proxy, owner login, 25 roles, audit chain และ graceful shutdown โดยใช้ฐานข้อมูล integration test แยกจากข้อมูลจริง
 - Blueprint ผ่าน JSON Schema ทางการปัจจุบัน
 - ติดตั้ง Render CLI v2.30.0 จาก release ทางการพร้อมตรวจ SHA-256 แต่ platform validation ต้อง login CLI เพิ่ม การเชื่อม OAuth ของ connector ไม่ใช่ credential ที่ส่งต่อให้ CLI ได้
@@ -39,3 +39,10 @@ PostgreSQL **company-os-staging-db**, plan **free**, region **Singapore**, Postg
 Free web sleeps หลังไม่มีคนใช้และไม่ใช่ runtime 24/7 ฐานข้อมูลฟรีมีอายุ 30 วันและไม่มี managed backup ห้ามเก็บ production/customer data หรือย้ายข้อมูลจริงจาก workspace ไปโดยถือเป็น backup ไม่มี OpenRouter key, Daytona key, email OAuth หรือ billing secret ถูกส่งไปยัง staging แผนนี้ไม่แทน hardened hosted coding benchmark หรือ production release gate
 
 Production ยังต้องมีงบโฮสต์แยก, role-scoped PostgreSQL connections, production Temporal, private object storage, worker/scheduler/Watchtower แยกบริการ, Daytona และ deployment verification ที่ผ่านจริง
+
+
+## ตรวจซ้ำหลังผู้ก่อตั้งสั่งเปิดเว็บ — 20 ตุลาคม 2026
+
+Connector ปัจจุบันรองรับ Docker web creation แล้ว จึงลองสร้าง company-os-staging / Free / Singapore จาก branch ที่มีโค้ดล่าสุดโดยตรง ผลจริงคือ HTTP 400: repository URL invalid or unfetchable. GitHub ยืนยันว่า repository เป็น PRIVATE และ Render ยังไม่มี web service หลังคำสั่งดังกล่าว จึงยังไม่มี public URL ที่ใช้งานได้ และไม่อ้างว่าการ deploy สำเร็จ
+
+สิ่งที่ต้องทำในบัญชีเจ้าของคืออนุญาต Render GitHub App อ่าน Codex-2 แล้วใช้ Blueprint ตามขั้นตอนด้านบน เพื่อผูกฐานข้อมูลเดิมโดยไม่เปิดเผย connection string. เครื่องมือที่เชื่อมอยู่ไม่มี authenticated Dashboard browser หรือ Blueprint apply capability; จึงทำ GitHub OAuth แทนเจ้าของไม่ได้ ไม่มีการเปลี่ยน repository เป็น public หรือสร้าง paid service.
