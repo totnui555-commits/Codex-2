@@ -1,0 +1,2 @@
+# Preserve Markdown hard breaks in the original uploaded specification.
+docs/MASTER_PROMPT.md whitespace=-blank-at-eol

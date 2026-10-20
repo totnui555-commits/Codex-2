@@ -12,3 +12,5 @@ test-results/
 playwright-report/
 .local/
 *.tsbuildinfo
+*.egg-info/
+packages/codex-worker/dist/
