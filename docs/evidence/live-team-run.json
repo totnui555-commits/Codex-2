@@ -1,0 +1,94 @@
+{
+  "scope": "real internal advisory delegation; not customer validation or hosted coding",
+  "project_id": "77d95af2-9432-4a24-98a4-35d30d1a914d",
+  "parent_task_id": "28d649f0-556a-4afb-b578-a8bbae450341",
+  "specialist_task_ids": [
+    "67776c86-41d9-4d46-8418-7ac17a2dabdb",
+    "f137a71e-b83e-49d6-8959-03d62e47f69a"
+  ],
+  "results": [
+    {
+      "artifact_id": "2ddb7ea7-3b47-4fe4-b530-ee9b6c729a8f",
+      "status": "completed"
+    },
+    {
+      "artifact_id": "d47874c0-6a06-4386-9336-ef93b298cc32",
+      "status": "waiting_for_approval"
+    },
+    {
+      "artifact_id": "e79c46a9-17e5-43a3-841e-809a3370e935",
+      "status": "waiting_for_approval"
+    }
+  ],
+  "runs": [
+    {
+      "task_id": "28d649f0-556a-4afb-b578-a8bbae450341",
+      "role": "chief_of_staff",
+      "workflow_id": "team-verification-28d649f0-556a-4afb-b578-a8bbae450341",
+      "status": "completed",
+      "run_id": "77e11e11-4acc-464c-9549-39728b579323",
+      "provider": "openrouter/agents",
+      "usage": {
+        "input_tokens": 501,
+        "output_tokens": 306,
+        "provider_responses": [
+          {
+            "request_id": "gen-1792486548-PvUFlwJCYc87pY6YFtg6",
+            "model": "openai/gpt-4.1-mini",
+            "cost_usd": "0.00069"
+          }
+        ],
+        "provider_billed_usd": "0.00069"
+      },
+      "cost_thb_estimated": "0.0232",
+      "artifact_id": "2ddb7ea7-3b47-4fe4-b530-ee9b6c729a8f",
+      "artifact_sha256": "c6213ba68dc72bf17ec2c8ab47c215313de88c377629ab63f8797911e0e6f781"
+    },
+    {
+      "task_id": "67776c86-41d9-4d46-8418-7ac17a2dabdb",
+      "role": "business_analyst",
+      "workflow_id": "team-verification-67776c86-41d9-4d46-8418-7ac17a2dabdb",
+      "status": "waiting_for_approval",
+      "run_id": "b17dc558-fb44-48fb-a008-41b91d870a5b",
+      "provider": "openrouter/agents",
+      "usage": {
+        "input_tokens": 192,
+        "output_tokens": 266,
+        "provider_responses": [
+          {
+            "request_id": "gen-1792486551-dkh6aKlwTEili4UliOG5",
+            "model": "openai/gpt-4.1-mini",
+            "cost_usd": "0.0005024"
+          }
+        ],
+        "provider_billed_usd": "0.0005024"
+      },
+      "cost_thb_estimated": "0.0169",
+      "artifact_id": "d47874c0-6a06-4386-9336-ef93b298cc32",
+      "artifact_sha256": "d397b802b3d7048d02d909001d640ec3550fbdcf933b6f6b635ff8ee1b535984"
+    },
+    {
+      "task_id": "f137a71e-b83e-49d6-8959-03d62e47f69a",
+      "role": "ux_researcher",
+      "workflow_id": "team-verification-f137a71e-b83e-49d6-8959-03d62e47f69a",
+      "status": "waiting_for_approval",
+      "run_id": "9655f4e0-f61a-4c75-bda9-fbf16a2a5a4c",
+      "provider": "openrouter/agents",
+      "usage": {
+        "input_tokens": 199,
+        "output_tokens": 202,
+        "provider_responses": [
+          {
+            "request_id": "gen-1792486554-YDTMazRSJM6yKBNeDG1L",
+            "model": "openai/gpt-4.1-mini",
+            "cost_usd": "0.0004028"
+          }
+        ],
+        "provider_billed_usd": "0.0004028"
+      },
+      "cost_thb_estimated": "0.0135",
+      "artifact_id": "e79c46a9-17e5-43a3-841e-809a3370e935",
+      "artifact_sha256": "61a3aa119a03c5899f1ff1a458047b1e6b875f9f6d62f0b50db7875b54f16db0"
+    }
+  ]
+}
