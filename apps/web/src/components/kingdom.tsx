@@ -713,6 +713,7 @@ export default function Kingdom({
                 <WorldBoundary onFailure={() => setFailed(true)}>
                   <Canvas
                     orthographic
+                    frameloop={reduced ? "demand" : "always"}
                     shadows={quality !== "low"}
                     dpr={
                       quality === "high"
