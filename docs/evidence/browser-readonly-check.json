@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "3d_render",
+    "agent_selection_and_camera_focus",
+    "build_inspector_empty_truthfully",
+    "authenticated_inbox_deep_link",
+    "mobile_no_horizontal_overflow"
+  ],
+  "browser_errors": []
+}

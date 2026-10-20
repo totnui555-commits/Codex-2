@@ -1,0 +1,18 @@
+{
+  "integrations": {
+    "model": "configured",
+    "sandbox": "disconnected",
+    "github": "configured",
+    "artifacts": "configured",
+    "email": "disconnected",
+    "billing": "disconnected"
+  },
+  "paid_execution_authorized": false,
+  "monthly_limit_thb": 100.0,
+  "monthly_spend_thb_estimated": "0.0307",
+  "authenticated_encrypted_artifact_read": "passed",
+  "audit_chain": "valid",
+  "backend_tests_passed": 30,
+  "real_research_runs": 2,
+  "hosted_coding_runs": 0
+}

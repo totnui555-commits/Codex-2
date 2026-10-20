@@ -1,0 +1,15 @@
+{
+  "compose_configuration": "valid",
+  "api_image_build": "passed",
+  "web_standalone_image_build": "passed",
+  "clean_compose_startup": "passed",
+  "frontend_proxy_auth_project_task_crud": "passed",
+  "postgres_migration_and_role_seed": "passed",
+  "real_temporal_dispatch": "passed_blocked_without_credentials",
+  "watchtower": "live",
+  "role_count": 25,
+  "audit_valid": true,
+  "paid_runs": 0,
+  "sandbox_image_build": "unverified_disk_limit",
+  "hosted_sandbox_execution": "not_configured_not_executed"
+}

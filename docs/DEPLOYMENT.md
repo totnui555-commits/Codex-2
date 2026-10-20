@@ -1,0 +1,30 @@
+# Deployment
+
+## Private development stack
+
+The Compose stack is a local development deployment, not a production security boundary. Set `.env` from `.env.example`, generate `SESSION_SECRET`/`BOOTSTRAP_TOKEN` with a password manager or `secrets.token_urlsafe`, set `POSTGRES_PASSWORD` and use a matching database URL. Keep ports bound to loopback. Build in this managed environment with the public proxy CA mounted as BuildKit secret (`docker build --secret id=proxy_ca,src="$CODEX_PROXY_CERT" ...`); do not disable TLS verification. Proxy variables and public CA are session infrastructure, not application secrets.
+
+Run migrations, then seed immutable role configurations. Initialize the owner through the UI; remove the bootstrap token after setup. There is no demo mode, seeded revenue, fake agent activity or default owner password.
+
+## Production prerequisites
+
+1. Provision PostgreSQL with TLS/PITR and a separate migration administrator. Apply `scripts/database_roles.sql`. Provision LOGIN/password or workload identities externally; use company_api for API, company_worker for worker/scheduler and company_watchtower for Watchtower. These roles cannot be used directly by agents. The local development administrator bypasses RLS; the restricted-role tests prove row filtering and policy denial separately.
+2. Deploy Next.js and FastAPI behind one trusted HTTPS origin. Secure/HttpOnly/SameSite cookies require `SECURE_COOKIES=true`. Block direct public API access except authenticated routes, signed webhooks and the scoped worker gateway. Enforce ingress request-body limits (2 MB generally, 64 KB gateway), distributed login rate limits and TLS. Local login throttling is process-local. Disable API docs on an externally exposed production deployment if not needed. Use a per-request nonce CSP if removing the current inline-script compatibility setting.
+3. Use a production Temporal namespace with TLS/auth and a supported durable cluster. The included dev server is not suitable for availability/security claims. Run API, worker, scheduler and Watchtower as independent restartable services. Scope service database roles separately; never share the migration administrator.
+4. Bind a project-scoped OpenAI key to the trusted API/worker service. Configure the exact model and verified input/output prices, dated FX snapshot and owner-authorized spend cap. No model calls happen before owner opt-in. Model selection must match that price table.
+5. Build/audit `sandbox/Dockerfile`, register it privately as a Daytona snapshot and configure its ID. Verify immutable /opt/company, non-root user/no sudo, no writable host mounts/socket, CPU/RAM/disk quotas and provider-enforced egress to only the HTTPS model gateway host. The repository does not assert these controls have been live-verified without a hosted run. Use the model gateway's short-lived capability; never pass production/model/GitHub/storage credentials into generated code.
+6. Install a GitHub App scoped to one allowed repository with contents/pull-request write and metadata read, no administration/actions/organization permissions. Inject short-lived installation tokens through a secret manager; renewal is a deployment responsibility (not yet automated here). Use a non-protected generated branch. Public launch/production is not implemented and cannot be triggered by this adapter.
+7. Configure private S3-compatible storage with server-side encryption, least-privilege prefix access, object versioning, lifecycle retention and private networking where supported. The adapter verifies uploaded bytes by reading them back. Presigned/public sharing is not automatic.
+8. Configure Gmail OAuth with gmail.send scope, encrypted refresh-token storage in your secret manager, the authorized owner's notification destination and `EMAIL_SEND_AUTHORIZED=true`. This chat's Gmail connection is not deployed OAuth. Delivery logs distinguish sent, disconnected, failed and unknown. A provider ID confirms acceptance, not recipient reading.
+9. Configure Stripe webhook signing secret only after authenticated owner payment onboarding approval. Place organization_id in signed object metadata, including refund metadata. Ingest only live settled one-time sessions and succeeded refunds. Fees, taxes, subscription revenue, chargebacks and net settlement are not inferred; extend adapters before claiming those metrics.
+10. Enable telemetry through a private OpenTelemetry collector. Do not send raw prompts, repository secrets or auth headers into traces. Set up alerts, encrypted backups, restore drills and service health monitoring.
+
+## Release gate
+
+Before production, execute and archive: restricted-role RLS checks; distributed authorization review; live hosted CRUD benchmark and independent QA; real GitHub PR/commit; live checksum-verified artifact retrieval; owner-approved email delivery test; event reconnect and session revocation; stop/reclaim tests against real provider sandboxes; signed provider billing telemetry reconciliation; backup restore drill; browser performance/accessibility/security review. Outstanding gaps remain explicitly listed in PROGRESS.md. A green local test suite does not satisfy this release gate.
+
+## Managed cloud runtime trust
+
+When this environment's proxy is present, include `-f docker-compose.cloud.yml` in Compose commands. It mounts the public combined system CA bundle read-only and configures Python/Requests/AWS trust without disabling verification. It exempts only local Compose service names from proxy routing. External traffic retains the inherited HTTP(S) proxy. Outside this managed environment, use your own approved trust/ingress configuration; do not mount a developer's CA into an unrelated production deployment.
+
+The Temporal volume is initialized by a short-lived root container with only CHOWN capability, then the Temporal server runs as its non-root UID 1000. API configuration files are made readable to the non-root application user during the image build. No production workload requires privileged containers or the host Docker socket.

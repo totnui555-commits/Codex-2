@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "owner_login",
+    "real_office_render",
+    "2d_floor_selection",
+    "persistent_inbox",
+    "project_create",
+    "task_create",
+    "mobile_no_overflow"
+  ],
+  "browser_errors": []
+}

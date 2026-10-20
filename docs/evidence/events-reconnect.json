@@ -1,0 +1,6 @@
+{
+  "sse_delivered_event_id": "1fbaae82-46e5-40c0-a491-a80489eb1e47",
+  "cursor": 27,
+  "replay_after_cursor_excludes_previous": true,
+  "audit_valid": true
+}

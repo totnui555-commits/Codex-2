@@ -1,0 +1,31 @@
+name: Verify company OS
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env: {POSTGRES_USER: company, POSTGRES_PASSWORD: company, POSTGRES_DB: company_test}
+        ports: ['5432:5432']
+        options: --health-cmd "pg_isready -U company" --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      DATABASE_URL: postgresql+psycopg://company:company@localhost:5432/company_test
+      TEST_DATABASE_URL: postgresql+psycopg://company:company@localhost:5432/company_test
+      PGPASSWORD: company
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22', cache: npm}
+      - run: pip install -r requirements.lock && pip install --no-deps -e .
+      - run: alembic upgrade head
+      - run: psql -h localhost -U company -d company_test -f scripts/database_roles.sql
+      - run: docker run -d -p 7233:7233 temporalio/temporal:1.4.1 server start-dev --ip 0.0.0.0
+      - run: python scripts/wait_temporal.py
+      - run: RUN_TEMPORAL_TESTS=1 pytest -q
+      - run: ruff check apps/api/company_os scripts
+      - run: npm ci && npm run test && npm run typecheck && npm run build

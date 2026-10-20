@@ -1,0 +1,29 @@
+{
+  "database": "PostgreSQL 17",
+  "temporal": [
+    {
+      "workflow_id": "task-cc98ad3d-5b14-4c86-ac6c-ddb2a35dadf5-attempt-0",
+      "status": "COMPLETED",
+      "event_count": 11,
+      "task_status": "blocked"
+    },
+    {
+      "workflow_id": "task-559ab897-d5a5-4911-99f8-3e933bfac78d-attempt-0",
+      "status": "COMPLETED",
+      "event_count": 11,
+      "task_status": "blocked"
+    },
+    {
+      "workflow_id": "task-ee8252e2-b775-476d-8835-0cfaafd13a0a-attempt-0",
+      "status": "COMPLETED",
+      "event_count": 14,
+      "task_status": "blocked"
+    }
+  ],
+  "source_backed_opportunities": 8,
+  "events_persisted": 32,
+  "audit_valid": true,
+  "founder_messages": 2,
+  "paid_model_runs_executed": 0,
+  "verified_revenue_transactions": 0
+}
