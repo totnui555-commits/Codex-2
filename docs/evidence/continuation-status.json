@@ -1,0 +1,30 @@
+{
+  "services": {
+    "worker": {
+      "last_seen_at": "2026-10-20T08:56:50.058401+00:00",
+      "state": "live"
+    },
+    "watchtower": {
+      "last_seen_at": "2026-10-20T08:56:55.436639+00:00",
+      "state": "live"
+    },
+    "scheduler": {
+      "last_seen_at": "2026-10-20T08:56:59.149764+00:00",
+      "state": "live"
+    }
+  },
+  "integrations": {
+    "model": "configured",
+    "sandbox": "disconnected",
+    "github": "configured",
+    "artifacts": "configured",
+    "email": "disconnected",
+    "billing": "disconnected"
+  },
+  "paid_execution_authorized": false,
+  "monthly_limit_thb": 100.0,
+  "monthly_spend_thb_estimated": "0.0843",
+  "audit_valid": true,
+  "experiments": 2,
+  "customer_observation_samples": 0
+}
