@@ -141,7 +141,9 @@ export function citizen(role: Row, snapshot: Snapshot) {
     .sort((a, b) => (b.created_at || "").localeCompare(a.created_at || ""));
   const running = runs.find((r) => r.status === "running");
   let run: Row | undefined = running || runs[0];
-  let task = run ? snapshot.tasks.find((t) => t.id === run?.task_id) : undefined;
+  let task = run
+    ? snapshot.tasks.find((t) => t.id === run?.task_id)
+    : undefined;
   const pending = snapshot.tasks
     .filter(
       (t) =>
@@ -308,4 +310,32 @@ export function route(from: Point, to: Point): Point[] {
     at = previous.get(at)!;
   }
   return [from, ...path.map((i) => street[i]), to];
+}
+
+// Coalesce repeated channel notices in the bounded snapshot; never merge security incidents.
+export function kingdomActivity(events: Row[]) {
+  const result: { event: Row; label: string; count: number }[] = [];
+  const notices = new Map<string, number>();
+  for (const event of events) {
+    const kind = String(event.event_type || "");
+    if (kind.startsWith("notification.") && notices.has(kind)) {
+      result[notices.get(kind)!].count++;
+      continue;
+    }
+    const names: Record<string, string> = {
+      "notification.disconnected": "Email connection needed",
+      "task.created": "Quest created",
+      "project.created": "Project created",
+      "project.updated": "Project updated",
+      "watchtower.incident": "Watchtower alert",
+      "research.source_observed": "Research source captured",
+    };
+    const label =
+      kind === "task.status_changed" && typeof event.payload?.to === "string"
+        ? "Quest " + event.payload.to.replaceAll("_", " ")
+        : names[kind] || kind.replaceAll(".", " · ").replaceAll("_", " ");
+    if (kind.startsWith("notification.")) notices.set(kind, result.length);
+    result.push({ event, label, count: 1 });
+  }
+  return result.slice(0, 5);
 }

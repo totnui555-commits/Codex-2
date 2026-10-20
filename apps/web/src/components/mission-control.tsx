@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useCallback, useEffect, useRef, useState, FormEvent } from "react";
 import {
   Box,
+  Crown,
   LayoutDashboard,
   FolderKanban,
   ListTodo,
@@ -69,7 +70,7 @@ const Office = dynamic(() => import("./office"), {
   ),
 });
 const nav = [
-  { name: "Kingdom", icon: Globe },
+  { name: "Kingdom", icon: Crown },
   { name: "Office", icon: Box },
   { name: "Overview", icon: LayoutDashboard },
   { name: "Projects", icon: FolderKanban },
@@ -410,14 +411,25 @@ export default function MissionControl() {
     handler(new FormData(e.currentTarget));
   };
   return (
-    <div className={"app " + (sidebar ? "sidebar-open" : "")}>
+    <div
+      className={
+        "app " +
+        (sidebar ? "sidebar-open " : "") +
+        (page === "Kingdom" ? "kingdom-mode" : "")
+      }
+    >
       <aside className="sidebar">
         <a className="wordmark" href="#" onClick={() => go("Kingdom")}>
           <div className="brand-icon">
-            <Box size={24} />
+            {page === "Kingdom" ? <Crown size={24} /> : <Box size={24} />}
           </div>
           <span>
-            AI COMPANY OS<small>THE AUTONOMOUS VENTURE STUDIO</small>
+            {page === "Kingdom" ? "Kingdom OS" : "AI COMPANY OS"}
+            <small>
+              {page === "Kingdom"
+                ? "AI Company Mission Control"
+                : "THE AUTONOMOUS VENTURE STUDIO"}
+            </small>
           </span>
         </a>
         <div className="workspace">

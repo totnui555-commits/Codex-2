@@ -4,6 +4,7 @@ import {
   type ReactNode,
   Suspense,
   useEffect,
+  useCallback,
   useMemo,
   useRef,
   useState,
@@ -27,6 +28,7 @@ import {
 } from "three";
 import {
   citizen,
+  kingdomActivity,
   groundHeight,
   landmarks,
   landmark,
@@ -51,12 +53,16 @@ import {
   X,
   ZoomIn,
   ZoomOut,
+  Search,
+  PanelRightClose,
+  Maximize2,
+  SlidersHorizontal,
 } from "lucide-react";
 
 type Citizen = ReturnType<typeof citizen>;
 type Quality = "low" | "balanced" | "high";
 const presets = [
-  { name: "Whole Kingdom", target: [0, 0, 0], camera: [24, 25, 30], zoom: 25 },
+  { name: "Whole Kingdom", target: [0, 0, 0], camera: [24, 25, 30], zoom: 31 },
   { name: "Royal Keep", target: [0, 2, -5], camera: [15, 16, 14], zoom: 43 },
   {
     name: "Village Square",
@@ -127,6 +133,10 @@ function Island({
     });
     return clone;
   }, [scene]);
+  const gl = useThree((s) => s.gl);
+  useEffect(() => {
+    gl.shadowMap.needsUpdate = true;
+  }, [gl, model]);
   function hit(e: ThreeEvent<PointerEvent | MouseEvent>) {
     let o: Object3D | null = e.object;
     while (o) {
@@ -428,6 +438,7 @@ function CameraRig({
   citizens,
   reduced,
   onReady,
+  focus,
 }: {
   preset: number;
   reset: number;
@@ -438,6 +449,7 @@ function CameraRig({
   citizens: Citizen[];
   reduced: boolean;
   onReady: () => void;
+  focus: boolean;
 }) {
   const controls = useThree((s) => s.controls) as any;
   const { camera, size, gl, scene } = useThree();
@@ -449,8 +461,28 @@ function CameraRig({
     const p = presets[preset];
     destination.current = new Vector3(p.camera[0], p.camera[1], p.camera[2]);
     target.current.set(p.target[0], p.target[1], p.target[2]);
-    zoom.current = Math.min(p.zoom, size.width / (preset === 0 ? 40 : 22));
-  }, [preset, reset, size.width]);
+    const availableWidth =
+      size.width > 1100
+        ? size.width - (focus ? 0 : 530)
+        : size.width > 760
+          ? size.width - (focus ? 0 : 440)
+          : size.width;
+    zoom.current = Math.min(p.zoom, availableWidth / (preset === 0 ? 30 : 18));
+  }, [preset, reset, size.width, focus]);
+  useEffect(() => {
+    const offset =
+      size.width > 1100 && !focus ? 64 : size.width > 760 && !focus ? 30 : 0;
+    if ("setViewOffset" in camera)
+      (camera as any).setViewOffset(
+        size.width,
+        size.height,
+        offset,
+        0,
+        size.width,
+        size.height,
+      );
+    camera.updateProjectionMatrix();
+  }, [camera, size.width, size.height, focus]);
   useEffect(() => {
     zoom.current = Math.min(75, Math.max(7, zoom.current + zoomDelta));
   }, [zoomDelta]);
@@ -556,7 +588,28 @@ export default function Kingdom({
     [ready, setReady] = useState(false),
     [zoom, setZoom] = useState(0),
     [labels, setLabels] = useState(true),
-    [failed, setFailed] = useState(false);
+    [failed, setFailed] = useState(false),
+    [query, setQuery] = useState(""),
+    [directoryOpen, setDirectoryOpen] = useState(false),
+    [panelOpen, setPanelOpen] = useState(false),
+    [focusIsland, setFocusIsland] = useState(false),
+    [displayOpen, setDisplayOpen] = useState(false);
+  const reportReady = useCallback(() => setReady(true), []);
+  useEffect(() => {
+    const escape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setQuery("");
+        setDirectoryOpen(false);
+        setDisplayOpen(false);
+        setFocusIsland(false);
+        setPanelOpen(false);
+        setSelected(null);
+        setSelectedId(null);
+      }
+    };
+    window.addEventListener("keydown", escape);
+    return () => window.removeEventListener("keydown", escape);
+  }, []);
   useEffect(() => {
     (window as any).__kingdomDiagnostics = undefined;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -583,11 +636,18 @@ export default function Kingdom({
   const openMail = snapshot.messages.filter((m) => m.state === "open").length;
   const choose = (l: Landmark) => {
     setSelected(l);
+    setPanelOpen(true);
+    setFocusIsland(false);
+    setDirectoryOpen(false);
+    setQuery("");
     setSelectedId(null);
     setFollow(null);
   };
   const chooseCitizen = (c: Citizen) => {
     setSelectedId(c.id);
+    setFocusIsland(false);
+    setPanelOpen(true);
+    setQuery("");
     setSelected(null);
   };
   const linkedTasks = selected
@@ -600,18 +660,93 @@ export default function Kingdom({
     : [];
   return (
     <section
-      className="kingdom-edition"
+      className={"kingdom-edition " + (focusIsland ? "island-focus" : "")}
       aria-label="Kingdom Edition"
       data-world-rendered={ready && !failed && !flat}
     >
+      <div className="kingdom-search">
+        <Search size={16} />
+        <input
+          type="search"
+          aria-label="Search kingdom"
+          placeholder="Search your kingdom"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && query.trim()) {
+              const l = landmarks.find((l) =>
+                (l.name + " " + l.subtitle)
+                  .toLowerCase()
+                  .includes(query.trim().toLowerCase()),
+              );
+              if (l) choose(l);
+              else {
+                const c = citizens.find((c) =>
+                  c.role.config.role
+                    .toLowerCase()
+                    .includes(query.trim().toLowerCase()),
+                );
+                if (c) chooseCitizen(c);
+              }
+            }
+          }}
+        />
+        <kbd>↵</kbd>
+        {query.trim() && (
+          <div
+            className="kingdom-search-results"
+            aria-label="Kingdom search results"
+          >
+            <span>LANDMARKS & CITIZENS</span>
+            {landmarks
+              .filter((l) =>
+                (l.name + " " + l.subtitle)
+                  .toLowerCase()
+                  .includes(query.trim().toLowerCase()),
+              )
+              .map((l) => (
+                <button key={l.id} onClick={() => choose(l)}>
+                  <Castle size={16} />
+                  <span>
+                    {l.name}
+                    <small>{l.subtitle}</small>
+                  </span>
+                  <b>↗</b>
+                </button>
+              ))}
+            {citizens
+              .filter((c) =>
+                c.role.config.role
+                  .toLowerCase()
+                  .includes(query.trim().toLowerCase()),
+              )
+              .map((c) => (
+                <button key={c.id} onClick={() => chooseCitizen(c)}>
+                  <i style={{ background: c.palette }} />
+                  <span>
+                    {c.role.config.role}
+                    <small>{c.state.replaceAll("_", " ")}</small>
+                  </span>
+                  <b>↗</b>
+                </button>
+              ))}
+            {![
+              ...landmarks.map((l) => l.name + " " + l.subtitle),
+              ...citizens.map((c) => c.role.config.role),
+            ].some((s) =>
+              s.toLowerCase().includes(query.trim().toLowerCase()),
+            ) && <p>No landmarks or citizens found.</p>}
+          </div>
+        )}
+      </div>
       <div className="kingdom-titlebar">
         <div>
           <span className="kingdom-kicker">
             <Crown size={14} /> AI COMPANY OS · KINGDOM EDITION
           </span>
-          <h2>
-            A little kingdom.<em> Extraordinary possibilities.</em>
-          </h2>
+          <h1 aria-label="Kingdom">
+            Your kingdom.<em> In good hands.</em>
+          </h1>
         </div>
         <div className="kingdom-health">
           <i className={connected ? "live-dot" : "idle-dot"} />
@@ -695,6 +830,33 @@ export default function Kingdom({
             >
               <ZoomOut size={15} />
             </button>
+            <button
+              aria-label="Toggle landmark directory"
+              aria-pressed={directoryOpen}
+              onClick={() => setDirectoryOpen(!directoryOpen)}
+            >
+              <Castle size={15} />
+              <span>Buildings</span>
+            </button>
+            <button
+              aria-pressed={focusIsland}
+              aria-label={focusIsland ? "Exit island focus" : "Focus on island"}
+              onClick={() => {
+                setFocusIsland(!focusIsland);
+                setDirectoryOpen(false);
+              }}
+            >
+              <Maximize2 size={15} />
+              <span>{focusIsland ? "Exit focus" : "Focus"}</span>
+            </button>
+            <button
+              aria-label="Display settings"
+              aria-expanded={displayOpen}
+              onClick={() => setDisplayOpen(!displayOpen)}
+            >
+              <SlidersHorizontal size={15} />
+              <span>Display</span>
+            </button>
             <button aria-pressed={flat} onClick={() => setFlat(!flat)}>
               <MapIcon size={15} />
               {flat ? "3D kingdom" : "Accessible view"}
@@ -724,7 +886,7 @@ export default function Kingdom({
                     }
                     camera={{
                       position: [24, 25, 30],
-                      zoom: 25,
+                      zoom: 31,
                       near: 0.1,
                       far: 250,
                     }}
@@ -801,9 +963,8 @@ export default function Kingdom({
                         labelRefs={labelRefs}
                         citizens={citizens}
                         reduced={reduced}
-                        onReady={() => {
-                          if (!ready) setReady(true);
-                        }}
+                        focus={focusIsland}
+                        onReady={reportReady}
                       />
                     </Suspense>
                     <OrbitControls
@@ -929,7 +1090,11 @@ export default function Kingdom({
               </>
             )}
           </div>
-          <div className="kingdom-controls">
+          <div
+            className={
+              "kingdom-controls " + (displayOpen ? "display-open" : "")
+            }
+          >
             <label>
               Render quality{" "}
               <select
@@ -956,7 +1121,17 @@ export default function Kingdom({
             </span>
           </div>
         </div>
-        <aside className="kingdom-inspector" aria-label="Kingdom inspector">
+        <aside
+          className={"kingdom-inspector " + (panelOpen ? "panel-open" : "")}
+          aria-label="Kingdom inspector"
+        >
+          <button
+            className="kingdom-panel-close"
+            aria-label="Close kingdom panel"
+            onClick={() => setPanelOpen(false)}
+          >
+            <PanelRightClose size={17} />
+          </button>
           {selectedCitizen ? (
             <>
               <div className="kingdom-inspector-heading">
@@ -1150,44 +1325,113 @@ export default function Kingdom({
           ) : (
             <>
               <div className="kingdom-inspector-heading">
-                <span>THE ROYAL CHRONICLE</span>
-                <Flag size={15} />
+                <span>
+                  <Crown size={16} /> Kingdom overview
+                </span>
+                <small>{connected ? "Live" : "Offline"}</small>
               </div>
-              <h3>Your kingdom awaits.</h3>
-              <p>
-                A village of real AI citizens. Select a landmark to inspect its
-                work, or meet a citizen below.
-              </p>
-              <div className="kingdom-summary">
-                <span>
-                  <Crown size={17} /> {snapshot.kpis.active_agents} active
-                  agents
-                </span>
-                <span>
-                  <Mail size={17} /> {snapshot.kpis.approvals_needed} decisions
-                  await
-                </span>
-                <span>
-                  <Shield size={17} /> {beacon.count} Watchtower alerts
-                </span>
+              <div className="kingdom-overview-grid">
+                <button onClick={() => onVisit("Agents")}>
+                  <i className="blue">
+                    <Eye size={19} />
+                  </i>
+                  <span>
+                    Active citizens
+                    <strong>
+                      {snapshot.kpis.active_agents}
+                      <small> / {citizens.length}</small>
+                    </strong>
+                  </span>
+                </button>
+                <button onClick={() => onVisit("Tasks")}>
+                  <i className="purple">
+                    <Flag size={19} />
+                  </i>
+                  <span>
+                    Running quests<strong>{snapshot.kpis.jobs_running}</strong>
+                  </span>
+                </button>
+                <button onClick={() => onVisit("Finance")}>
+                  <i className="green">
+                    <Anchor size={19} />
+                  </i>
+                  <span>
+                    Monthly cost
+                    <strong>
+                      {money(
+                        snapshot.kpis.monthly_spend,
+                        snapshot.kpis.currency,
+                      )}
+                    </strong>
+                  </span>
+                </button>
+                <button onClick={() => onVisit("Watchtower")}>
+                  <i className="orange">
+                    <Shield size={19} />
+                  </i>
+                  <span>
+                    Watchtower alerts<strong>{beacon.count}</strong>
+                  </span>
+                </button>
               </div>
-              <div className="kingdom-small-note">
-                <b>{snapshot.organization.mode.replaceAll("_", " ")}</b>
-                <p>
+              <div className="kingdom-status-line">
+                <i className={connected ? "live-dot" : "idle-dot"} />
+                {snapshot.organization.mode.replaceAll("_", " ")}
+                <span>
                   {snapshot.organization.paid_execution_authorized
-                    ? "Paid execution enabled within configured limits"
-                    : "Paid execution disabled"}
-                </p>
-                <p>
-                  Background workers operate independently of this island view.
-                </p>
+                    ? "Bounded execution"
+                    : "Paid execution off"}
+                </span>
               </div>
-              <button
-                className="kingdom-primary"
-                onClick={() => onVisit("Overview")}
-              >
-                Enter royal council ↗
-              </button>
+              <div className="kingdom-activity">
+                <header>
+                  <h3>Live activity</h3>
+                  <button onClick={() => onVisit("Audit")}>View all ↗</button>
+                </header>
+                {snapshot.events.length ? (
+                  kingdomActivity(snapshot.events).map(
+                    ({ event: e, label, count }) => (
+                      <button
+                        key={e.id || e.event_id}
+                        onClick={() => onVisit("Audit")}
+                      >
+                        <i />
+                        <span>
+                          <b>
+                            {label}
+                            {count > 1 && (
+                              <em className="kingdom-event-count">
+                                {count} events
+                              </em>
+                            )}
+                          </b>
+                          <small>
+                            {new Date(
+                              e.occurred_at || e.created_at,
+                            ).toLocaleTimeString("en", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              timeZone: "Asia/Bangkok",
+                            })}{" "}
+                            · Recorded event
+                          </small>
+                        </span>
+                      </button>
+                    ),
+                  )
+                ) : (
+                  <p>No events recorded yet.</p>
+                )}
+              </div>
+              <div className="kingdom-quick-actions">
+                <button onClick={() => onVisit("Founder Inbox")}>
+                  <Mail size={15} /> Royal inbox <b>{openMail}</b>
+                </button>
+                <button onClick={() => onVisit("Approvals")}>
+                  <Crown size={15} /> Decisions{" "}
+                  <b>{snapshot.kpis.approvals_needed}</b>
+                </button>
+              </div>
             </>
           )}
           <div className="kingdom-citizens">
@@ -1214,7 +1458,26 @@ export default function Kingdom({
           </div>
         </aside>
       </div>
-      <nav className="kingdom-destinations" aria-label="Kingdom landmarks">
+      <button
+        className="kingdom-panel-toggle"
+        onClick={() => {
+          if (!panelOpen) {
+            setSelected(null);
+            setSelectedId(null);
+          }
+          setPanelOpen(!panelOpen);
+        }}
+        aria-expanded={panelOpen}
+      >
+        <Crown size={16} />
+        {panelOpen ? "Close overview" : "Overview"}
+      </button>
+      <nav
+        className={
+          "kingdom-destinations " + (directoryOpen ? "directory-open" : "")
+        }
+        aria-label="Kingdom landmarks"
+      >
         {landmarks.map((l) => (
           <button key={l.id} onClick={() => choose(l)}>
             {l.name}

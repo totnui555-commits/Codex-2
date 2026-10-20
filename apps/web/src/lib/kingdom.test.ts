@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   citizen,
+  kingdomActivity,
   homeLandmark,
   landmarks,
   lighthouseState,
@@ -201,5 +202,21 @@ describe("kingdom authoritative world projection", () => {
       expect(path).toEqual(route(street[4], to));
       expect(path.every((p) => p.every(Number.isFinite))).toBe(true);
     }
+  });
+  it("coalesces duplicate email notices without hiding independent security incidents", () => {
+    const result = kingdomActivity([
+      { id: "a", event_type: "notification.disconnected" },
+      { id: "b", event_type: "notification.disconnected" },
+      { id: "c", event_type: "watchtower.incident" },
+      { id: "d", event_type: "watchtower.incident" },
+    ] as unknown as Row[]);
+    expect(result).toHaveLength(3);
+    expect(result[0]).toMatchObject({
+      label: "Email connection needed",
+      count: 2,
+    });
+    expect(result.filter((r) => r.label === "Watchtower alert")).toHaveLength(
+      2,
+    );
   });
 });
