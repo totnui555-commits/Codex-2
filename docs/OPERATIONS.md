@@ -25,3 +25,10 @@ Target RPO/RTO are founder decisions; none are guaranteed by this repository. A 
 ## Health
 
 `GET /health` verifies database reachability, not every external integration. Authenticated `/integrations` reports configuration only, not provider readiness. Authenticated `/metrics` exposes API request counts; run/task/ledger metrics are computed from snapshots. Watchtower liveness must be monitored as a separate process. Production distributed rate limiting, exporter instrumentation, secret rotation, provider token renewal and cluster alerts are deployment responsibilities.
+
+
+## Latest executed local recovery drill
+
+On 20 October 2026, an actual custom-format pg_dump and artifact archive were encrypted with the private development artifact key and written as 0600 files under ignored `.local/backups/`. A new isolated restore_drill_* database restored successfully. Audit chains, one product record, all six artifact checksums and restricted-role tenant visibility passed; the temporary database was then removed. See `docs/evidence/local-recovery-drill.json`. No primary database or application traffic was replaced.
+
+This local check does not establish production PITR or Temporal recovery. Production needs independently secured recovery-key custody, offsite encrypted copies, retention, separate Temporal backup/restore and an exercised service failover procedure. Losing the development encryption key would make these local encrypted backups unreadable.

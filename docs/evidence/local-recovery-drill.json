@@ -1,0 +1,15 @@
+{
+  "scope": "actual encrypted local development backup and isolated restore; not production PITR or Temporal recovery",
+  "performed_at": "2026-10-20T14:28:13.699836+00:00",
+  "restore_database": "restore_drill_20261020t142812z",
+  "database_backup_sha256": "b7f3c4667271396e7cc716a91b710979d6d6e42afe9cf56ffa57171cbe0b0f28",
+  "encrypted_backup_permissions": "0600",
+  "database_restore_verified": true,
+  "audit_chains_valid": true,
+  "artifact_checksums_verified": 6,
+  "products_restored": 1,
+  "restricted_role_tenant_visibility_verified": true,
+  "primary_database_untouched": true,
+  "backup_key": "existing private development artifact key; separate production recovery-key custody remains required",
+  "temporary_restore_database_removed": true
+}

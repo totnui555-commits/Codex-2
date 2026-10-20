@@ -16,7 +16,7 @@ PostgreSQL **company-os-staging-db**, plan **free**, region **Singapore**, Postg
 
 ## ตรวจแล้ว / ยังไม่ตรวจ
 
-- Backend 37 tests ผ่าน รวม Temporal จริง; frontend 6 tests, typechecks และ production build ผ่าน
+- Backend ล่าสุด 79 tests ผ่าน รวม PostgreSQL/Temporal จริง; frontend 6 tests, typechecks และ production build ผ่าน
 - Native staging process smoke ผ่าน: migrations, PostgreSQL, Next standalone, same-origin proxy, owner login, 25 roles, audit chain และ graceful shutdown โดยใช้ฐานข้อมูล integration test แยกจากข้อมูลจริง
 - Blueprint ผ่าน JSON Schema ทางการปัจจุบัน
 - ติดตั้ง Render CLI v2.30.0 จาก release ทางการพร้อมตรวจ SHA-256 แต่ platform validation ต้อง login CLI เพิ่ม การเชื่อม OAuth ของ connector ไม่ใช่ credential ที่ส่งต่อให้ CLI ได้

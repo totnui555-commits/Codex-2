@@ -70,7 +70,7 @@ See [deployment](docs/DEPLOYMENT.md), [operations](docs/OPERATIONS.md), [founder
 
 ## Current verification checkpoint
 
-The complete local suite passes **79 backend tests** with real PostgreSQL and Temporal, six frontend tests, TypeScript/build and Ruff. Product Portfolio browser verification confirms real draft creation, same-project experiment linking, reload persistence, visible release blockers and mobile layout with no page errors. Actual recent-source collection retained eight versioned discussion records. See [product evidence](docs/PRODUCT_PORTFOLIO.md) and [detailed progress](PROGRESS.md).
+The complete local suite passes **79 backend tests** with real PostgreSQL and Temporal, six frontend tests, TypeScript/build and Ruff. Product Portfolio browser verification confirms real draft creation, same-project experiment linking, reload persistence, visible release blockers and mobile layout with no page errors. Actual recent-source collection retained eight versioned discussion records. Independent [GitHub CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39438988851) passed; an isolated encrypted local restore verified audit chains, the product record, six artifact checksums and restricted-role tenant visibility. See [product evidence](docs/PRODUCT_PORTFOLIO.md) and [detailed progress](PROGRESS.md).
 
 Six bounded real OpenRouter advisory calls have run through Temporal, including planner/specialist delegation and a checksummed dependency-artifact handoff. Total recorded model spend is approximately THB 0.1241; paid execution is currently disabled. Artifacts use real encrypted local development storage, not cloud S3. GitHub is connected through the inherited authorized identity. No hosted Codex/Daytona coding benchmark has run.
 
