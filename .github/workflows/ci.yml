@@ -21,10 +21,11 @@ jobs:
       DATABASE_URL: postgresql+psycopg://company:company@localhost:5432/company_test
       TEST_DATABASE_URL: postgresql+psycopg://company:company@localhost:5432/company_test
       PGPASSWORD: company
+      PYTHONFAULTHANDLER: 1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.12'}
+        with: {python-version: '3.12.14'}
       - uses: actions/setup-node@v4
         with: {node-version: '22', cache: npm}
       - run: pip install -r requirements.lock && pip install --no-deps -e .
