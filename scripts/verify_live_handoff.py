@@ -34,7 +34,9 @@ async def main():
             for _ in range(50):
                 try:
                     os.kill(int(parts[0]), 0)
-                except ProcessLookupError:
+                    if Path(f"/proc/{parts[0]}/stat").read_text().split(") ", 1)[1].startswith("Z"):
+                        break
+                except (ProcessLookupError, FileNotFoundError):
                     break
                 time.sleep(0.1)
             else:
