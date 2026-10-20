@@ -22,6 +22,7 @@ with workflow.unsafe.imports_passed_through():
         reserve,
         transition,
     )
+    from .handoffs import dependency_evidence
     from .models import (
         AgentRole,
         AgentRun,
@@ -183,6 +184,22 @@ async def execute_task(task_id: str):
 
     async def work():
         store = await asyncio.to_thread(ArtifactStore)
+
+        def collect_handoff():
+            with Session.begin() as db:
+                current = db.get(Task, task_id)
+                evidence = dependency_evidence(db, current, store)
+                emit(
+                    db,
+                    org_id,
+                    "task",
+                    task_id,
+                    "task.evidence_received",
+                    {"sources": [{k: e[k] for k in ("task_id", "artifact_id", "sha256")} for e in evidence]},
+                )
+                return evidence
+
+        handoff = await asyncio.to_thread(collect_handoff)
         if coding:
             github = GitHubProvider()
             checkout = await asyncio.to_thread(github.checkout)
@@ -201,7 +218,7 @@ async def execute_task(task_id: str):
             exported = await asyncio.to_thread(
                 factory.build,
                 run_id,
-                {"objective": objective, "model": settings().codex_model},
+                {"objective": objective, "model": settings().codex_model, "dependency_evidence": handoff},
                 checkout,
                 register,
                 organization_id=org_id,
@@ -235,10 +252,10 @@ async def execute_task(task_id: str):
                     "output_tokens": sum(c.data["usage"].get("output_tokens", 0) for c in own),
                 }
         elif role == "chief_of_staff":
-            result, usage = await plan_goal(objective, accepted_roles)
+            result, usage = await plan_goal(objective, accepted_roles, handoff)
             kind = "project_plan"
         else:
-            result, usage = await specialist(role, objective)
+            result, usage = await specialist(role, objective, handoff)
             kind = "specialist_report"
         uri, checksum = await asyncio.to_thread(store.put, org_id, task_id, kind, result)
         with Session.begin() as db:

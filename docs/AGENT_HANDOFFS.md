@@ -1,0 +1,9 @@
+# Verified dependency evidence handoffs
+
+Completed dependencies now supply actual encrypted/checksummed artifacts to downstream planning, specialist and coding briefs. A task title/dependency edge by itself is not evidence. Each dependency must belong to the same tenant and project, be completed, and identify its selected verified artifact in its checkpoint.
+
+Owner acceptance records the exact accepted artifact ID and SHA-256 in the checkpoint and immutable audit events. Existing delivered artifacts use their recorded artifact ID. Pending-review, missing, unverified, wrong-project or changed-checksum evidence fails closed. Each source file is read through ArtifactStore's integrity verification, not fetched from an arbitrary URL supplied by a model.
+
+The entire handoff has a 32,000-byte input budget. Oversized evidence blocks execution and requires a curated smaller artifact; it is not silently truncated. JSON content is redacted and passed in an explicitly untrusted evidence field, alongside source task/artifact IDs and checksums. It grants no instructions, approval, spend authority or independently verified business claims. The immutable task.evidence_received event records provenance without storing artifact bodies in logs.
+
+Verification includes real PostgreSQL, real encrypted filesystem artifacts and eight additional integration cases. A real OpenRouter/Temporal Technical Architect call consumed the previously stored Chief of Staff plan, cited its actual task/artifact/checksum and produced a new checksummed advisory report. That report remains waiting_for_approval. The provider reported USD 0.0011864 (estimated converted THB 0.0398); no customer research, external deployment or hosted coding was performed. Non-secret receipts are in docs/evidence/live-handoff-run.json.

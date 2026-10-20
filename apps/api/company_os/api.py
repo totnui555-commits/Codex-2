@@ -592,5 +592,19 @@ def accept_artifact(
     artifact = scoped(db, Artifact, artifact_id, m.organization_id)
     if task.status != "waiting_for_approval" or artifact.task_id != task.id or not artifact.verified:
         raise HTTPException(409, "No verified artifact awaiting review")
+    task.checkpoint = {
+        **task.checkpoint,
+        "accepted_artifact_id": artifact.id,
+        "accepted_sha256": artifact.sha256,
+    }
+    emit(
+        db,
+        m.organization_id,
+        "task",
+        task.id,
+        "task.artifact_accepted",
+        {"artifact_id": artifact.id, "sha256": artifact.sha256},
+        user.id,
+    )
     transition(db, task, "completed", user.id)
     return record(task)

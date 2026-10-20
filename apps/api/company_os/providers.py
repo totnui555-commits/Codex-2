@@ -165,7 +165,7 @@ def research_model_adapter(billing=None):
     )
 
 
-async def plan_goal(objective, accepted_roles):
+async def plan_goal(objective, accepted_roles, dependency_evidence=None):
     require_provider(research_credentials_configured(), "Research model connection missing")
     # No arbitrary tools or instructions are delegated to the planner.
     billing = []
@@ -180,7 +180,7 @@ async def plan_goal(objective, accepted_roles):
     )
     result = await Runner.run(
         agent,
-        json.dumps({"objective": objective}),
+        json.dumps({"objective": objective, "dependency_evidence": dependency_evidence or []}),
         max_turns=1,
         run_config=RunConfig(tracing_disabled=True, trace_include_sensitive_data=False),
     )
@@ -191,7 +191,7 @@ async def plan_goal(objective, accepted_roles):
     return plan.model_dump(), provider_usage(result, billing)
 
 
-async def specialist(role, objective):
+async def specialist(role, objective, dependency_evidence=None):
     require_provider(research_credentials_configured(), "Research model connection missing")
     billing = []
     agent = Agent(
@@ -203,7 +203,7 @@ async def specialist(role, objective):
     )
     result = await Runner.run(
         agent,
-        json.dumps({"objective": objective}),
+        json.dumps({"objective": objective, "dependency_evidence": dependency_evidence or []}),
         max_turns=1,
         run_config=RunConfig(tracing_disabled=True, trace_include_sensitive_data=False),
     )
