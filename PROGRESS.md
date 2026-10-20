@@ -170,3 +170,9 @@ The first GitHub CI attempt for 711157d exited 139 (Python segmentation fault) i
 ### CI native transport diagnostic follow-up
 
 A second fresh CI attempt also exited 139 at Temporal readiness, before pytest. The runner reported Python 3.12.15; the local environment where the actual Temporal suite passes uses Python 3.12.14. Pinned CI to that verified patch and enabled faulthandler diagnostics. Added a bounded TCP readiness check before constructing the native Temporal client, to avoid native client creation while the service port is closed. The actual SDK health check and Temporal integration tests remain required; nothing is skipped or replaced with a mock. The readiness script passes locally. This is a controlled mitigation/diagnostic change; the native crash root cause is not established from the available trace.
+
+### Verified gateway checkpoint
+
+Commit **f4752ae** passed the complete independent GitHub workflow: https://github.com/totnui555-commits/Codex-2/actions/runs/39423677511 . Actual Temporal readiness, all **51 backend tests**, Ruff, six frontend tests, TypeScript and production builds passed. The verified configuration combines Python 3.12.14 and TCP readiness before SDK connection; this successful mitigation does not establish which underlying native issue caused the earlier 3.12.15 crashes. No test was skipped to obtain the result.
+
+Development service startup remains detached and idempotent, with live worker/scheduler/Watchtower heartbeats and valid audit chain. No additional model spending or paid hosting occurred. Render Blueprint apply and Daytona account authentication remain unfulfilled external steps; the hosted coding benchmark and production deployment are still unverified. The final evidence/documentation-only commit skips redundant CI.
