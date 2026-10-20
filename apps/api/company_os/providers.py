@@ -456,7 +456,7 @@ class DaytonaFactory:
             timeout=60,
         )
 
-    def build(self, run_id, brief, checkout, on_sandbox=None):
+    def build(self, run_id, brief, checkout, on_sandbox=None, *, organization_id):
         sandbox = self.provision(run_id)
         if on_sandbox:
             on_sandbox(sandbox.id)
@@ -467,7 +467,12 @@ class DaytonaFactory:
                 sandbox.fs.upload_file(data, "/workspace/repo/" + path)
             sandbox.fs.upload_file(json.dumps(brief).encode(), "/workspace/brief.json")
             token = jwt.encode(
-                {"sub": run_id, "aud": "sandbox-model-gateway", "exp": now() + timedelta(minutes=5)},
+                {
+                    "sub": run_id,
+                    "organization_id": organization_id,
+                    "aud": "sandbox-model-gateway",
+                    "exp": now() + timedelta(minutes=5),
+                },
                 settings().session_secret,
                 algorithm="HS256",
             )

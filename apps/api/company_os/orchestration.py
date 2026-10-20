@@ -204,6 +204,7 @@ async def execute_task(task_id: str):
                 {"objective": objective, "model": settings().codex_model},
                 checkout,
                 register,
+                organization_id=org_id,
             )
             report = await asyncio.to_thread(factory.qa, run_id, checkout, exported, register)
             # Re-check authoritative execution policy before creating any external PR.

@@ -146,3 +146,17 @@ Blocking platform action: current connector cannot create/apply a Blueprint or s
 Implementation commit **2c1c6c4** passed independent GitHub CI: https://github.com/totnui555-commits/Codex-2/actions/runs/39401039003 (37 backend tests with real Temporal, six frontend tests, TypeScript/build and Ruff). Native development API restored and checked: audit chain valid, paid execution false, recorded model spend still THB 0.0843. No new inference was charged in this continuation.
 
 Sent the concrete Blueprint Dashboard action to traisorn.th@gmail.com through the explicitly authorized Gmail chat connector. Actual receipt ID **1a158a6072fb21f7** was recorded as channel chat_gmail / state sent in Founder Inbox delivery history; the pending application delivery was reconciled to prevent treating it as an application OAuth send. Application email integration remains disconnected. Queued the Render Blueprint Dashboard URL in the Codex panel; queuing a page is not completion of authentication, Blueprint apply or deployment. Latest non-secret resource/validation evidence is docs/evidence/render-staging-readiness.json.
+
+## Continued implementation: coding gateway revocation and real RLS — 2026-10-20
+
+Rechecked the founder-confirmed Render workspace: still no web service/deploy exists. The Dashboard Blueprint action remains an external platform/authentication blocker; no new hosting or model spend was made.
+
+Advanced the secure coding-worker milestone in source:
+
+- Gateway capabilities now require expiration and an organization claim, supplied by trusted orchestration when the Daytona worker capability is minted.
+- Set the verified tenant context for every gateway DB transaction. Added positive verification under the actual restricted company_api PostgreSQL role, rather than relying on a migration-owner connection that bypasses RLS.
+- Reject paid-authorization revocation, research-only mode, STOP ALL, paused projects, expired/wrong task leases and missing reservations before provider I/O. Recheck policy while streaming and before returning non-streamed output.
+- Stop forwarding after in-flight revocation; preserve known usage and budget reservations rather than claim free cancellation or known zero cost. Audit call outcomes and distinguish completed/revoked/provider_rejected/usage_unknown.
+- Validate request structure and tool definitions before consuming an allowance; disable provider-hosted tools/background execution and bound request receipt memory. Keep server-selected model and output limits.
+
+Full backend suite with real PostgreSQL and Temporal: **51 passed**. The new security cases use controlled HTTP transports for boundary testing, not simulated production integrations. Ruff passed. No hosted Codex execution, Render web deployment or additional paid inference is claimed. See docs/GATEWAY_SECURITY.md.
