@@ -160,3 +160,9 @@ Advanced the secure coding-worker milestone in source:
 - Validate request structure and tool definitions before consuming an allowance; disable provider-hosted tools/background execution and bound request receipt memory. Keep server-selected model and output limits.
 
 Full backend suite with real PostgreSQL and Temporal: **51 passed**. The new security cases use controlled HTTP transports for boundary testing, not simulated production integrations. Ruff passed. No hosted Codex execution, Render web deployment or additional paid inference is claimed. See docs/GATEWAY_SECURITY.md.
+
+### Native service continuity and CI observation
+
+Found that native API/worker processes tied to earlier command sessions were no longer running, while the detached scheduler survived. Added scripts/start_local_services.py to start the four development services detached with private logs and a startup lock, without enabling paid execution. Executed it twice: the second invocation reused every process without creating duplicates. Real API snapshots confirm worker/scheduler/Watchtower live, audit chain valid, paid execution false and spend unchanged at THB 0.0843. This improves local session continuity; it is not production hosting or survival of a stopped cloud environment.
+
+The first GitHub CI attempt for 711157d exited 139 (Python segmentation fault) in scripts/wait_temporal.py before the test suite. No test assertion failed in that attempt; the native crash's underlying cause is not established. Requested a fresh runner attempt, and the subsequent continuity-script commit receives its own complete verification. Local full backend verification remains 51 passed. Do not report the failed attempt as a CI pass.
