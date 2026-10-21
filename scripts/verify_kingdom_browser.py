@@ -115,22 +115,24 @@ def main():
         screenshot("kingdom-apple-accessible.png")
         # A genuine zero-cost internal acceptance task creates an event, never a synthetic run.
         receipt = page.evaluate(
-            """async()=>{const project=await fetch('/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'Kingdom UI integration acceptance',description:'Internal zero-cost event/reconnect verification; no model job, customer evidence or product work.'})});if(!project.ok)throw Error('project');const p=await project.json();const task=await fetch('/api/tasks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({project_id:p.id,title:'Verify Kingdom quest event visibility '+Date.now(),objective:'Verify persistent task creation, authenticated event updates and reconnect without executing a paid agent.',agent_role:'backend_engineer',acceptance:['Task appears in authenticated project dashboard']})});if(!task.ok)throw Error('task');return {project:p,task:await task.json()};}"""
+            """async()=>{const project=await fetch('/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'Kingdom UI integration acceptance',description:'Internal zero-cost event/reconnect verification; no model job, customer evidence or product work.'})});if(!project.ok)throw Error('project');const p=await project.json();const paused=await fetch('/api/projects/'+p.id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({paused:true})});if(!paused.ok)throw Error('pause project');const task=await fetch('/api/tasks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({project_id:p.id,title:'Verify Kingdom quest event visibility '+Date.now(),objective:'Verify persistent task creation, authenticated event updates and reconnect without executing a paid agent.',agent_role:'backend_engineer',acceptance:['Task appears in authenticated project dashboard']})});if(!task.ok)throw Error('task');return {project:p,task:await task.json()};}"""
         )
-        page.wait_for_timeout(1500)
-        page.get_by_role("button", name="Tasks", exact=True).click()
-        page.get_by_text(receipt["task"]["title"], exact=True).wait_for(timeout=15000)
-        page.reload(wait_until="domcontentloaded")
-        page.get_by_text(receipt["task"]["title"], exact=True).wait_for()
-        cancelled = page.evaluate(
-            """async(id)=>{const r=await fetch('/api/tasks/'+id+'/cancel',{method:'POST',headers:{'Content-Type':'application/json'}});return r.ok;}""",
-            receipt["task"]["id"],
-        )
-        assert cancelled
-        assert page.evaluate(
-            """async(id)=>(await fetch('/api/projects/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({paused:true})})).ok""",
-            receipt["project"]["id"],
-        )
+        try:
+            page.wait_for_timeout(1500)
+            page.get_by_role("button", name="Tasks", exact=True).click()
+            page.get_by_text(receipt["task"]["title"], exact=True).wait_for(timeout=15000)
+            page.reload(wait_until="domcontentloaded")
+            page.get_by_text(receipt["task"]["title"], exact=True).wait_for()
+        finally:
+            cancelled = page.evaluate(
+                """async(id)=>{const r=await fetch('/api/tasks/'+id+'/cancel',{method:'POST',headers:{'Content-Type':'application/json'}});return r.ok;}""",
+                receipt["task"]["id"],
+            )
+            assert cancelled
+            assert page.evaluate(
+                """async(id)=>(await fetch('/api/projects/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({paused:true})})).ok""",
+                receipt["project"]["id"],
+            )
         page.get_by_role("button", name="Office", exact=True).click()
         page.get_by_role("heading", name="Mission Control", exact=True).wait_for()
         page.locator(".office-canvas canvas").wait_for(timeout=15000) if page.locator(

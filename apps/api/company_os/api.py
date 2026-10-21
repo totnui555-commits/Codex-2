@@ -83,7 +83,10 @@ async def security_headers(request, call_next):
     response = await call_next(request)
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["Referrer-Policy"] = "same-origin"
-    response.headers["Cache-Control"] = "no-store"
+    # Compressing an SSE response can buffer small events until the proxy closes
+    # the stream, leaving a connected client displaying stale operational state.
+    event_stream = response.headers.get("content-type", "").startswith("text/event-stream")
+    response.headers["Cache-Control"] = "no-store, no-transform" if event_stream else "no-store"
     REQUESTS.labels(request.method, str(response.status_code)).inc()
     return response
 
