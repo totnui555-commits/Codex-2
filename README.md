@@ -1,6 +1,6 @@
 # AI COMPANY OS
 
-A persistent, founder-governed venture studio with a live interactive island kingdom and a preserved legacy Office view. Built from an empty repository. **This is an implemented local platform with explicitly blocked external-provider milestones, not a completed production autonomous company.** See [PROGRESS.md](PROGRESS.md) and [the acceptance plan](docs/IMPLEMENTATION_PLAN.md).
+A persistent, founder-governed venture studio with a live interactive island kingdom and a preserved legacy Office view. Built from an empty repository. **This is an implemented platform with a management-only hosted trial and explicitly blocked external-provider milestones, not a completed production autonomous company.** See [PROGRESS.md](PROGRESS.md) and [the acceptance plan](docs/IMPLEMENTATION_PLAN.md).
 
 ## Kingdom Edition
 
@@ -74,13 +74,17 @@ See [deployment](docs/DEPLOYMENT.md), [operations](docs/OPERATIONS.md), [founder
 
 ## Current verification checkpoint
 
-The complete local suite passes **79 backend tests** with real PostgreSQL and Temporal, 15 frontend tests, TypeScript/build and Ruff. Product Portfolio browser verification confirms real draft creation, same-project experiment linking, reload persistence, visible release blockers and mobile layout with no page errors. Actual recent-source collection retained eight versioned discussion records. Independent [GitHub CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39449820405) passed; an isolated encrypted local restore verified audit chains, the product record, six artifact checksums and restricted-role tenant visibility. See [product evidence](docs/PRODUCT_PORTFOLIO.md) and [detailed progress](PROGRESS.md).
+The complete local suite passes **79 backend tests** with real PostgreSQL and Temporal, 15 frontend tests, TypeScript/build and Ruff. Product Portfolio browser verification confirms real draft creation, same-project experiment linking, reload persistence, visible release blockers and mobile layout with no page errors. Actual recent-source collection retained eight versioned discussion records. Independent [GitHub CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39532610810) passed; an isolated encrypted local restore verified audit chains, the product record, six artifact checksums and restricted-role tenant visibility. See [product evidence](docs/PRODUCT_PORTFOLIO.md) and [detailed progress](PROGRESS.md).
 
 Six bounded real OpenRouter advisory calls have run through Temporal, including planner/specialist delegation and a checksummed dependency-artifact handoff. Total recorded model spend is approximately THB 0.1241; paid execution is currently disabled. Artifacts use real encrypted local development storage, not cloud S3. GitHub is connected through the inherited authorized identity. No hosted Codex/Daytona coding benchmark has run.
 
-Render is authenticated in the founder-confirmed workspace and an actual free staging PostgreSQL instance exists. The management-only Blueprint is prepared; [the remaining Dashboard action](docs/RENDER_STAGING_TH.md) has not been completed. There is no live Render web deployment or production worker topology. Daytona account authentication, public HTTPS model gateway, production artifact storage and application email OAuth remain external setup gates. [Thai setup guide](docs/FOUNDER_SETUP_TH.md).
+Render is authenticated in the founder-confirmed workspace and an actual free staging PostgreSQL instance exists. The founder applied the management-only Blueprint: [the online trial](https://company-os-staging-38tn.onrender.com) is live on the free plan. Autonomous background workers are not deployed in that trial. [Hosting details](docs/RENDER_STAGING_TH.md). Daytona account authentication, public HTTPS model gateway, production artifact storage and application email OAuth remain external setup gates. [Thai setup guide](docs/FOUNDER_SETUP_TH.md).
 
 
 Kingdom evidence: [desktop](docs/evidence/kingdom-desktop.png), [mobile](docs/evidence/kingdom-mobile.png), [recorded interaction excerpt, 3× speed](docs/evidence/kingdom-walkthrough.mp4). Full independent CI passed for `baa0375`. Native production standalone served all four checksummed GLBs and the authenticated API proxy correctly. Software-only warmed rendering measured ~1.66 FPS; production GPU/crowd/accessibility/art acceptance remains unfinished. See [the measured results](docs/evidence/kingdom-performance.json) and [PROGRESS.md](PROGRESS.md).
 
 Latest island-first interface: [wide screenshot](docs/evidence/kingdom-apple-wide.png) · [mobile](docs/evidence/kingdom-apple-mobile.png) · [browser acceptance](docs/evidence/kingdom-apple-browser.json). Floating glass controls, search and Focus preserve the operational backend and original Office.
+
+The operational console, dialogs and login/setup screens now share an Apple-inspired system design: [design scope](docs/SYSTEM_UI.md) · [Office screenshot](docs/evidence/system-console-office.png) · [mobile](docs/evidence/system-console-mobile.png). Real local browser acceptance passed 31 read-only checks.
+
+The shared console design is [live on the trial](https://company-os-staging-38tn.onrender.com). [Current CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39532610810) passed; [public deployment receipt](docs/evidence/system-console-hosted-browser.json) and [online login screenshot](docs/evidence/system-console-hosted-login.png) distinguish public checks from authenticated local acceptance.

@@ -2,6 +2,12 @@
 
 ผู้ก่อตั้งยืนยัน workspace **My Workspace — totnui555@gmail.com** แล้ว (tea-dbbj2qbbc2fs73bcelb0) งบ **100 USD เป็นงบ OpenRouter เท่านั้น** ไม่ใช่การอนุมัติงบโฮสต์รายเดือน จึงยังไม่มีการสร้าง compute แบบเสียเงิน
 
+## สถานะล่าสุด — 21 ตุลาคม 2026
+
+ผู้ก่อตั้งเชื่อม GitHub และใช้ Blueprint แล้ว เว็บทดลอง **https://company-os-staging-38tn.onrender.com** เปิดจริงบนแผน Free ใน Singapore (srv-dbc18bpsrm7s7399skdg) หน้า HTTPS และ /api/health ตอบ 200 และรายงาน PostgreSQL ก่อนอัปเดตดีไซน์ใหม่ ไม่ได้ย้ายข้อมูลจากเครื่องพัฒนาไปเว็บ และไม่ใช้บัญชีเจ้าของในเครื่องพัฒนาแทนบัญชีที่ผู้ก่อตั้งตั้งเองบนเว็บ
+
+ข้อมูลการเตรียมและอุปสรรคด้านล่างเป็นประวัติก่อนเปิดเว็บ; ตอนนี้ผ่านขั้นตอนเชื่อม repository แล้ว ส่วน worker อัตโนมัติยังไม่ได้ deploy ใน free staging
+
 ## สร้างแล้ว
 
 PostgreSQL **company-os-staging-db**, plan **free**, region **Singapore**, PostgreSQL 17, ID dpg-dbbj5h0u01pc73dvnm5g-a สถานะ available หมดอายุ **19 พฤศจิกายน 2026** บัญชีนี้ยังไม่มี web service ก่อนเริ่มงาน ไม่ได้เปลี่ยนทรัพยากรของโปรเจกต์อื่น
@@ -20,7 +26,7 @@ PostgreSQL **company-os-staging-db**, plan **free**, region **Singapore**, Postg
 - Native staging process smoke ผ่าน: migrations, PostgreSQL, Next standalone, same-origin proxy, owner login, 25 roles, audit chain และ graceful shutdown โดยใช้ฐานข้อมูล integration test แยกจากข้อมูลจริง
 - Blueprint ผ่าน JSON Schema ทางการปัจจุบัน
 - ติดตั้ง Render CLI v2.30.0 จาก release ทางการพร้อมตรวจ SHA-256 แต่ platform validation ต้อง login CLI เพิ่ม การเชื่อม OAuth ของ connector ไม่ใช่ credential ที่ส่งต่อให้ CLI ได้
-- **ยังไม่มี Render web deployment และยังไม่ได้สร้าง/ทดสอบ container image นี้บน Render** การทดสอบ process ในเครื่องไม่ใช้แทนการยืนยัน deployment
+- **ณ checkpoint เตรียมระบบเดิมยังไม่มี Render web deployment** ต่อมาผู้ก่อตั้งเปิดจริงสำเร็จตามสถานะล่าสุดด้านบน; การทดสอบ process ในเครื่องยังคงไม่ใช้แทนการยืนยัน hosted deployment
 
 ## ขั้นตอนใน Dashboard ที่เหลือ
 
@@ -46,3 +52,6 @@ Production ยังต้องมีงบโฮสต์แยก, role-scope
 Connector ปัจจุบันรองรับ Docker web creation แล้ว จึงลองสร้าง company-os-staging / Free / Singapore จาก branch ที่มีโค้ดล่าสุดโดยตรง ผลจริงคือ HTTP 400: repository URL invalid or unfetchable. GitHub ยืนยันว่า repository เป็น PRIVATE และ Render ยังไม่มี web service หลังคำสั่งดังกล่าว จึงยังไม่มี public URL ที่ใช้งานได้ และไม่อ้างว่าการ deploy สำเร็จ
 
 สิ่งที่ต้องทำในบัญชีเจ้าของคืออนุญาต Render GitHub App อ่าน Codex-2 แล้วใช้ Blueprint ตามขั้นตอนด้านบน เพื่อผูกฐานข้อมูลเดิมโดยไม่เปิดเผย connection string. เครื่องมือที่เชื่อมอยู่ไม่มี authenticated Dashboard browser หรือ Blueprint apply capability; จึงทำ GitHub OAuth แทนเจ้าของไม่ได้ ไม่มีการเปลี่ยน repository เป็น public หรือสร้าง paid service.
+
+
+อัปเดตดีไซน์ทั่วไปสำเร็จ: deployment dep-dbc2440n74is73f3n4rg / commit f4dce7d เป็น live แล้ว ตรวจ login แบบใหม่, CSS, PostgreSQL health และการป้องกัน snapshot ที่ยังไม่ล็อกอินผ่านจริง ดู system-console-hosted-browser.json และ system-console-deployment.json ใน docs/evidence. ใช้บัญชีที่ตั้งบนเว็บนี้เอง; ไม่มีการนำรหัสผ่าน/ข้อมูลเจ้าของจากเครื่องพัฒนาไปใส่ใน staging

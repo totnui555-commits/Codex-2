@@ -1,0 +1,21 @@
+{
+  "url": "https://company-os-staging-38tn.onrender.com",
+  "implementation_commit": "f4dce7d11342f2d83997fcc46da63081a2c51dc5",
+  "deploy_id": "dep-dbc2440n74is73f3n4rg",
+  "checks": [
+    "https_page_200",
+    "new_system_login_rendered",
+    "new_button_and_label_styles",
+    "postgresql_health_200",
+    "snapshot_requires_authentication_401",
+    "production_stylesheets_200",
+    "mobile_no_overflow",
+    "mobile_input_16px",
+    "setup_token_masked"
+  ],
+  "page_errors": [],
+  "database_mutations": 0,
+  "owner_login_attempts": 0,
+  "model_calls": 0,
+  "scope": "Public deployment check; authenticated operational pages were verified locally, not with the founder hosted account."
+}
