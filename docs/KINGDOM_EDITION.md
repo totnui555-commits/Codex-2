@@ -54,7 +54,7 @@ sequenceDiagram
     Note over W,S: Browser closure stops visuals, never durable workers
 ```
 
-Latest software-renderer measurement: balanced, 25 citizens, 200 draw calls, 208,529 triangles, ~44.7 MB JS heap; warmed RAF ~1.66 FPS on ANGLE/SwiftShader. This does **not** establish production frame-budget compliance. Hardware/mobile testing, full collision/navigation stress, richer choreography/foliage and formal accessibility/art review remain pending. See `docs/evidence/kingdom-performance.json`. The 40-second walkthrough is an actual interaction excerpt accelerated 3×.
+Original software-renderer measurement: balanced, 25 citizens, 200 draw calls, 208,529 triangles, ~44.7 MB JS heap; warmed RAF ~1.66 FPS on ANGLE/SwiftShader. This does **not** establish production frame-budget compliance. Hardware/mobile testing, full collision/navigation stress, richer choreography/foliage and formal accessibility/art review remain pending. See `docs/evidence/kingdom-performance.json`. The 40-second walkthrough is an actual interaction excerpt accelerated 3×.
 
 
 Native standalone packaging was also checked after a full production build: copy `apps/web/public` to `apps/web/.next/standalone/apps/web/public` and `.next/static` to the corresponding standalone `.next/static`, then run the standalone `server.js` on an isolated loopback port. Actual HTTP/proxy/checksum results are in `docs/evidence/kingdom-standalone.json`. The production Dockerfiles perform these public/static copies. No Docker/Render deployment is implied by this local process check.
@@ -72,3 +72,10 @@ Repeated notification notices are coalesced for readable activity, with source t
 Run `python scripts/profile_kingdom_browser.py --name unique-run-name` against the existing local web/API and ignored owner credentials. Defaults: balanced, 1440×1000 at DPR 1, six-second warmup, twelve-second RAF sample. Evidence names cannot overwrite existing captures; source/asset hashes, actual renderer, build mode, quality and units are recorded. The screenshot is captured afterward with reduced motion, so it is not proof of a frozen-time animation comparison. Software timing is not hardware/GPU certification.
 
 The first bounded material experiment failed its 20% target: median 799.9 → 766.6ms (4.16%), with p95 866.7 → 966.7ms. The candidate was rejected and reverted; no visual change was deployed. See `docs/evidence/kingdom-performance-comparison.json` and the exact non-active candidate patch. Further investigation needs a new bounded measurement contract rather than claiming this sample fixed performance.
+
+
+## Measuring on the founder's device
+
+Open **Display → Measure performance (10s)**, keep the tab visible and view unchanged, then **Download performance report**. The action is entirely in the browser and invokes no agent or provider. Reduced motion must be off; unready/error/2D scenes cannot start. Changing quality, camera preset, motion, canvas size or tab visibility cancels/invalidates a sample. Browser callbacks and actual Three scene-render counts are separate fields so a stalled scene cannot be labeled 60 FPS because browser callbacks continue. The report is a short observation, not GPU timings, controlled hardware evidence or certification; it contains no task/message content, account identity or credentials.
+
+A separate no-blur/opaque-panel software experiment also failed (median 766.7 → 849.9ms, p95 866.6 → 999.9ms) and was reverted. Both failed experiments remain evidence, not active rendering changes. The new diagnostic export enables collection on real founder devices while preserving accepted graphics.

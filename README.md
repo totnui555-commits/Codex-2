@@ -88,3 +88,5 @@ Latest island-first interface: [wide screenshot](docs/evidence/kingdom-apple-wid
 The operational console, dialogs and login/setup screens now share an Apple-inspired system design: [design scope](docs/SYSTEM_UI.md) · [Office screenshot](docs/evidence/system-console-office.png) · [mobile](docs/evidence/system-console-mobile.png). Real local browser acceptance passed 31 read-only checks.
 
 The shared console design is [live on the trial](https://company-os-staging-38tn.onrender.com). [Current CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39532610810) passed; [public deployment receipt](docs/evidence/system-console-hosted-browser.json) and [online login screenshot](docs/evidence/system-console-hosted-login.png) distinguish public checks from authenticated local acceptance.
+
+Reproducible local profiling: `python scripts/profile_kingdom_browser.py --name unique-run-name`. The first current-layout lighting experiment missed its target and was reverted; [measured comparison](docs/evidence/kingdom-performance-comparison.json). No renderer improvement or new deployment is claimed.

@@ -1287,3 +1287,24 @@
 .kingdom-mode:has(.island-focus) .main > .info-strip:has(+ .stop-banner) {
   top: 122px;
 }
+.kingdom-mode .kingdom-performance {
+  display: grid;
+  gap: 9px;
+  max-width: 260px;
+  padding-top: 10px;
+  border-top: 1px solid #d7e3f2;
+}
+.kingdom-mode .kingdom-performance p {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #516d8b;
+  white-space: normal;
+}
+.kingdom-mode .kingdom-performance button {
+  min-height: 36px;
+  white-space: normal;
+}
+.kingdom-mode .kingdom-controls {
+  max-height: 65dvh;
+  overflow-y: auto;
+}

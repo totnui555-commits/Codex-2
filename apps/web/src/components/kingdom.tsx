@@ -25,7 +25,12 @@ import {
   ShaderMaterial,
   Vector3,
   type Object3D,
+  type WebGLRenderer,
 } from "three";
+import {
+  sampleSceneFrames,
+  type BrowserPerformanceReport,
+} from "@/lib/kingdom-performance";
 import {
   citizen,
   kingdomActivity,
@@ -593,8 +598,88 @@ export default function Kingdom({
     [directoryOpen, setDirectoryOpen] = useState(false),
     [panelOpen, setPanelOpen] = useState(false),
     [focusIsland, setFocusIsland] = useState(false),
-    [displayOpen, setDisplayOpen] = useState(false);
-  const reportReady = useCallback(() => setReady(true), []);
+    [displayOpen, setDisplayOpen] = useState(false),
+    [measuring, setMeasuring] = useState(false),
+    [performanceReport, setPerformanceReport] =
+      useState<BrowserPerformanceReport | null>(null),
+    [performanceError, setPerformanceError] = useState("");
+  const rendererRef = useRef<WebGLRenderer | null>(null);
+  const measurement = useRef<AbortController | null>(null);
+  const reportReady = useCallback(() => setReady(true), [quality]);
+  useEffect(() => {
+    setPerformanceReport(null);
+    setPerformanceError("");
+    setMeasuring(false);
+    return () => measurement.current?.abort();
+  }, [quality, reduced, flat, failed, preset, follow, zoom, focusIsland]);
+  async function measurePerformance() {
+    const renderer = rendererRef.current;
+    if (
+      !renderer ||
+      measurement.current ||
+      measuring ||
+      reduced ||
+      flat ||
+      failed ||
+      !ready
+    )
+      return;
+    const controller = new AbortController();
+    measurement.current = controller;
+    setMeasuring(true);
+    setPerformanceError("");
+    setPerformanceReport(null);
+    try {
+      const context = renderer.getContext();
+      const debug = context.getExtension("WEBGL_debug_renderer_info");
+      const rendererName = String(
+        context.getParameter(
+          debug ? debug.UNMASKED_RENDERER_WEBGL : context.RENDERER,
+        ),
+      );
+      const report = await sampleSceneFrames(() => {
+        if (context.isContextLost() || !renderer.domElement.isConnected)
+          throw new Error("The 3D renderer is unavailable");
+        return {
+          frames: renderer.info.render.frame,
+          width: renderer.domElement.width,
+          height: renderer.domElement.height,
+        };
+      }, controller.signal);
+      setPerformanceReport({
+        schema_version: 1,
+        captured_at: new Date().toISOString(),
+        world_version: WORLD_VERSION,
+        quality,
+        citizens: citizens.length,
+        renderer: rendererName,
+        ...report,
+        scope:
+          "Foreground browser sample; scene frame counts and browser pacing, not GPU timings or hardware certification. No task content, identities or credentials included.",
+      });
+    } catch (error) {
+      if (!controller.signal.aborted)
+        setPerformanceError((error as Error).message);
+    } finally {
+      if (measurement.current === controller) measurement.current = null;
+      if (!controller.signal.aborted) setMeasuring(false);
+    }
+  }
+  function downloadPerformanceReport() {
+    if (!performanceReport) return;
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(performanceReport, null, 2)], {
+        type: "application/json",
+      }),
+    );
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "kingdom-performance.json";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
   useEffect(() => {
     const escape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -857,7 +942,13 @@ export default function Kingdom({
               <SlidersHorizontal size={15} />
               <span>Display</span>
             </button>
-            <button aria-pressed={flat} onClick={() => setFlat(!flat)}>
+            <button
+              aria-pressed={flat}
+              onClick={() => {
+                setReady(false);
+                setFlat(!flat);
+              }}
+            >
               <MapIcon size={15} />
               {flat ? "3D kingdom" : "Accessible view"}
             </button>
@@ -896,6 +987,7 @@ export default function Kingdom({
                       powerPreference: "high-performance",
                     }}
                     onCreated={({ gl }) => {
+                      rendererRef.current = gl;
                       gl.setClearColor("#74bdc5");
                       gl.shadowMap.autoUpdate = false;
                     }}
@@ -978,7 +1070,16 @@ export default function Kingdom({
                       minPolarAngle={Math.PI * 0.15}
                       minDistance={10}
                       maxDistance={80}
-                      onStart={() => setFollow(null)}
+                      onStart={() => {
+                        setFollow(null);
+                        if (measuring) {
+                          measurement.current?.abort();
+                          setMeasuring(false);
+                          setPerformanceError(
+                            "Camera moved. Start a new measurement.",
+                          );
+                        }
+                      }}
                     />
                   </Canvas>
                 </WorldBoundary>
@@ -1100,7 +1201,12 @@ export default function Kingdom({
               <select
                 aria-label="Kingdom render quality"
                 value={quality}
-                onChange={(e) => setQuality(e.target.value as Quality)}
+                onChange={(e) => {
+                  if (e.target.value !== quality) {
+                    setReady(false);
+                    setQuality(e.target.value as Quality);
+                  }
+                }}
               >
                 <option value="low">Low</option>
                 <option value="balanced">Balanced</option>
@@ -1119,6 +1225,49 @@ export default function Kingdom({
               {citizens.length} persistent citizens ·{" "}
               {citizens.filter((c) => c.working).length} working
             </span>
+            <div
+              className="kingdom-performance"
+              aria-label="Performance diagnostics"
+            >
+              <button
+                className="secondary"
+                onClick={measurePerformance}
+                disabled={measuring || reduced || flat || failed || !ready}
+              >
+                {measuring
+                  ? "Measuring… keep this tab visible"
+                  : "Measure performance (10s)"}
+              </button>
+              {reduced && (
+                <p>Turn off Reduced motion to measure scene frames.</p>
+              )}
+              {measuring && (
+                <button
+                  onClick={() => {
+                    measurement.current?.abort();
+                    setMeasuring(false);
+                  }}
+                >
+                  Cancel measurement
+                </button>
+              )}
+              {performanceError && <p role="alert">{performanceError}</p>}
+              {performanceReport && (
+                <>
+                  <p role="status">
+                    {performanceReport.scene_fps.toFixed(1)} scene FPS ·{" "}
+                    {performanceReport.scene_frames} rendered frames
+                  </p>
+                  <p>Browser pacing only. Not a GPU benchmark.</p>
+                  <button
+                    className="secondary"
+                    onClick={downloadPerformanceReport}
+                  >
+                    Download performance report
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
         <aside
