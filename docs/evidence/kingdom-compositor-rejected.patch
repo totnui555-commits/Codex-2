@@ -1,0 +1,78 @@
+diff --git a/apps/web/src/app/kingdom-shell.css b/apps/web/src/app/kingdom-shell.css
+index 1a34f25..9ec4f51 100644
+--- a/apps/web/src/app/kingdom-shell.css
++++ b/apps/web/src/app/kingdom-shell.css
+@@ -1287,3 +1287,24 @@
+ .kingdom-mode:has(.island-focus) .main > .info-strip:has(+ .stop-banner) {
+   top: 122px;
+ }
++
++/* Software WebGL already consumes CPU for the world. Avoid repeatedly blurring
++   that moving canvas beneath every floating panel; retain the glass tier on GPUs. */
++.kingdom-mode:has(.kingdom-edition[data-renderer="software"]) * {
++  backdrop-filter: none !important;
++  -webkit-backdrop-filter: none !important;
++}
++.kingdom-mode:has(.kingdom-edition[data-renderer="software"])
++  :is(
++    .sidebar,
++    .kingdom-inspector,
++    .kingdom-toolbar,
++    .kingdom-search,
++    .kingdom-search-results,
++    .kingdom-map-label,
++    .kingdom-controls,
++    .kingdom-destinations,
++    .kingdom-hud > div
++  ) {
++  background: #f5f9ff;
++}
+diff --git a/apps/web/src/components/kingdom.tsx b/apps/web/src/components/kingdom.tsx
+index 73de936..336e529 100644
+--- a/apps/web/src/components/kingdom.tsx
++++ b/apps/web/src/components/kingdom.tsx
+@@ -593,6 +593,7 @@ export default function Kingdom({
+     [directoryOpen, setDirectoryOpen] = useState(false),
+     [panelOpen, setPanelOpen] = useState(false),
+     [focusIsland, setFocusIsland] = useState(false),
++    [softwareRenderer, setSoftwareRenderer] = useState(false),
+     [displayOpen, setDisplayOpen] = useState(false);
+   const reportReady = useCallback(() => setReady(true), []);
+   useEffect(() => {
+@@ -663,6 +664,7 @@ export default function Kingdom({
+       className={"kingdom-edition " + (focusIsland ? "island-focus" : "")}
+       aria-label="Kingdom Edition"
+       data-world-rendered={ready && !failed && !flat}
++      data-renderer={softwareRenderer ? "software" : "standard"}
+     >
+       <div className="kingdom-search">
+         <Search size={16} />
+@@ -898,6 +900,18 @@ export default function Kingdom({
+                     onCreated={({ gl }) => {
+                       gl.setClearColor("#74bdc5");
+                       gl.shadowMap.autoUpdate = false;
++                      const context = gl.getContext();
++                      const debug = context.getExtension(
++                        "WEBGL_debug_renderer_info",
++                      );
++                      const renderer = debug
++                        ? context.getParameter(debug.UNMASKED_RENDERER_WEBGL)
++                        : context.getParameter(context.RENDERER);
++                      setSoftwareRenderer(
++                        /swiftshader|llvmpipe|lavapipe|software/i.test(
++                          String(renderer),
++                        ),
++                      );
+                     }}
+                   >
+                     <ContextMonitor onFailure={() => setFailed(true)} />
+@@ -1119,6 +1133,9 @@ export default function Kingdom({
+               {citizens.length} persistent citizens ·{" "}
+               {citizens.filter((c) => c.working).length} working
+             </span>
++            {softwareRenderer && (
++              <span>Software renderer · simplified panels</span>
++            )}
+           </div>
+         </div>
+         <aside

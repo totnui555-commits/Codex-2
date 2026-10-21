@@ -55,3 +55,6 @@ Connector ปัจจุบันรองรับ Docker web creation แล�
 
 
 อัปเดตดีไซน์ทั่วไปสำเร็จ: deployment dep-dbc2440n74is73f3n4rg / commit f4dce7d เป็น live แล้ว ตรวจ login แบบใหม่, CSS, PostgreSQL health และการป้องกัน snapshot ที่ยังไม่ล็อกอินผ่านจริง ดู system-console-hosted-browser.json และ system-console-deployment.json ใน docs/evidence. ใช้บัญชีที่ตั้งบนเว็บนี้เอง; ไม่มีการนำรหัสผ่าน/ข้อมูลเจ้าของจากเครื่องพัฒนาไปใส่ใน staging
+
+
+อัปเดตล่าสุด: commit 94c1079 / deployment dep-dbc9uie1egvs739vt040 เป็น live แล้ว เพิ่ม Display → Measure performance (10s) → Download performance report และแก้ SSE ไม่ให้ proxy บีบอัดจน event ค้าง. ผลทดสอบ local ใช้ PostgreSQL/API/Next จริง; public checks ตรวจ login/CSS/health/authentication/mobile โดยไม่ใช้รหัสผ่านเจ้าของ. ไม่ถือว่าปัญหา FPS หรือ worker 24 ชั่วโมงเสร็จแล้ว

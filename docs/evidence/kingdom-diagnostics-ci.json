@@ -1,0 +1,133 @@
+{
+  "conclusion": "success",
+  "headSha": "94c1079be9f2c3ce4bc62b4a50f1da3595f02377",
+  "jobs": [
+    {
+      "completedAt": "2026-10-21T11:19:32Z",
+      "conclusion": "success",
+      "databaseId": 119190977253,
+      "name": "verify",
+      "startedAt": "2026-10-21T11:17:09Z",
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Initialize containers",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v4",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run pip install -r requirements.lock && pip install --no-deps -e .",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run alembic upgrade head",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run psql -h localhost -U company -d company_test -f scripts/database_roles.sql",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run docker run -d -p 7233:7233 temporalio/temporal:1.4.1 server start-dev --ip 0.0.0.0",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python scripts/wait_temporal.py",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run RUN_TEMPORAL_TESTS=1 pytest -q",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run ruff check apps/api/company_os scripts infrastructure/staging_entrypoint.py",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run python scripts/validate_kingdom_assets.py",
+          "number": 13,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run npm ci && npm run test && npm run typecheck && npm run build",
+          "number": 14,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v4",
+          "number": 25,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 26,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 27,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Stop containers",
+          "number": 28,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 29,
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/totnui555-commits/Codex-2/actions/runs/39590808427/job/119190977253"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/totnui555-commits/Codex-2/actions/runs/39590808427"
+}

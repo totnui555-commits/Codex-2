@@ -25,3 +25,8 @@ Founder directs preservation of the old Office as a separate version. Kingdom is
 2. Author original Blender island/building/environment and citizen source assets, export optimized GLB packs. Northern keep/library, western ridge lighthouse, central guild/post/plaza, eastern crafts, southern harbor/shipyard, treasury near keep. Water/path/citizen animation remains a deterministic client layer.
 3. Integrate bounded camera presets, selection/follow, real dashboard links, incident beacon, honest finance/status HUD, quality/reduced-motion controls and accessible map/list fallback. Preserve Office.
 4. Verify identity/state/incident/path contracts; authenticate browser against real services; inspect all landmarks and a citizen; reload/reconnect; check mobile, fallback and legacy Office. Record screenshots, short walkthrough and observed frame/render budgets; run tests/typecheck/build/CI. Record artistic/performance limitations without self-certifying visual production acceptance.
+
+
+### 2026-10-21 verification update
+
+Added private on-device frame-report export and reproducible local profiling. Two bounded renderer candidates failed and were reverted; GPU frame-budget acceptance remains open. Corrected SSE proxy compression after a real event-visibility regression; local real event/UI delivery and reload persistence verified with automatic test cleanup. Hosted worker/provider setup and recurring hosting budget gates remain separate from this management-only UI release.

@@ -1,0 +1,33 @@
+{
+  "checks": [
+    "real_task_created_event_received",
+    "ui_updates_before_30s_poll",
+    "sse_no_transform_through_proxy",
+    "sse_uncompressed",
+    "reload_persistence"
+  ],
+  "model_calls": 0,
+  "scope": "Real local PostgreSQL/API and Next proxy; internal paused project only",
+  "visibility_seconds": 1.155,
+  "task_id": "45002953-ceda-47cd-872b-a321e68ba893",
+  "stream_headers": [
+    {
+      "cache-control": "no-store, no-transform",
+      "content-encoding": null,
+      "content-type": "text/event-stream; charset=utf-8"
+    },
+    {
+      "cache-control": "no-store, no-transform",
+      "content-encoding": null,
+      "content-type": "text/event-stream; charset=utf-8"
+    },
+    {
+      "cache-control": "no-store, no-transform",
+      "content-encoding": null,
+      "content-type": "text/event-stream; charset=utf-8"
+    }
+  ],
+  "page_errors": [],
+  "task_cancelled": true,
+  "project_paused": true
+}

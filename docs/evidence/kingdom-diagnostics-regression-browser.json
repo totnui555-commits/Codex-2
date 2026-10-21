@@ -1,0 +1,36 @@
+{
+  "scope": "actual authenticated local company; no hosted coding or invented execution",
+  "checks": [
+    "full_viewport_island",
+    "landmark_and_citizen_search",
+    "search_empty_state_and_keyboard",
+    "focus_mode_and_escape_restore",
+    "mobile_inspector_sheet",
+    "twelve_interactive_landmarks",
+    "real_watchtower_dashboard",
+    "incident_count_matches_server",
+    "persistent_citizen_inspector",
+    "camera_presets_follow_reset",
+    "accessible_fallback",
+    "real_task_event_and_reload_persistence",
+    "legacy_office_preserved",
+    "mobile_no_overflow",
+    "audit_chain_valid",
+    "paid_execution_stays_disabled"
+  ],
+  "task_id": "c3ad87a4-b795-4c79-85b7-c31726dd142d",
+  "verification_task_cancelled": true,
+  "browser_errors": [],
+  "render_observation": {
+    "fps": 0.8,
+    "drawCalls": 200,
+    "triangles": 208529,
+    "citizens": 25,
+    "worldVersion": "kingdom-2.0.0",
+    "meshes": 7
+  },
+  "renderer": "headless Chromium SwiftShader software; not a hardware GPU certification",
+  "monthly_spend": "0.1241",
+  "model_calls_in_check": 0,
+  "world_version": "kingdom-2.0.0"
+}
