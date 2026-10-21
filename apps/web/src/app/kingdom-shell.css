@@ -1308,3 +1308,33 @@
   max-height: 65dvh;
   overflow-y: auto;
 }
+.kingdom-mode .kingdom-controls.display-open {
+  display: grid;
+  align-items: stretch;
+  gap: 12px;
+  width: 300px;
+  max-width: calc(100vw - 24px);
+}
+.kingdom-mode .kingdom-controls > label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+.kingdom-mode .kingdom-performance {
+  max-width: none;
+}
+.kingdom-mode .kingdom-performance .secondary {
+  color: #0066d6;
+  border: 1px solid #cbdff5;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 11px;
+}
+@media (max-width: 760px) {
+  .kingdom-mode .kingdom-controls.display-open {
+    width: auto;
+    max-width: none;
+  }
+}
