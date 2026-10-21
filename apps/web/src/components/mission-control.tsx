@@ -288,7 +288,7 @@ export default function MissionControl() {
     );
   if (!auth || !snapshot)
     return (
-      <main className="login">
+      <main className="login system-login">
         <div className="login-art">
           <div className="wordmark">
             <Box /> AI COMPANY OS
@@ -415,7 +415,7 @@ export default function MissionControl() {
       className={
         "app " +
         (sidebar ? "sidebar-open " : "") +
-        (page === "Kingdom" ? "kingdom-mode" : "")
+        (page === "Kingdom" ? "kingdom-mode" : "console-mode")
       }
     >
       <aside className="sidebar">

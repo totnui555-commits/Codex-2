@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./kingdom-shell.css";
+@import "./system-console.css";
 :root {
   --ink: #24342d;
   --muted: #879086;

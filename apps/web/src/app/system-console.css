@@ -1,0 +1,1304 @@
+/* Shared operational console. Scoped independently from the immersive world. */
+.console-mode,
+.system-login {
+  --ink: #1d1d1f;
+  --muted: #626773;
+  --line: #e4e7ed;
+  --paper: #f5f5f7;
+  --yellow: #007aff;
+  --side: 244px;
+  --system-blue: #0066d6;
+  color: var(--ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+.console-mode {
+  background:
+    radial-gradient(ellipse at 85% 0%, #eaf2ff80, transparent 42%), #f5f5f7;
+  min-height: 100dvh;
+}
+.console-mode :is(button, a, input, select, textarea):focus-visible,
+.system-login :is(button, a, input):focus-visible {
+  outline: 3px solid #007aff;
+  outline-offset: 3px;
+}
+.console-mode button,
+.system-login button {
+  transition:
+    background 160ms,
+    box-shadow 160ms;
+}
+.console-mode button:hover,
+.system-login button:hover {
+  filter: none;
+}
+.console-mode .sidebar {
+  width: var(--side);
+  padding: 26px 16px 20px;
+  background: #f9faffd9;
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border-right: 1px solid #dfe3ec;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.console-mode .wordmark {
+  font-size: 15px;
+  letter-spacing: -0.6px;
+  font-weight: 700;
+}
+.console-mode .wordmark small {
+  font-size: 8px;
+  line-height: 1.6;
+  letter-spacing: 0.8px;
+  color: #626773;
+}
+.console-mode .brand-icon {
+  width: 38px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(150deg, #2998ff, #0065d9);
+  color: white;
+  box-shadow: 0 4px 10px #007aff1a;
+}
+.console-mode .workspace {
+  margin-top: 28px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #ffffffa6;
+  border-color: #e1e5ed;
+  font-size: 12px;
+}
+.console-mode .workspace small {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .workspace-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: #e8f1ff;
+  color: #0066d6;
+  font-family: inherit;
+}
+.console-mode .nav-section {
+  padding: 25px 12px 9px;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: #626773;
+}
+.console-mode nav {
+  gap: 3px;
+}
+.console-mode nav button {
+  min-height: 42px;
+  padding: 10px 12px;
+  gap: 11px;
+  border-radius: 11px;
+  color: #505662;
+  font-size: 13px;
+  font-weight: 500;
+}
+.console-mode nav button svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.console-mode nav button:hover {
+  background: #e9edf4;
+}
+.console-mode nav button.active {
+  color: #0066d6;
+  background: #e0edff;
+  font-weight: 600;
+}
+.console-mode nav button.active:hover {
+  background: #d4e6ff;
+}
+.console-mode :is(.tiny, .count) {
+  background: #edf3ff;
+  color: #0066d6;
+  font-size: 10px;
+  border-radius: 6px;
+}
+.console-mode .sidebar-bottom {
+  padding-top: 26px;
+}
+.console-mode .autonomy {
+  background: #ffffffb3;
+  border-color: #e1e5ed;
+  border-radius: 14px;
+  padding: 14px 12px;
+}
+.console-mode .autonomy > div:first-child {
+  font-size: 11px;
+}
+.console-mode .autonomy p {
+  color: #626773;
+  font-size: 10px;
+}
+.console-mode .autonomy > span {
+  color: #626773;
+  font-size: 10px;
+}
+.console-mode .mini-track {
+  background: #e9eef5;
+  height: 4px;
+}
+.console-mode .mini-track i {
+  background: #34a877;
+}
+.console-mode .settings-link {
+  font-size: 13px;
+  color: #505662;
+  min-height: 36px;
+}
+.console-mode .avatar {
+  background: #e6eeff;
+  color: #0066d6;
+  font-family: inherit;
+  font-weight: 600;
+}
+.console-mode .founder > span {
+  font-size: 12px;
+}
+.console-mode .founder small {
+  font-size: 10px;
+}
+.console-mode .topbar {
+  height: 68px;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  background: #ffffffc9;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+.console-mode .breadcrumb {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .breadcrumb > b {
+  color: #1d1d1f;
+  font-weight: 600;
+}
+.console-mode .top-actions {
+  gap: 16px;
+}
+.console-mode .connection {
+  color: #886126;
+  font-size: 11px;
+}
+.console-mode .connection.connected {
+  color: #39775c;
+}
+.console-mode .icon-button {
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 10px;
+  color: #626773;
+}
+.console-mode .icon-button:hover {
+  background: #e9eef7;
+}
+.console-mode .notification-dot {
+  background: #e03e41;
+}
+.console-mode .page-heading {
+  padding: 34px 32px 28px;
+  gap: 20px;
+}
+.console-mode .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #626773;
+}
+.console-mode .page-heading h1 {
+  font-size: clamp(28px, 2.6vw, 36px);
+  font-weight: 700;
+  letter-spacing: -1.3px;
+  margin-top: 8px;
+  line-height: 1.2;
+}
+.console-mode .heading-dot {
+  color: #007aff;
+}
+.console-mode .page-heading p {
+  color: #626773;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.console-mode .date-label {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .primary,
+.system-login .primary {
+  background: #007aff;
+  color: #fff;
+  border: 1px solid #0071ed;
+  border-radius: 12px;
+  min-height: 42px;
+  padding: 11px 18px;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 3px 7px #007aff13;
+}
+.console-mode .primary:hover,
+.system-login .primary:hover {
+  background: #0065d9;
+}
+.console-mode .secondary {
+  background: #fff;
+  color: #0066d6;
+  border-color: #dce3ef;
+  border-radius: 12px;
+  min-height: 40px;
+  padding: 10px 14px;
+  gap: 7px;
+  font-size: 12px;
+}
+.console-mode .secondary:hover {
+  background: #f0f5ff;
+}
+.console-mode .kpis {
+  margin: 0 32px 24px;
+  gap: 16px;
+}
+.console-mode .kpi {
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 18px #1c3a5b04;
+}
+.console-mode .kpi > span {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .kpi > span svg {
+  color: #007aff;
+}
+.console-mode .kpi > div {
+  flex-wrap: wrap;
+  gap: 7px;
+  white-space: normal;
+}
+.console-mode .kpi b {
+  font-size: clamp(24px, 2.1vw, 32px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.console-mode .kpi small {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .kpi p {
+  font-size: 11px;
+  color: #626773;
+  line-height: 1.6;
+}
+.console-mode .badge {
+  font-size: 10px;
+  border-radius: 7px;
+  padding: 5px 8px;
+  background: #eef0f5;
+  color: #575f6c;
+}
+.console-mode .badge.green {
+  background: #e8f6ee;
+  color: #24714b;
+}
+.console-mode .badge.amber {
+  background: #fff3dc;
+  color: #865600;
+}
+.console-mode :is(.office-layout, .content-panel) {
+  margin: 0 32px;
+}
+.console-mode .office-layout {
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 20px;
+}
+.console-mode :is(.office-panel, .right-panel, .content-panel) {
+  border-color: #e4e7ed;
+  border-radius: 22px;
+  box-shadow: 0 4px 20px #22344b04;
+}
+.console-mode .right-panel {
+  padding: 24px 20px;
+}
+.console-mode .office-toolbar {
+  height: 64px;
+  padding: 12px 16px;
+}
+.console-mode .view-tabs {
+  background: #edf0f5;
+  padding: 4px;
+  border-radius: 11px;
+}
+.console-mode .view-tabs button {
+  color: #626773;
+  font-size: 11px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  min-height: 34px;
+}
+.console-mode .view-tabs button.selected {
+  background: #fff;
+  color: #1d1d1f;
+  box-shadow: 0 2px 5px #23344b16;
+}
+.console-mode .scene-actions select {
+  font-size: 11px;
+  color: #505662;
+}
+.console-mode .office-footer {
+  font-size: 11px;
+}
+.console-mode .office-footer span {
+  color: #626773;
+  font-size: 10px;
+}
+.console-mode .section-title h3 {
+  font-size: 14px;
+}
+.console-mode .section-title button {
+  font-size: 11px;
+  color: #0066d6;
+}
+.console-mode .section-title .badge {
+  font-size: 9px;
+}
+.console-mode .pulse-icon {
+  color: #007aff;
+  background: #edf4ff;
+  border-radius: 12px;
+}
+.console-mode .pulse-summary b {
+  font-size: 12px;
+  color: #1d1d1f;
+}
+.console-mode .pulse-summary p {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .activity-list {
+  gap: 22px;
+}
+.console-mode .activity-symbol {
+  height: 34px;
+  min-width: 34px;
+  border-radius: 10px;
+  background: #edf4ff;
+  color: #0066d6;
+}
+.console-mode .activity-item b {
+  font-size: 11px;
+  color: #333b48;
+}
+.console-mode .activity-item p {
+  font-size: 10px;
+  color: #626773;
+}
+.console-mode .activity-item > div > span {
+  font-size: 10px;
+  color: #626773;
+}
+.console-mode .founder-note {
+  background: #f0f5ff;
+  border-color: #dce7fa;
+  border-radius: 16px;
+}
+.console-mode .founder-note > div {
+  color: #0066d6;
+}
+.console-mode .founder-note > div span {
+  font-size: 9px;
+}
+.console-mode .founder-note h3 {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+}
+.console-mode .founder-note p {
+  color: #626773;
+  font-size: 12px;
+}
+.console-mode .founder-note > button {
+  color: #0066d6;
+  font-size: 12px;
+}
+.console-mode .integration-mini > div:not(:first-child) {
+  color: #626773;
+  font-size: 11px;
+}
+.console-mode .status {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode :is(.status.running, .status.completed, .status.configured) {
+  color: #24714b;
+}
+.console-mode :is(.status.blocked, .status.waiting_for_approval) {
+  color: #865600;
+}
+.console-mode :is(.status.quarantined, .status.failed) {
+  color: #b42332;
+}
+.console-mode :is(.status.quarantined i, .status.failed i) {
+  background: #d93245;
+}
+.console-mode .content-panel {
+  padding: 26px;
+  min-height: 520px;
+}
+.console-mode .content-toolbar {
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.console-mode .content-toolbar h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.console-mode .content-toolbar > div {
+  flex-wrap: wrap;
+}
+.console-mode .search {
+  background: #f3f5f8;
+  border-color: #e4e7ed;
+  border-radius: 12px;
+  min-height: 40px;
+  color: #626773;
+}
+.console-mode .search input {
+  color: #1d1d1f;
+  font-size: 12px;
+  width: 160px;
+}
+.console-mode .search kbd {
+  font-size: 10px;
+  color: #626773;
+}
+.console-mode .cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.console-mode
+  :is(
+    .project-card,
+    .opportunity-card,
+    .approval-card,
+    .list-card,
+    .agent-card,
+    .overview-card,
+    .inbox-card
+  ) {
+  border-color: #e4e7ed;
+  border-radius: 18px;
+  background: #fff;
+  min-width: 0;
+}
+.console-mode
+  :is(.project-card, .opportunity-card, .approval-card, .list-card) {
+  padding: 22px;
+}
+.console-mode :is(.project-icon, .agent-icon, .mail-icon) {
+  background: #eaf2ff;
+  color: #0066d6;
+  border-radius: 14px;
+}
+.console-mode :is(.project-card, .opportunity-card, .approval-card) h3 {
+  font-size: 17px;
+  font-weight: 600;
+}
+.console-mode
+  :is(.project-card, .opportunity-card, .approval-card, .list-card)
+  p {
+  color: #626773;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.console-mode :is(.project-card footer, .list-card small) {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .project-progress {
+  background: #edf0f5;
+  height: 5px;
+}
+.console-mode .project-progress i {
+  background: #007aff;
+}
+.console-mode .empty {
+  padding: 64px 20px;
+}
+.console-mode .empty-icon {
+  transform: none;
+  background: #edf4ff;
+  color: #007aff;
+}
+.console-mode .empty h3 {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 24px;
+}
+.console-mode .empty p {
+  color: #626773;
+  font-size: 13px;
+}
+.console-mode .agent-cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.console-mode .agent-card {
+  padding: 22px;
+  transition:
+    background 160ms,
+    box-shadow 160ms;
+}
+.console-mode .agent-card:hover {
+  background: #f6f9ff;
+  box-shadow: 0 4px 16px #007aff0a;
+}
+.console-mode .agent-card h3 {
+  font-size: 14px;
+}
+.console-mode .agent-card > span:not(.status) {
+  color: #626773;
+  font-size: 12px;
+}
+.console-mode .agent-card small {
+  color: #626773;
+  font-size: 11px;
+}
+.console-mode .agent-inspector > p {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .agent-inspector dl {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .agent-inspector dd {
+  color: #333b48;
+}
+.console-mode .agent-inspector h4 {
+  font-size: 13px;
+}
+.console-mode .kanban {
+  grid-template-columns: repeat(5, minmax(220px, 1fr));
+}
+.console-mode .kanban-column {
+  background: #f5f6fa;
+  border-color: #e6eaf0;
+  border-radius: 16px;
+  padding: 12px;
+}
+.console-mode .kanban-column > h3 {
+  font-size: 12px;
+  font-weight: 600;
+}
+.console-mode .kanban-column > h3 small {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .column-dot.running {
+  background: #007aff;
+}
+.console-mode .task-card {
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 2px 6px #22344b04;
+}
+.console-mode .task-card h4 {
+  font-size: 13px;
+}
+.console-mode .task-card p {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .task-card ul {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .task-card footer {
+  color: #626773;
+}
+.console-mode .task-card footer span {
+  font-size: 10px;
+}
+.console-mode .info-strip {
+  background: #f0f5ff;
+  border-color: #dce7fa;
+  color: #435e83;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.console-mode .score {
+  color: #0066d6;
+  font-weight: 600;
+}
+.console-mode .score small {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .opportunity-card ul {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .opportunity-card a {
+  color: #0066d6;
+  font-size: 12px;
+}
+.console-mode .inbox-card {
+  padding: 24px;
+}
+.console-mode .inbox-card-heading {
+  flex-wrap: wrap;
+}
+.console-mode .inbox-card-heading h3 {
+  font-size: 15px;
+}
+.console-mode .inbox-card-heading span:not(.badge) {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .inbox-card > p {
+  font-size: 13px;
+  color: #505662;
+}
+.console-mode .options span {
+  font-size: 12px;
+  color: #505662;
+}
+.console-mode .options b {
+  font-size: 11px;
+  color: #0066d6;
+  background: #edf4ff;
+  border-radius: 6px;
+}
+.console-mode .delivery-status {
+  font-size: 11px;
+  color: #626773;
+  flex-wrap: wrap;
+}
+.console-mode .delivery-status span {
+  font-size: 10px;
+}
+.console-mode .response {
+  font-size: 12px;
+  border-radius: 12px;
+  background: #e8f6ee;
+  color: #24714b;
+}
+.console-mode .approval-card label {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .approval-card code {
+  font-size: 11px;
+  color: #505662;
+}
+.console-mode pre {
+  font-size: 12px;
+  border-radius: 12px;
+  background: #f4f6fa;
+  color: #505662;
+}
+.console-mode .finance-summary {
+  gap: 18px;
+}
+.console-mode .finance-summary article {
+  border-color: #e4e7ed;
+  background: #f7f9fc;
+  border-radius: 18px;
+}
+.console-mode .finance-summary span {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .finance-summary h2 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  font-variant-numeric: tabular-nums;
+}
+.console-mode .finance-summary p {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .content-panel > h3 {
+  font-size: 15px;
+}
+.console-mode table {
+  font-size: 12px;
+}
+.console-mode th {
+  font-size: 11px;
+  font-weight: 600;
+  color: #626773;
+  background: #f7f9fc;
+}
+.console-mode td {
+  color: #505662;
+  font-variant-numeric: tabular-nums;
+}
+.console-mode tbody tr:hover {
+  background: #f8faff;
+}
+.console-mode .audit-heading p {
+  font-size: 12px;
+  color: #626773;
+}
+.console-mode .audit-list summary {
+  font-size: 12px;
+  gap: 12px;
+}
+.console-mode .audit-sequence,
+.console-mode .audit-list summary > span:last-of-type {
+  font-size: 11px;
+  color: #626773;
+}
+.console-mode .settings-grid {
+  gap: 32px;
+}
+.console-mode .settings-grid h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.console-mode .settings-grid p {
+  font-size: 13px;
+  color: #626773;
+}
+.console-mode .settings-grid label,
+.console-mode .modal label,
+.system-login label {
+  font-size: 12px;
+  color: #505662;
+  gap: 8px;
+}
+.console-mode :is(input, select, textarea),
+.system-login input {
+  color: #1d1d1f;
+  border-color: #d5dbe5;
+  background: #fff;
+  border-radius: 11px;
+  padding: 11px 13px;
+  font-size: 13px;
+  min-height: 42px;
+}
+.console-mode :is(input, textarea)::placeholder,
+.system-login input::placeholder {
+  color: #757c89;
+}
+.console-mode .search input {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.console-mode .checkbox {
+  font-size: 12px !important;
+}
+.console-mode .checkbox input {
+  min-height: 0;
+  accent-color: #007aff;
+}
+.console-mode .danger {
+  color: #b42332;
+  border-color: #f0ccd1;
+  background: #fff3f4;
+  border-radius: 12px;
+  min-height: 42px;
+  font-size: 12px;
+}
+.console-mode .danger:hover {
+  background: #ffe8eb;
+}
+.console-mode .provider-row {
+  font-size: 13px;
+}
+.console-mode .settings-grid .info-strip {
+  font-size: 12px;
+}
+.console-mode .muted {
+  color: #626773 !important;
+}
+.console-mode .overview-grid {
+  gap: 18px;
+}
+.console-mode .overview-card {
+  padding: 26px;
+}
+.console-mode .overview-card h2 {
+  font-family: inherit;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+.console-mode .overview-card p {
+  font-size: 13px;
+  color: #626773;
+}
+.console-mode .overview-stats b {
+  font-weight: 600;
+  font-size: 28px;
+}
+.console-mode .page-footer {
+  padding: 22px 32px;
+  font-size: 10px;
+  color: #626773;
+}
+.console-mode .modal-overlay {
+  background: #1526414d;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.console-mode .modal {
+  border-radius: 24px;
+  border-color: #ffffffb3;
+  padding: 28px;
+  box-shadow: 0 24px 100px #15264133;
+}
+.console-mode .modal h2 {
+  font-family: inherit;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+.console-mode .modal > p {
+  font-size: 13px;
+  color: #626773;
+}
+.console-mode .toast {
+  background: #24344c;
+  color: #fff;
+  border-radius: 14px;
+  font-size: 13px;
+}
+.console-mode .error-toast {
+  background: #fff3e2;
+  color: #805000;
+  border-color: #f0d6a3;
+  border-radius: 14px;
+  font-size: 13px;
+}
+.console-mode .form-error,
+.system-login .form-error {
+  color: #b42332 !important;
+  font-size: 12px;
+}
+.console-mode .stop-banner {
+  background: #fff0f1;
+  border-color: #f0ccd1;
+  color: #a52030;
+  border-radius: 12px;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+/* Sign-in and one-time setup use the same system typography and controls. */
+.login.system-login {
+  background: #f5f5f7;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  min-height: 100dvh;
+}
+.system-login .login-art {
+  background:
+    radial-gradient(ellipse at 20% 20%, #e1edff, transparent 65%),
+    linear-gradient(135deg, #f1f5ff, #e8f1fa);
+  padding: clamp(32px, 5vw, 76px);
+}
+.system-login .login-art .wordmark {
+  color: #1d1d1f;
+  font-size: 17px;
+  letter-spacing: -0.6px;
+}
+.system-login .login-art .wordmark svg {
+  color: #007aff;
+}
+.system-login .eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  color: #626773;
+}
+.system-login .login-art h1 {
+  font-family: inherit;
+  font-size: clamp(46px, 5.5vw, 82px);
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 1.06;
+  color: #1d1d1f;
+}
+.system-login .login-art p {
+  font-size: 17px;
+  color: #626773;
+  line-height: 1.7;
+}
+.system-login .login-footer {
+  color: #626773;
+  font-size: 10px;
+}
+.system-login .login-cube {
+  color: #007aff18;
+  bottom: 70px;
+  right: -35px;
+}
+.system-login .login-form {
+  width: 400px;
+  max-width: calc(100% - 64px);
+  padding: 48px 0;
+}
+.system-login .login-form h2 {
+  font-family: inherit;
+  font-size: clamp(29px, 2.8vw, 40px);
+  line-height: 1.15;
+  font-weight: 650;
+  letter-spacing: -1.4px;
+  margin: 15px 0;
+}
+.system-login .login-form > p {
+  color: #626773;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+.system-login .login-form input {
+  padding: 13px 14px;
+  min-height: 48px;
+  font-size: 15px;
+}
+.system-login .login-form .primary {
+  min-height: 48px;
+  font-size: 14px;
+  padding: 13px 16px;
+}
+.system-login .text-button {
+  color: #0066d6;
+  font-size: 12px;
+  text-decoration: none;
+  min-height: 40px;
+  margin: 18px auto;
+}
+.system-login .text-button:hover {
+  text-decoration: underline;
+}
+.system-login .login-note {
+  font-size: 11px;
+  color: #626773;
+  padding-top: 24px;
+}
+body .boot {
+  background: #f5f5f7;
+  color: #007aff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+body .boot p {
+  color: #626773;
+  font-size: 13px;
+}
+
+@media (max-width: 1450px) {
+  .console-mode .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .console-mode .agent-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .console-mode .office-layout {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+}
+@media (max-width: 1200px) {
+  .console-mode .overview-grid {
+    grid-template-columns: 1fr;
+  }
+  .console-mode {
+    --side: 222px;
+  }
+  .console-mode .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .console-mode .office-layout {
+    grid-template-columns: 1fr;
+  }
+  .console-mode .office-layout > .right-panel {
+    display: block;
+  }
+  .console-mode .finance-summary {
+    grid-template-columns: 1fr;
+  }
+  .console-mode .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 1000px) {
+  .console-mode .agent-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .console-mode .wordmark small {
+    display: block;
+  }
+  .console-mode .wordmark {
+    font-size: 14px;
+  }
+  .console-mode .brand-icon {
+    width: 34px;
+    height: 38px;
+  }
+  .console-mode .date-label {
+    display: none;
+  }
+  .console-mode .content-toolbar > div {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 760px) {
+  .console-mode {
+    --side: 0px;
+  }
+  .console-mode .sidebar {
+    width: min(280px, 86vw);
+    box-shadow: 12px 0 60px #15264126;
+    background: #f5f8fff5;
+  }
+  .console-mode .topbar {
+    height: 60px;
+    padding: 0 16px;
+  }
+  .console-mode .breadcrumb {
+    font-size: 11px;
+    gap: 6px;
+  }
+  .console-mode .breadcrumb > span {
+    display: none;
+  }
+  .console-mode .top-actions {
+    gap: 8px;
+  }
+  .console-mode .connection {
+    font-size: 10px;
+  }
+  .console-mode .top-divider {
+    display: none;
+  }
+  .console-mode .page-heading {
+    padding: 26px 16px 22px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .console-mode .page-heading h1 {
+    font-size: 30px;
+  }
+  .console-mode .page-heading p {
+    max-width: none;
+    font-size: 12px;
+  }
+  .console-mode .heading-actions .primary {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+  .console-mode .kpis {
+    margin: 0 16px 20px;
+    gap: 12px;
+  }
+  .console-mode .kpi {
+    padding: 16px;
+    border-radius: 17px;
+  }
+  .console-mode .kpi b {
+    font-size: 25px;
+  }
+  .console-mode .kpi > span {
+    font-size: 11px;
+  }
+  .console-mode .kpi small {
+    font-size: 10px;
+  }
+  .console-mode .kpi p {
+    font-size: 10px;
+  }
+  .console-mode .kpi .badge {
+    display: none;
+  }
+  .console-mode :is(.content-panel, .office-layout) {
+    margin: 0 12px;
+  }
+  .console-mode .content-panel {
+    padding: 18px;
+    border-radius: 18px;
+  }
+  .console-mode .cards {
+    grid-template-columns: 1fr;
+  }
+  .console-mode .agent-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .console-mode .agent-card {
+    padding: 16px;
+  }
+  .console-mode .agent-card h3 {
+    font-size: 13px;
+  }
+  .console-mode .content-toolbar {
+    align-items: stretch;
+  }
+  .console-mode .content-toolbar > div {
+    gap: 10px;
+  }
+  .console-mode .search {
+    flex: 1;
+    min-width: 0;
+  }
+  .console-mode .search input {
+    width: 100%;
+    min-width: 0;
+  }
+  .console-mode .search kbd {
+    display: none;
+  }
+  .console-mode .audit-heading {
+    flex-wrap: wrap;
+  }
+  .console-mode .audit-list summary {
+    flex-wrap: wrap;
+  }
+  .console-mode .inbox-card {
+    padding: 18px;
+  }
+  .console-mode .inbox-card form {
+    flex-direction: column;
+  }
+  .console-mode .office-toolbar {
+    gap: 4px;
+    padding: 10px;
+  }
+  .console-mode .view-tabs button {
+    font-size: 10px;
+    padding: 7px;
+    gap: 4px;
+  }
+  .console-mode .scene-actions {
+    gap: 0;
+  }
+  .console-mode .scene-actions select {
+    max-width: 80px;
+    padding: 4px;
+    min-height: 36px;
+    font-size: 10px;
+  }
+  .console-mode .office-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .console-mode .stop-banner {
+    margin: 0 12px 20px;
+  }
+  .console-mode .modal-overlay {
+    padding: 12px;
+  }
+  .console-mode .modal {
+    padding: 24px 20px;
+    max-height: 92dvh;
+  }
+  .console-mode .modal h2 {
+    font-size: 23px;
+  }
+  .console-mode .toast,
+  .console-mode .error-toast {
+    left: 50%;
+    max-width: calc(100vw - 24px);
+    width: max-content;
+  }
+  .console-mode .page-footer {
+    padding: 20px 16px;
+  }
+  .console-mode :is(input, select, textarea),
+  .system-login input {
+    font-size: 16px;
+  }
+  .login.system-login {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .system-login .login-art {
+    display: flex;
+    padding: 26px;
+    gap: 24px;
+    min-height: 0;
+  }
+  .system-login .login-art > div:not(.wordmark):not(.login-cube) {
+    display: none;
+  }
+  .system-login .login-footer {
+    display: none;
+  }
+  .system-login .login-cube {
+    display: none;
+  }
+  .system-login .login-form {
+    max-width: calc(100% - 40px);
+    padding: 36px 0;
+  }
+  .system-login .login-form h2 {
+    font-size: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .console-mode *,
+  .system-login * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .console-mode .sidebar {
+    background: #f5f8ff;
+  }
+  .console-mode .topbar {
+    background: #fff;
+  }
+}
+
+.console-mode .incubator > p,
+.console-mode .incubator label,
+.console-mode .incubator li {
+  color: #626773;
+  font-size: 12px;
+}
+.console-mode .incubator summary {
+  color: #0066d6;
+  font-size: 13px;
+}
+.console-mode .search:focus-within {
+  box-shadow: 0 0 0 3px #007aff28;
+  border-color: #007aff;
+}
+/* Evidence often contains long URLs and IDs; preserve them without widening mobile cards. */
+.console-mode .content-panel,
+.console-mode .inbox-card {
+  overflow-wrap: anywhere;
+}
+.console-mode .options span {
+  min-width: 0;
+}
+.console-mode .main > .info-strip {
+  margin: 0 32px 24px;
+}
+.console-mode .info-strip svg {
+  flex-shrink: 0;
+}
+@media (max-width: 760px) {
+  .console-mode .main > .info-strip {
+    margin: 0 12px 20px;
+  }
+}
