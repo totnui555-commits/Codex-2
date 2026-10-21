@@ -53,6 +53,10 @@ with sync_playwright() as p:
     (out / "kingdom-client-performance-report.json").write_text(json.dumps(report, indent=2) + "\n")
     t.screenshot(path=str(out / "kingdom-diagnostics-desktop.png"), timeout=60000)
     start.click()
+    t.get_by_role("button", name="Reset kingdom camera", exact=True).click()
+    expect(start).to_be_enabled()
+    expect(panel.get_by_role("button", name="Download performance report", exact=True)).not_to_be_visible()
+    start.click()
     panel.get_by_role("button", name="Cancel measurement", exact=True).click()
     expect(start).to_be_enabled()
     expect(panel.get_by_role("button", name="Download performance report", exact=True)).not_to_be_visible()
@@ -71,6 +75,7 @@ with sync_playwright() as p:
                     "json_download",
                     "no_company_records_or_credentials_in_report",
                     "explicit_cancel_discards_report",
+                    "camera_reset_discards_report",
                     "reduced_motion_disables_measurement",
                     "mobile_no_overflow",
                 ],

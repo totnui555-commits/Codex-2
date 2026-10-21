@@ -611,7 +611,17 @@ export default function Kingdom({
     setPerformanceError("");
     setMeasuring(false);
     return () => measurement.current?.abort();
-  }, [quality, reduced, flat, failed, preset, follow, zoom, focusIsland]);
+  }, [
+    quality,
+    reduced,
+    flat,
+    failed,
+    preset,
+    reset,
+    follow,
+    zoom,
+    focusIsland,
+  ]);
   async function measurePerformance() {
     const renderer = rendererRef.current;
     if (
