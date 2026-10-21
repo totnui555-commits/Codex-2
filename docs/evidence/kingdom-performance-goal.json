@@ -1,0 +1,14 @@
+{
+  "kind": "manual bounded software-renderer experiment; game-dev CLI unavailable",
+  "metric": "median_frame_ms",
+  "unit": "ms",
+  "direction": "lower",
+  "target": 639.9200000000012,
+  "maximum_iterations": 1,
+  "allowed_source_paths": [
+    "apps/web/src/components/kingdom.tsx"
+  ],
+  "baseline": "kingdom-perf-baseline.json",
+  "change": "Diffuse lighting for static low/balanced assets; retain PBR on high",
+  "not_hardware_evidence": true
+}

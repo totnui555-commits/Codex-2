@@ -65,3 +65,10 @@ Native standalone packaging was also checked after a full production build: copy
 The canvas fills the viewport. Floating system-style glass navigation and a compact operational inspector keep the island central. Search finds real landmarks and configured citizens; Enter selects the first match and Escape closes search or restores Focus. Focus hides navigation, inspector and metric HUD, while safety notices remain visible. Buildings opens the landmark directory; Display controls quality and reduced motion. On mobile, selecting a landmark/citizen opens a dismissible inspector sheet; Overview returns to kingdom metrics. The accessible view and preserved Office remain available.
 
 Repeated notification notices are coalesced for readable activity, with source timestamps and occurrence counts. Security incidents remain individually visible; no event records are removed. Latest real browser evidence: `docs/evidence/kingdom-apple-browser.json`; wide and mobile screenshots use the `kingdom-apple-` prefix. This interface change does not resolve the measured software-renderer performance limitation above.
+
+
+## Reproducible local profiling
+
+Run `python scripts/profile_kingdom_browser.py --name unique-run-name` against the existing local web/API and ignored owner credentials. Defaults: balanced, 1440×1000 at DPR 1, six-second warmup, twelve-second RAF sample. Evidence names cannot overwrite existing captures; source/asset hashes, actual renderer, build mode, quality and units are recorded. The screenshot is captured afterward with reduced motion, so it is not proof of a frozen-time animation comparison. Software timing is not hardware/GPU certification.
+
+The first bounded material experiment failed its 20% target: median 799.9 → 766.6ms (4.16%), with p95 866.7 → 966.7ms. The candidate was rejected and reverted; no visual change was deployed. See `docs/evidence/kingdom-performance-comparison.json` and the exact non-active candidate patch. Further investigation needs a new bounded measurement contract rather than claiming this sample fixed performance.

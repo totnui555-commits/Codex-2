@@ -1,0 +1,19 @@
+{
+  "baseline": "kingdom-perf-baseline.json",
+  "candidate": "kingdom-perf-candidate.json",
+  "iterations_used": 1,
+  "iteration_budget": 1,
+  "target_median_frame_ms": 639.9200000000012,
+  "baseline_median_frame_ms": 799.9000000000015,
+  "candidate_median_frame_ms": 766.5999999999985,
+  "median_reduction_percent": 4.16,
+  "baseline_p95_frame_ms": 866.7000000000007,
+  "candidate_p95_frame_ms": 966.7000000000007,
+  "target_met": false,
+  "decision": "rejected and reverted; no deployment",
+  "renderer_matches": true,
+  "geometry_and_citizens_match": true,
+  "hardware_claim": false,
+  "game_dev_sealed_bundle": false,
+  "scope": "Single local software measurement pair; no causal or statistically significant improvement claimed"
+}

@@ -1,0 +1,69 @@
+--- a/apps/web/src/components/kingdom.tsx
++++ b/apps/web/src/components/kingdom.tsx
+@@ -21,10 +21,12 @@
+   Matrix4,
+   InstancedMesh,
+   MeshStandardMaterial,
++  MeshLambertMaterial,
+   Mesh,
+   ShaderMaterial,
+   Vector3,
+   type Object3D,
++  type Material,
+ } from "three";
+ import {
+   citizen,
+@@ -123,16 +125,50 @@
+       ? "/kingdom/island.glb"
+       : `/kingdom/island-${quality}.glb`,
+   );
+-  const model = useMemo(() => {
++  const { model, ownedMaterials } = useMemo(() => {
+     const clone = scene.clone(true);
++    const diffuse = new Map<MeshStandardMaterial, MeshLambertMaterial>();
++    const materialFor = (source: Material) => {
++      if (quality === "high" || !(source instanceof MeshStandardMaterial))
++        return source;
++      let material = diffuse.get(source);
++      if (!material) {
++        // These original assets use opaque color materials. Balanced/low keep
++        // directional diffuse lighting and shadows without the PBR specular cost.
++        material = new MeshLambertMaterial({
++          name: source.name,
++          color: source.color,
++          map: source.map,
++          emissive: source.emissive,
++          emissiveMap: source.emissiveMap,
++          emissiveIntensity: source.emissiveIntensity,
++          side: source.side,
++          flatShading: source.flatShading,
++          vertexColors: source.vertexColors,
++          transparent: source.transparent,
++          opacity: source.opacity,
++          alphaTest: source.alphaTest,
++          depthWrite: source.depthWrite,
++        });
++        diffuse.set(source, material);
++      }
++      return material;
++    };
+     clone.traverse((o) => {
+       if (o instanceof Mesh) {
+         o.castShadow = true;
+         o.receiveShadow = true;
++        o.material = Array.isArray(o.material)
++          ? o.material.map(materialFor)
++          : materialFor(o.material);
+       }
+     });
+-    return clone;
+-  }, [scene]);
++    return { model: clone, ownedMaterials: [...diffuse.values()] };
++  }, [scene, quality]);
++  useEffect(
++    () => () => ownedMaterials.forEach((material) => material.dispose()),
++    [ownedMaterials],
++  );
+   const gl = useThree((s) => s.gl);
+   useEffect(() => {
+     gl.shadowMap.needsUpdate = true;
