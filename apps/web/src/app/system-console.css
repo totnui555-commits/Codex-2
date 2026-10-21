@@ -780,7 +780,7 @@
 }
 .console-mode .settings-grid label,
 .console-mode .modal label,
-.system-login label {
+.login.system-login label {
   font-size: 12px;
   color: #505662;
   gap: 8px;
@@ -1224,7 +1224,7 @@ body .boot p {
     padding: 20px 16px;
   }
   .console-mode :is(input, select, textarea),
-  .system-login input {
+  .system-login .login-form input {
     font-size: 16px;
   }
   .login.system-login {
