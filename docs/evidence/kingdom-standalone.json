@@ -1,0 +1,30 @@
+{
+  "scope": "actual native production standalone packaging/static delivery and authenticated API proxy; not Docker/Render deployment",
+  "homepage_http": 200,
+  "database": "PostgreSQL",
+  "role_count": 25,
+  "audit_valid": true,
+  "packs": {
+    "island": {
+      "status": 200,
+      "bytes": 8759740,
+      "sha256": "db93476ea81fbef8b25b0a626776037c8eace341d90a1a5ba9fbf08a009e4931"
+    },
+    "island-balanced": {
+      "status": 200,
+      "bytes": 5738932,
+      "sha256": "dd7681b25e3d6a60fe7fbcc446afe9574e401092261330d63826bbddcff20993"
+    },
+    "island-low": {
+      "status": 200,
+      "bytes": 2884540,
+      "sha256": "f5b49548440e3355ba6e36ed95f5fc8091eda3751dec60c83d368e66d6747be3"
+    },
+    "citizen": {
+      "status": 200,
+      "bytes": 108348,
+      "sha256": "1599188f884510fabe6e8c7bf9976067d09b78b0a886bf2b19c86facac5bd025"
+    }
+  },
+  "paid_execution_authorized": false
+}

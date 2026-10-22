@@ -1,0 +1,24 @@
+{
+  "services": {
+    "watchtower": {
+      "last_seen_at": "2026-10-20T14:25:14.035521+00:00",
+      "state": "live"
+    },
+    "worker": {
+      "last_seen_at": "2026-10-20T14:25:16.852424+00:00",
+      "state": "live"
+    },
+    "scheduler": {
+      "last_seen_at": "2026-10-20T14:25:17.032653+00:00",
+      "state": "live"
+    }
+  },
+  "audit_valid": true,
+  "paid_execution_authorized": false,
+  "mode": "research_only",
+  "recorded_model_spend": "0.1241",
+  "product_count": 1,
+  "live_revenue_records": 0,
+  "currency": "THB",
+  "reserved": "0"
+}

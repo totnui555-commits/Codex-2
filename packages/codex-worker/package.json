@@ -1,0 +1,1 @@
+{"name":"@company/codex-worker","version":"0.1.0","private":true,"type":"module","scripts":{"build":"tsc","typecheck":"tsc --noEmit"},"dependencies":{"@openai/codex-sdk":"^0.100.0"},"devDependencies":{"typescript":"^5.9.0","@types/node":"^24.0.0"}}

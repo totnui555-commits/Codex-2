@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Ask HN: If you have a great product that people love, so what next?",
+    "url": "https://news.ycombinator.com/item?id=33607075",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2022-11-15T09:28:11Z",
+    "retrieved_at": "2026-10-20T07:13:20.564128+00:00",
+    "excerpt": "I saw almost all the videos of YC, and a bunch of videos from their partners and other people in the startup and venture space, PG essays, et. I know they always talk about two things: 1- talking to customers, 2- building the product.\nOk, I&#x27;m doing both of them in my startup and have done everything well. Now we have over 100 people who really love our product and care about it, even doing many things voluntarily for it in their country, creating content and introducing us to others. Also, I&#x27;ll introduce it in the following.<p>Our focus is on the B2B2C model (some none-inflationary CAC sales channels[1]) instead of paid channels (we can&#x27;t afford), it needs trust, and for an agency in NY trust comes from searching and seeing an article about us in NYT, WSJ,... or raised funds in Crunchbase.<p>Introduce myself:<p>I&#x27;m a developer, electronic eng and in my 20th I created a way to pre-train MLPs with low entropy datasets and other bs. Now I&#x27;m 35. During this time I worked hard to find a way to collect the fund I needed to create my AI lab and work on it. But there was one problem I have Iranian nationality, and I had to move to another country because of sanctio",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2024-09-20T12:32:37Z"
+  },
+  {
+    "title": "Ask HN: Automating large Enterprise business operations",
+    "url": "https://news.ycombinator.com/item?id=8786447",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2014-12-23T01:57:31Z",
+    "retrieved_at": "2026-10-20T07:13:20.564197+00:00",
+    "excerpt": "Hi HN.\nI&#x27;d like some advice about automating business operations - what to consider, what technologies or framework to look out for etc. For background, I&#x27;m working for an ICT service provider, and just got promoted to look into enterprise-wide automation and system. My team is small, but I report directly to the C-level. Frankly, I&#x27;m a hobbyist programmer, and was only promoted to this post due to my enthusiasm and small track records i.e. handling CSV files for analysis etc.<p>The ultimate goals are to improve lead time in service delivery, reduce aging tickets, and reduce cost. I currently see gap in performance management, where the bosses do not have clear visibility or simply do not trust the performance metrics.<p>Simultaneously, there are lean internal consultants doing studies and making recommendations. Also, middle managers are being trained in Six Sigma, acquiring &quot;belts&quot;.<p>To reiterate, how do I start assessing the situation and what kind of technologies or methodologies associated with this scenario? Is it SOA, workflow engine, ERP etc? How feasible is using standard web framework i.e. Django or Flask for business automation?<p>Thanks.",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2024-09-19T21:29:31Z"
+  },
+  {
+    "title": "Ask HN: Freelance Dev Available \u2013 Discord Bots, Web Scraping, GitHub Automation",
+    "url": "https://news.ycombinator.com/item?id=46979156",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2026-02-11T18:55:56Z",
+    "retrieved_at": "2026-10-20T07:13:20.564202+00:00",
+    "excerpt": "Hey HN! I&#x27;m a freelance developer specializing in:<p>\u2022 Discord bots (moderation, custom commands, economy systems, role management)\n\u2022 Web scraping (JS-heavy sites, anti-bot bypass, scheduled runs, data export)\n\u2022 GitHub automation (issue management, workflow triggers, auto-labeling)<p>Recent projects: gaming community bots, price monitoring scrapers for e-commerce businesses, and auto-triage systems for busy OSS repos.<p>Rates: $100-500 depending on complexity. 50% upfront, 50% on delivery. PayPal accepted.<p>Portfolio: https:&#x2F;&#x2F;github.com&#x2F;jdevmm\nContact: jasonmendoza12001@gmail.com<p>Happy to answer questions or discuss your project!",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2026-03-05T23:34:57Z"
+  },
+  {
+    "title": "Ask HN: How did web development become so bizarrely complex?",
+    "url": "https://news.ycombinator.com/item?id=28091028",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2021-08-06T18:20:06Z",
+    "retrieved_at": "2026-10-20T07:13:20.564205+00:00",
+    "excerpt": "I\u2019m recently joined a new team where we are tasked with building out a website with around 15-20 unique pages. There are 3 main types of pages, and the majority of them are lists of links to external PDF documents.<p>We\u2019re using a headless CMS with content in the page broken into hundreds of individual elements, where a React client app renders the data from the CMS API to our users.<p>In addition we seem to be grabbing the PDFs from the server, converting to Base64 and then rendering as an object in the react app (rather than just linking to the pdf file directly).<p>The team (4 developers, 1 automation&#x2F;QA, 3 designers, scrum expert, product owner and product manager) is in their second quarter working on the site, and aiming to release this MVP next quarter so around 9 months to build 15-to-20 page site.<p>When I started my career 20 years ago, this is the type of project where maybe 2-3 people would build out over a few weeks.<p>When Content Management Systems were first introduced, one of their selling points was that it reduced reliance on developers for ongoing BAU content updates as \u2018business people\u2019 could make content updates and potentially even some sort of workflow ",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2025-07-17T12:58:06Z"
+  },
+  {
+    "title": "Launch HN: Manaflow (YC S24) \u2013 Automate repetitive office work in tables",
+    "url": "https://news.ycombinator.com/item?id=41259754",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2024-08-15T19:55:28Z",
+    "retrieved_at": "2026-10-20T07:13:20.564208+00:00",
+    "excerpt": "Hey HN! We\u2019re Austin, Lawrence, and Wesley from Manaflow (<a href=\"https:&#x2F;&#x2F;manaflow.com\" rel=\"nofollow\">https:&#x2F;&#x2F;manaflow.com</a>). Manaflow is a spreadsheet where each column represents a step instruction of a task and each row represents an AI agent executing a case of the task. With one click, you can execute thousands of tasks involving data retrieval, gluing APIs, and taking actions.<p>Here\u2019s a video demo: <a href=\"https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=jwaaqjHGkT4\" rel=\"nofollow\">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=jwaaqjHGkT4</a><p>And a live demo: <a href=\"https:&#x2F;&#x2F;manaflow.com&#x2F;demo\" rel=\"nofollow\">https:&#x2F;&#x2F;manaflow.com&#x2F;demo</a><p>The idea to build an AI automation tool for small-to-mid-sized businesses (SMBs) emerged from our extensive conversations with local managers, directors, and operators. We learned that SMBs are constantly overwhelmed with manual workflows and heavily underutilize technology, especially compared to bigger businesses with teams of engineers.<p>Witnessing an operations manager show us folders of spreadsheets for his business, we realized that spreadsheets have limited functionality. Wh",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2025-04-08T17:08:55Z"
+  },
+  {
+    "title": "Show HN: Workflow automation and collaborative document editing tools",
+    "url": "https://news.ycombinator.com/item?id=39357755",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2024-02-13T14:12:51Z",
+    "retrieved_at": "2026-10-20T07:13:20.564212+00:00",
+    "excerpt": "I have been a daily HN reader and would like to use this as a starting point to show SimWorkflow so that the HN community can get to know SimWorkflow.<p>This project has been the love child of myself for the past year or so.<p>A bit of background: Previously, I worked as a consultant specializing in designing, implementing, and maintaining Business Process Management and Content Management Solutions. I was surprised at the effort required to implement such solutions; specifically, the time it took, the number of people involved, and the amount of custom code. I thought: What if we could make this easier and make it work with HTTP APIs? So SimWorkflow was eventually born from it.<p>Please feel free to ask any questions. Your feedback is extremely valued, so please let me know what you think!<p>To get started, a new SimWorkflow account comes with an Issue Management solution.<p>Thanks, Tai",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2024-09-20T16:26:48Z"
+  },
+  {
+    "title": "Ask HN: How do I solve my technical inadequacy and make the jump?",
+    "url": "https://news.ycombinator.com/item?id=19794616",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2019-05-01T04:53:29Z",
+    "retrieved_at": "2026-10-20T07:13:20.564214+00:00",
+    "excerpt": "I&#x27;m going to lay it all out there as I feel like I&#x27;m approaching a midlife crisis at 35:<p>I love technical work and programming, however I have no tertiary education directly related to development.  I do dev work outside of work hours for &quot;passion&quot; projects (games related, no illusions of becoming professional) so I believe I could be considered motivated and interested in learning.<p>I have ~15 years of dev work, however this has always been in a team (currently 5 years) where I am the most technical member.  Whilst I have engaged in constant reading and self directed learning, ultimately I don&#x27;t think I am up to scratch with expected dev experience&#x2F;ability&#x2F;knowledge of tools and workflows.  I held scrum master certification, however my boss was not on board with enforcing principles (not complaining, it&#x27;s his call) so I would consider myself a &quot;beginner&quot; here as well.<p>I am well paid in my current job (location: Sydney, Australia, ~125k + benefits), however I would like to change to a company where there is opportunity to work in a team of&#x2F;with devs so I can learn.<p>I am experienced with c#, js, typescript, ms sql and pri",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2024-09-20T04:10:09Z"
+  },
+  {
+    "title": "Ask HN: Best AI Automation Platform",
+    "url": "https://news.ycombinator.com/item?id=44761947",
+    "source": "Hacker News / Algolia public API",
+    "published_at": "2025-08-01T20:15:07Z",
+    "retrieved_at": "2026-10-20T07:13:20.564217+00:00",
+    "excerpt": "I&#x27;m holding AI First Workshops for Small to Mid-Sizes Companies. For lots of them the real value of AI comes with automation. Mostly Email -&gt; AI -&gt; Action<p>Thing is Make, Zapier, n8n - whenever I use them we waste more money on clicking around and what goes where then focusing on the overall business logic. The automation part of the workshop is about 2 to 3h. So what solutions out there for trigger based automation that os truly AI first (so an internal AI oder chatgpt can really create the workflow) and users can go from idea to running AI workflow in ~2h? Or is this a product that does not exist yet?",
+    "quality": "unvalidated_public_discussion",
+    "content_version": "2025-08-02T08:49:50Z"
+  }
+]

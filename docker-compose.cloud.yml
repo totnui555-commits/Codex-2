@@ -1,0 +1,26 @@
+# Optional managed-cloud trust overlay. Mount only the public combined CA bundle.
+# Preserve inherited HTTP(S)_PROXY routing for external destinations.
+x-cloud-trust: &cloud-trust
+  build:
+    secrets: [proxy_ca]
+  volumes:
+    - /etc/ssl/certs/ca-certificates.crt:/run/company-ca-bundle.pem:ro
+  environment:
+    SSL_CERT_FILE: /run/company-ca-bundle.pem
+    REQUESTS_CA_BUNDLE: /run/company-ca-bundle.pem
+    AWS_CA_BUNDLE: /run/company-ca-bundle.pem
+    NO_PROXY: localhost,127.0.0.1,postgres,api,temporal,web
+    no_proxy: localhost,127.0.0.1,postgres,api,temporal,web
+services:
+  api: *cloud-trust
+  worker: *cloud-trust
+  scheduler: *cloud-trust
+  watchtower: *cloud-trust
+  migrate: *cloud-trust
+  seed: *cloud-trust
+  web:
+    build:
+      secrets: [proxy_ca]
+secrets:
+  proxy_ca:
+    file: ${CODEX_PROXY_CERT:?The managed environment must provide CODEX_PROXY_CERT}

@@ -1,0 +1,44 @@
+{
+  "backend": {
+    "command": "RUN_TEMPORAL_TESTS=1 .venv/bin/pytest -q",
+    "passed": 24,
+    "failed": 0,
+    "database": "PostgreSQL 17",
+    "temporal": "real development service"
+  },
+  "frontend": {
+    "tests_passed": 3,
+    "typescript": "passed",
+    "production_build": "passed",
+    "browser_crud": "passed",
+    "browser_readonly_and_mobile": "passed",
+    "page_errors": 0
+  },
+  "security": {
+    "postgres_rls": "passed",
+    "worker_self_authorization": "denied",
+    "audit_append_only": "passed",
+    "audit_chain": "valid",
+    "budget_collision": "passed",
+    "approval_reuse": "denied",
+    "npm_production_known_vulnerabilities": 0
+  },
+  "containers": {
+    "compose_configuration": "valid",
+    "api_image_build": "passed",
+    "web_standalone_image_build": "passed",
+    "clean_compose_startup": "passed",
+    "frontend_proxy_auth_project_task_crud": "passed",
+    "postgres_migration_and_role_seed": "passed",
+    "real_temporal_dispatch": "passed_blocked_without_credentials",
+    "watchtower": "live",
+    "role_count": 25,
+    "audit_valid": true,
+    "paid_runs": 0,
+    "sandbox_image_build": "unverified_disk_limit",
+    "hosted_sandbox_execution": "not_configured_not_executed"
+  },
+  "external_live_coding_benchmark": "blocked_missing_credentials_and_owner_budget",
+  "production_rollout": "incomplete",
+  "paid_model_runs": 0
+}

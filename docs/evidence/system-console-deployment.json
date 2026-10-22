@@ -1,0 +1,15 @@
+{
+  "workspace_id": "tea-dbbj2qbbc2fs73bcelb0",
+  "service_id": "srv-dbc18bpsrm7s7399skdg",
+  "deploy_id": "dep-dbc2440n74is73f3n4rg",
+  "implementation_commit": "f4dce7d11342f2d83997fcc46da63081a2c51dc5",
+  "status": "live",
+  "finished_at": "2026-10-21T02:25:26.20389Z",
+  "url": "https://company-os-staging-38tn.onrender.com",
+  "region": "singapore",
+  "plan": "free",
+  "automatic_deploys": "off",
+  "paid_plan_upgrade": false,
+  "public_verification": "system-console-hosted-browser.json",
+  "authenticated_local_verification": "system-console-browser.json"
+}

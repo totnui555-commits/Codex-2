@@ -1,0 +1,32 @@
+{
+  "url": "https://company-os-staging-38tn.onrender.com/",
+  "scope": "Public Render staging login page; unauthenticated read-only browser check",
+  "deployment_id": "dep-dbcmpjgm7kps73c8l580",
+  "commit": "4762efa15af01b88cf30441622544a1dcb530ed9",
+  "requests": [
+    {
+      "viewport": "desktop",
+      "http_status": 200,
+      "script_count": 11,
+      "static_asset_count": 8,
+      "nonce_authorized_scripts": true,
+      "script_policy_rejects_inline_and_eval": true,
+      "csp_violations": 0,
+      "horizontal_overflow": false
+    },
+    {
+      "viewport": "mobile",
+      "http_status": 200,
+      "script_count": 11,
+      "static_asset_count": 8,
+      "nonce_authorized_scripts": true,
+      "script_policy_rejects_inline_and_eval": true,
+      "csp_violations": 0,
+      "horizontal_overflow": false
+    }
+  ],
+  "fresh_nonce_per_request": true,
+  "owner_login_attempted": false,
+  "api_mutations": 0,
+  "model_calls": 0
+}

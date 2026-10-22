@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-21T11:15:25.698Z",
+  "world_version": "kingdom-2.0.0",
+  "quality": "balanced",
+  "citizens": 25,
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "duration_ms": 10699.5,
+  "scene_frames": 13,
+  "scene_fps": 1.2150100471984673,
+  "browser_raf_fps": 1.2150100471984673,
+  "median_browser_frame_ms": 816.5999999999985,
+  "p95_browser_frame_ms": 916.5999999999985,
+  "canvas_pixels": [
+    1440,
+    1000
+  ],
+  "scope": "Foreground browser sample; scene frame counts and browser pacing, not GPU timings or hardware certification. No task content, identities or credentials included."
+}

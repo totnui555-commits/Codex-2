@@ -1,0 +1,16 @@
+{
+  "id": "software-compositor",
+  "kind": "separate bounded experiment after closing rejected lighting goal",
+  "maximum_iterations": 1,
+  "allowed_source_paths": [
+    "apps/web/src/components/kingdom.tsx",
+    "apps/web/src/app/kingdom-shell.css"
+  ],
+  "metric": "median_frame_ms",
+  "unit": "ms",
+  "direction": "lower",
+  "target": 613.3599999999977,
+  "baseline": "kingdom-profile-compositor-baseline-20261021.json",
+  "change": "Detect software WebGL renderer and simplify backdrop composition; keep geometry and PBR unchanged",
+  "hardware_evidence": false
+}

@@ -1,0 +1,94 @@
+name: ai-company-os
+x-api: &api
+  image: ai-company-os-api:local
+  build:
+    context: .
+    dockerfile: infrastructure/api.Dockerfile
+  env_file: .env
+  environment:
+    DATABASE_URL: postgresql+psycopg://company:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/company
+    TEMPORAL_ADDRESS: temporal:7233
+  depends_on:
+    postgres: { condition: service_healthy }
+    temporal: { condition: service_started }
+  restart: unless-stopped
+  security_opt: [no-new-privileges:true]
+  cap_drop: [ALL]
+  read_only: true
+  tmpfs: [/tmp]
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: company
+      POSTGRES_USER: company
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes: [postgres-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U company]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+  temporal-permissions:
+    image: temporalio/temporal:1.4.1
+    user: '0:0'
+    entrypoint: [/bin/sh, -c]
+    command: ['chown 1000:1000 /data']
+    volumes: [temporal-data:/data]
+    read_only: true
+    cap_drop: [ALL]
+    cap_add: [CHOWN]
+    restart: 'no'
+  temporal:
+    depends_on:
+      temporal-permissions: { condition: service_completed_successfully }
+    image: temporalio/temporal:1.4.1
+    command: [server, start-dev, --ip, 0.0.0.0, --db-filename, /data/temporal.db]
+    environment:
+      NO_PROXY: localhost,127.0.0.1,0.0.0.0
+      no_proxy: localhost,127.0.0.1,0.0.0.0
+    volumes: [temporal-data:/data]
+    restart: unless-stopped
+  migrate:
+    <<: *api
+    command: [alembic, upgrade, head]
+    restart: 'no'
+  seed:
+    <<: *api
+    command: [python, -m, company_os.bootstrap]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    restart: 'no'
+  api:
+    <<: *api
+    ports: [127.0.0.1:8000:8000]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+  worker:
+    <<: *api
+    command: [python, -m, company_os.worker]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+      temporal: { condition: service_started }
+  scheduler:
+    <<: *api
+    command: [python, -m, company_os.scheduler]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+      temporal: { condition: service_started }
+  watchtower:
+    <<: *api
+    command: [python, -m, company_os.watchtower]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+  web:
+    build:
+      context: .
+      dockerfile: infrastructure/web.Dockerfile
+    ports: [127.0.0.1:3000:3000]
+    depends_on: [api]
+    restart: unless-stopped
+volumes:
+  postgres-data:
+  temporal-data:

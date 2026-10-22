@@ -1,0 +1,12 @@
+.git
+.env
+.env.*
+.venv
+.local
+node_modules
+**/node_modules
+**/.next
+**/__pycache__
+docs/evidence
+attachments
+**/*.egg-info

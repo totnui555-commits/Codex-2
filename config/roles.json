@@ -1,0 +1,1025 @@
+[
+  {
+    "id": "chief_of_staff",
+    "role": "Chief Of Staff",
+    "mission": "Perform bounded chief of staff work and produce independently verifiable evidence.",
+    "floor": "Executive Command",
+    "version": "1.0.0",
+    "capabilities": [
+      "chief_of_staff"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "portfolio_manager",
+    "role": "Portfolio Manager",
+    "mission": "Perform bounded portfolio manager work and produce independently verifiable evidence.",
+    "floor": "Executive Command",
+    "version": "1.0.0",
+    "capabilities": [
+      "portfolio_manager"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "technical_architect",
+    "role": "Technical Architect",
+    "mission": "Perform bounded technical architect work and produce independently verifiable evidence.",
+    "floor": "Executive Command",
+    "version": "1.0.0",
+    "capabilities": [
+      "technical_architect"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "venture_scout",
+    "role": "Venture Scout",
+    "mission": "Perform bounded venture scout work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "venture_scout"
+    ],
+    "allowed_tools": [
+      "research_search"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "market_intelligence",
+    "role": "Market Intelligence",
+    "mission": "Perform bounded market intelligence work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "market_intelligence"
+    ],
+    "allowed_tools": [
+      "research_search"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "opportunity_evaluator",
+    "role": "Opportunity Evaluator",
+    "mission": "Perform bounded opportunity evaluator work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "opportunity_evaluator"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "product_incubator",
+    "role": "Product Incubator",
+    "mission": "Perform bounded product incubator work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "product_incubator"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "pricing",
+    "role": "Pricing",
+    "mission": "Perform bounded pricing work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "pricing"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "growth_seo",
+    "role": "Growth Seo",
+    "mission": "Perform bounded growth seo work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "growth_seo"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "revenue_operations",
+    "role": "Revenue Operations",
+    "mission": "Perform bounded revenue operations work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "revenue_operations"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "customer_feedback",
+    "role": "Customer Feedback",
+    "mission": "Perform bounded customer feedback work and produce independently verifiable evidence.",
+    "floor": "Revenue Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "customer_feedback"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "business_analyst",
+    "role": "Business Analyst",
+    "mission": "Perform bounded business analyst work and produce independently verifiable evidence.",
+    "floor": "Design Studio",
+    "version": "1.0.0",
+    "capabilities": [
+      "business_analyst"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "ux_researcher",
+    "role": "Ux Researcher",
+    "mission": "Perform bounded ux researcher work and produce independently verifiable evidence.",
+    "floor": "Design Studio",
+    "version": "1.0.0",
+    "capabilities": [
+      "ux_researcher"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "ui_designer",
+    "role": "Ui Designer",
+    "mission": "Perform bounded ui designer work and produce independently verifiable evidence.",
+    "floor": "Design Studio",
+    "version": "1.0.0",
+    "capabilities": [
+      "ui_designer"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "content_brand",
+    "role": "Content Brand",
+    "mission": "Perform bounded content brand work and produce independently verifiable evidence.",
+    "floor": "Design Studio",
+    "version": "1.0.0",
+    "capabilities": [
+      "content_brand"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "frontend_engineer",
+    "role": "Frontend Engineer",
+    "mission": "Perform bounded frontend engineer work and produce independently verifiable evidence.",
+    "floor": "Engineering Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "frontend_engineer"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "backend_engineer",
+    "role": "Backend Engineer",
+    "mission": "Perform bounded backend engineer work and produce independently verifiable evidence.",
+    "floor": "Engineering Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "backend_engineer"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "documentation",
+    "role": "Documentation",
+    "mission": "Perform bounded documentation work and produce independently verifiable evidence.",
+    "floor": "Engineering Lab",
+    "version": "1.0.0",
+    "capabilities": [
+      "documentation"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "qa_engineer",
+    "role": "Qa Engineer",
+    "mission": "Perform bounded qa engineer work and produce independently verifiable evidence.",
+    "floor": "Quality & Watchtower",
+    "version": "1.0.0",
+    "capabilities": [
+      "qa_engineer"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "security_reviewer",
+    "role": "Security Reviewer",
+    "mission": "Perform bounded security reviewer work and produce independently verifiable evidence.",
+    "floor": "Quality & Watchtower",
+    "version": "1.0.0",
+    "capabilities": [
+      "security_reviewer"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "inspector_general",
+    "role": "Inspector General",
+    "mission": "Perform bounded inspector general work and produce independently verifiable evidence.",
+    "floor": "Quality & Watchtower",
+    "version": "1.0.0",
+    "capabilities": [
+      "inspector_general"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "compliance_privacy",
+    "role": "Compliance Privacy",
+    "mission": "Perform bounded compliance privacy work and produce independently verifiable evidence.",
+    "floor": "Quality & Watchtower",
+    "version": "1.0.0",
+    "capabilities": [
+      "compliance_privacy"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "devops_release",
+    "role": "Devops Release",
+    "mission": "Perform bounded devops release work and produce independently verifiable evidence.",
+    "floor": "Operations",
+    "version": "1.0.0",
+    "capabilities": [
+      "devops_release"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "financial_controller",
+    "role": "Financial Controller",
+    "mission": "Perform bounded financial controller work and produce independently verifiable evidence.",
+    "floor": "Operations",
+    "version": "1.0.0",
+    "capabilities": [
+      "financial_controller"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  },
+  {
+    "id": "support",
+    "role": "Support",
+    "mission": "Perform bounded support work and produce independently verifiable evidence.",
+    "floor": "Operations",
+    "version": "1.0.0",
+    "capabilities": [
+      "support"
+    ],
+    "allowed_tools": [
+      "scoped_context",
+      "artifact_read"
+    ],
+    "prohibited_actions": [
+      "modify_policy",
+      "self_approve",
+      "unapproved_spend",
+      "production_credentials",
+      "external_outreach"
+    ],
+    "data_scope": "assigned_project",
+    "delegation_rules": [
+      "only_configured_roles",
+      "dependency_dag"
+    ],
+    "max_turns": 4,
+    "max_runtime": 300,
+    "max_tokens": 8000,
+    "max_cost": {
+      "amount": 30,
+      "currency": "THB"
+    },
+    "required_artifacts": [
+      "source_backed_result"
+    ],
+    "quality_gates": [
+      "schema_validation",
+      "independent_review"
+    ],
+    "escalation_policy": "founder_inbox_after_bounded_failure"
+  }
+]

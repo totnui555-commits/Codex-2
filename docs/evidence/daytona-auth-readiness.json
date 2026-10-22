@@ -1,0 +1,10 @@
+{
+  "inspection": "official Daytona sign-in in a fresh private headless browser",
+  "result": "email sign-in requires password authentication; alternate methods are Google/GitHub OAuth",
+  "authenticated_session_available": false,
+  "password_reset_requested": false,
+  "account_created": false,
+  "sandbox_created": false,
+  "api_key_acquired": false,
+  "scope": "public sign-in flow only; no CAPTCHA or authentication bypass attempted"
+}

@@ -1,0 +1,19 @@
+{
+  "provider": "openrouter",
+  "authentication_http_status": 200,
+  "paid_model_requests": 0,
+  "limit": 100,
+  "limit_remaining": 100,
+  "usage": 0,
+  "is_free_tier": true,
+  "research_model": {
+    "id": "openai/gpt-4.1-mini",
+    "pricing_usd_per_token": {
+      "prompt": "0.0000004",
+      "completion": "0.0000016",
+      "web_search": "0.01",
+      "input_cache_read": "0.0000001"
+    },
+    "source": "https://openrouter.ai/api/v1/models"
+  }
+}

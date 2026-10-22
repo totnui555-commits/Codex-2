@@ -1,0 +1,22 @@
+{
+  "workspace_id": "tea-dbbj2qbbc2fs73bcelb0",
+  "workspace_confirmed_by_founder": true,
+  "render_connection": "authenticated",
+  "postgres_id": "dpg-dbbj5h0u01pc73dvnm5g-a",
+  "postgres_name": "company-os-staging-db",
+  "postgres_status": "available",
+  "postgres_plan": "free",
+  "region": "singapore",
+  "postgres_expires_at": "2026-11-19T09:22:12.567089Z",
+  "web_service_created": false,
+  "blueprint_schema": "current_official_json_schema_passed",
+  "blueprint_sha256": "42929b24e9c84651391ce62d467fdaa8d8d57a5c93dfa3fd37bc183296ab8145",
+  "render_cli": "2.30.0; release checksum verified",
+  "cli_platform_validation": "requires_separate_cli_login; not passed",
+  "local_runtime_smoke": "passed; not a Render deployment",
+  "openrouter_authorized_budget_usd": 100,
+  "recurring_hosting_budget": "not_assigned",
+  "paid_hosting_created": false,
+  "founder_email_provider": "chat_gmail",
+  "founder_email_receipt": "1a158a6072fb21f7"
+}

@@ -1,0 +1,96 @@
+# AI COMPANY OS
+
+A persistent, founder-governed venture studio with a live interactive island kingdom and a preserved legacy Office view. Built from an empty repository. **This is an implemented platform with a management-only hosted trial and explicitly blocked external-provider milestones, not a completed production autonomous company.** See [PROGRESS.md](PROGRESS.md) and [the acceptance plan](docs/IMPLEMENTATION_PLAN.md).
+
+## Kingdom Edition
+
+The default landing view is an original interactive fantasy island. Twelve landmarks open real company dashboards; persistent citizen identities project actual task/run evidence. Original Blender sources, three GLB quality tiers, animated water, deterministic paths, instanced citizens, camera presets/follow and an accessible operational map are included. The original Office remains available at `/office`. [World contracts and verification limits](docs/KINGDOM_EDITION.md) · [Original art pipeline](assets/kingdom/README.md).
+
+## Run locally
+
+Python 3.12+, Node 22+ and Docker are required. No paid credentials are required to run management, governance, public-source discovery and the office. In this managed cloud environment, add `-f docker-compose.yml -f docker-compose.cloud.yml` to Compose commands so build/runtime CA trust is preserved.
+
+```bash
+python -m venv .venv
+.venv/bin/pip install -r requirements.lock
+.venv/bin/pip install --no-deps -e .
+npm ci
+cp .env.example .env
+# Set a private PostgreSQL password, SESSION_SECRET (32+ random chars), BOOTSTRAP_TOKEN,
+# POSTGRES_PASSWORD, and SECURE_COOKIES=false for loopback-only HTTP development.
+docker compose up --build -d
+```
+
+Open http://localhost:3000. Choose **Initialize installation**, enter the setup token from your private environment configuration, choose a strong password and create the founder account. Bootstrap works once. Never commit `.env`. The current execution workspace is already initialized; private local sign-in details are in `.local/owner-credentials.json` with mode 0600.
+
+For host development instead of container app services:
+
+```bash
+.venv/bin/alembic upgrade head
+.venv/bin/python -m company_os.bootstrap
+.venv/bin/uvicorn company_os.api:app --host 127.0.0.1 --port 8000
+npm run dev
+# Separate long-running processes:
+.venv/bin/python -m company_os.worker
+.venv/bin/python -m company_os.scheduler
+.venv/bin/python -m company_os.watchtower
+```
+
+The scheduler needs Temporal at `TEMPORAL_ADDRESS`; the browser is never the worker. The development Temporal CLI uses SQLite with a persistent volume. Production requires managed Temporal or a separately operated supported cluster, TLS, authenticated namespaces and backups.
+
+## What works
+
+- PostgreSQL migrations, authenticated tenant-scoped projects and DAG tasks; persistent snapshots and reconnectable event stream/outbox.
+- Append-only event/audit history, hash-chain verification, PostgreSQL RLS and separate restricted runtime-role definitions.
+- Atomic company/project/task/run reservations, explicit paid-execution opt-in, single-use immutable-artifact approvals and emergency stop.
+- Real Temporal activity dispatch; a job with missing providers durably blocks and creates an Inbox request without invoking a model.
+- Configured OpenAI Agents SDK Chief of Staff planning and specialist invocation, Daytona/Codex factory, scoped model gateway, independent CRUD harness, private checksum-verified artifacts and GitHub draft PR adapters.
+- Independent Watchtower with repeat policy enforcement and tenant/provider failure isolation; persistent Founder Inbox and bounded Gmail delivery states.
+- Daily bounded public-source discovery with a 90-day window, versioned source checksums, clearly heuristic scoring and idempotent opportunity-to-backlog creation.
+- Persistent experiment lifecycle and product portfolio: defined MVP hypotheses, explicit unknown economics, validation links and independently checked prototype gates. See [the product evidence guide](docs/PRODUCT_PORTFOLIO.md).
+- Signed live Stripe webhook ledger; test events, invalid signatures, stale signatures, duplicates and tenant mismatches are rejected/ignored correctly.
+- Original six-floor R3F office, agent/floor selection, orbit/zoom/reset, accessible 2D view and operational screens tied to persisted state.
+
+## Verification
+
+```bash
+# Isolated test database; never point TEST_DATABASE_URL at an installation with real data.
+DATABASE_URL=postgresql+psycopg://company:password@localhost:5432/company_test .venv/bin/alembic upgrade head
+# Apply scripts/database_roles.sql to the test database as administrator for role-boundary tests.
+RUN_TEMPORAL_TESTS=1 .venv/bin/pytest -q
+npm run test
+npm run typecheck
+npm run build
+.venv/bin/ruff check apps/api/company_os scripts
+```
+
+The browser check uses the initialized local owner account and creates real verification project/task records. Run `.venv/bin/python scripts/browser_check.py` only on a local acceptance installation. Evidence is in `docs/evidence/`.
+
+## Honest boundaries
+
+No model, hosted sandbox or autonomous coding PR has been executed without credentials and approved spending. No real sales are claimed. No public site, production release, customer outreach, payment onboarding or paid advertising is performed automatically. The coding factory is currently specialized for the documented CRUD benchmark; arbitrary repo test manifests, deployments and preview hosting remain future work. Detailed gaps: [milestone status](PROGRESS.md), [benchmark](docs/BENCHMARK.md), [security](docs/SECURITY.md).
+
+See [deployment](docs/DEPLOYMENT.md), [operations](docs/OPERATIONS.md), [founder guide](docs/FOUNDER_GUIDE.md), [API contracts](docs/CONTRACTS.md) and [cost controls](docs/COST_CONTROLS.md).
+
+## Current verification checkpoint
+
+The complete local suite passes **79 backend tests** with real PostgreSQL and Temporal, 23 frontend tests, TypeScript/build and Ruff. The production web shell now uses request-scoped CSP nonces for Next.js scripts; local and public staging browser checks confirm fresh nonces and no CSP violations. Product Portfolio browser verification confirms real draft creation, same-project experiment linking, reload persistence, visible release blockers and mobile layout with no page errors. Actual recent-source collection retained eight versioned discussion records. Independent [GitHub CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39708000546) passed; an isolated encrypted local restore verified audit chains, the product record, six artifact checksums and restricted-role tenant visibility. See [product evidence](docs/PRODUCT_PORTFOLIO.md) and [detailed progress](PROGRESS.md).
+
+Six bounded real OpenRouter advisory calls have run through Temporal, including planner/specialist delegation and a checksummed dependency-artifact handoff. Total recorded model spend is approximately THB 0.1241; paid execution is currently disabled. Artifacts use real encrypted local development storage, not cloud S3. GitHub is connected through the inherited authorized identity. No hosted Codex/Daytona coding benchmark has run.
+
+Render is authenticated in the founder-confirmed workspace and an actual free staging PostgreSQL instance exists. The founder applied the management-only Blueprint: [the online trial](https://company-os-staging-38tn.onrender.com) is live on the free plan. Autonomous background workers are not deployed in that trial. [Hosting details](docs/RENDER_STAGING_TH.md). Daytona account authentication, public HTTPS model gateway, production artifact storage and application email OAuth remain external setup gates. [Thai setup guide](docs/FOUNDER_SETUP_TH.md).
+
+
+Kingdom evidence: [desktop](docs/evidence/kingdom-desktop.png), [mobile](docs/evidence/kingdom-mobile.png), [recorded interaction excerpt, 3× speed](docs/evidence/kingdom-walkthrough.mp4). Full independent CI passed for `baa0375`. Native production standalone served all four checksummed GLBs and the authenticated API proxy correctly. Software-only warmed rendering measured ~1.66 FPS; production GPU/crowd/accessibility/art acceptance remains unfinished. See [the measured results](docs/evidence/kingdom-performance.json) and [PROGRESS.md](PROGRESS.md).
+
+Latest island-first interface: [wide screenshot](docs/evidence/kingdom-apple-wide.png) · [mobile](docs/evidence/kingdom-apple-mobile.png) · [browser acceptance](docs/evidence/kingdom-apple-browser.json). Floating glass controls, search and Focus preserve the operational backend and original Office.
+
+The operational console, dialogs and login/setup screens now share an Apple-inspired system design: [design scope](docs/SYSTEM_UI.md) · [Office screenshot](docs/evidence/system-console-office.png) · [mobile](docs/evidence/system-console-mobile.png). Real local browser acceptance passed 31 read-only checks.
+
+The shared console design is [live on the trial](https://company-os-staging-38tn.onrender.com). [Current CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39590808427) passed; [public deployment receipt](docs/evidence/system-console-hosted-browser.json) and [online login screenshot](docs/evidence/system-console-hosted-login.png) distinguish public checks from authenticated local acceptance.
+
+Reproducible local profiling: `python scripts/profile_kingdom_browser.py --name unique-run-name`. The first current-layout lighting experiment missed its target and was reverted; [measured comparison](docs/evidence/kingdom-performance-comparison.json). No renderer improvement or new deployment is claimed.
+
+Kingdom now offers **Display → Measure performance (10s) → Download performance report**. Scene-render counts and browser pacing are separated; the report stays in the browser until downloaded. Company event streams now bypass proxy compression so updates arrive promptly instead of waiting for a buffered stream. Rendering experiments were rejected; no FPS improvement is claimed.
+
+Latest [diagnostic/event release CI](https://github.com/totnui555-commits/Codex-2/actions/runs/39590808427) passed. [Real proxy-event evidence](docs/evidence/realtime-browser.json) · [client report acceptance](docs/evidence/kingdom-diagnostics-browser.json) · [release receipt](docs/evidence/kingdom-diagnostics-deployment.json).

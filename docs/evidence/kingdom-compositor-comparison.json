@@ -1,0 +1,12 @@
+{
+  "target": 613.3599999999977,
+  "unit": "ms",
+  "baseline_median": 766.6999999999971,
+  "candidate_median": 849.9000000000015,
+  "baseline_p95": 866.5999999999985,
+  "candidate_p95": 999.9000000000015,
+  "iterations": 1,
+  "target_met": false,
+  "decision": "rejected and reverted; no deployment",
+  "scope": "single software sample pair; no hardware or causal claim"
+}

@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "actual_staging_supervisor",
+    "postgresql_migration_and_role_seed",
+    "production_next_server",
+    "same_origin_proxy_health",
+    "owner_login",
+    "staging_runtime_metadata",
+    "paid_execution_disabled",
+    "25_real_role_configs",
+    "audit_chain_valid",
+    "graceful_supervisor_shutdown"
+  ],
+  "database": "disposable_local_integration_test_database",
+  "render_deployment": "not_performed_by_this_check",
+  "customer_data": false
+}

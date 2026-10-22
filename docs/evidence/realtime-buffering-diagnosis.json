@@ -1,0 +1,16 @@
+{
+  "before": {
+    "proxy_status": 200,
+    "proxy_content_encoding": "gzip",
+    "direct_api_content_encoding": null,
+    "probe_events": [],
+    "ui_connection_label": "Live connection",
+    "snapshot_contained_new_task": true,
+    "ui_visibility_within_12_seconds": false
+  },
+  "fix": "Cache-Control: no-store, no-transform for text/event-stream; keep no-store for normal JSON",
+  "after_receipt": "realtime-browser.json",
+  "first_verified_ui_visibility_seconds": 1.152,
+  "final_verified_ui_visibility_seconds": 1.155,
+  "scope": "Real authenticated local FastAPI, PostgreSQL and Next proxy; not an authenticated hosted owner test"
+}

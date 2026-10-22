@@ -1,0 +1,49 @@
+{
+  "checks": [
+    "desktop_Overview",
+    "desktop_Projects",
+    "desktop_Tasks",
+    "desktop_Agents",
+    "desktop_Opportunities",
+    "desktop_Watchtower",
+    "desktop_Approvals",
+    "desktop_Founder Inbox",
+    "desktop_Finance",
+    "desktop_Build Inspector",
+    "desktop_Audit",
+    "settings_forms_preserved",
+    "modal_keyboard_focus",
+    "office_scene_preserved",
+    "mobile_overview",
+    "mobile_projects",
+    "mobile_agents",
+    "mobile_tasks",
+    "mobile_finance",
+    "mobile_settings",
+    "mobile_inbox",
+    "mobile_opportunities",
+    "mobile_watchtower",
+    "mobile_approvals",
+    "mobile_audit",
+    "mobile_build-inspector",
+    "mobile_office",
+    "mobile_navigation",
+    "kingdom_shell_scope_preserved",
+    "login_and_private_setup_fields",
+    "mobile_setup_no_overflow"
+  ],
+  "page_errors": [],
+  "database_mutations": 0,
+  "model_calls": 0,
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "mode": "real authenticated local API and PostgreSQL"
+}

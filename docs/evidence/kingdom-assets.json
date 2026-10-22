@@ -1,0 +1,32 @@
+{
+  "world_version": "kingdom-2.0.0",
+  "original_assets": true,
+  "landmarks_verified": 12,
+  "packs": {
+    "island": {
+      "sha256": "db93476ea81fbef8b25b0a626776037c8eace341d90a1a5ba9fbf08a009e4931",
+      "bytes": 8759740,
+      "meshes": 179,
+      "triangles": 254921
+    },
+    "island-balanced": {
+      "sha256": "dd7681b25e3d6a60fe7fbcc446afe9574e401092261330d63826bbddcff20993",
+      "bytes": 5738932,
+      "meshes": 179,
+      "triangles": 140127
+    },
+    "island-low": {
+      "sha256": "f5b49548440e3355ba6e36ed95f5fc8091eda3751dec60c83d368e66d6747be3",
+      "bytes": 2884540,
+      "meshes": 179,
+      "triangles": 63789
+    },
+    "citizen": {
+      "sha256": "1599188f884510fabe6e8c7bf9976067d09b78b0a886bf2b19c86facac5bd025",
+      "bytes": 108348,
+      "meshes": 15,
+      "triangles": 2652
+    }
+  },
+  "external_asset_dependencies": 0
+}

@@ -1,0 +1,13 @@
+{
+  "service_id": "srv-dbc18bpsrm7s7399skdg",
+  "deploy_id": "dep-dbcmpjgm7kps73c8l580",
+  "deployment_commit": "4762efa15af01b88cf30441622544a1dcb530ed9",
+  "application_code_commit": "e6b40cd081a90817882f9f9c4cb0263cd73a89bb",
+  "status": "live",
+  "finished_at": "2026-10-22T01:57:49.390623Z",
+  "url": "https://company-os-staging-38tn.onrender.com",
+  "plan": "free staging",
+  "ci_run": "https://github.com/totnui555-commits/Codex-2/actions/runs/39708000546",
+  "database_health": "not part of this CSP verification",
+  "owner_authentication": "not attempted"
+}

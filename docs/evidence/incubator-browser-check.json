@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "authenticated_ui_create",
+    "reload_persistence",
+    "start_pause_conclude",
+    "zero_observations_inconclusive",
+    "concluded_experiment_frozen",
+    "audit_chain_valid",
+    "paid_execution_stays_disabled",
+    "mobile_no_overflow"
+  ],
+  "experiment_id": "b86fe761-f09c-4ead-9ce7-fc37c40d6100",
+  "experiment_title": "Internal UI persistence verification 1792486182",
+  "evidence_class": "internal_platform_verification_not_customer_research",
+  "customer_observations": 0,
+  "browser_errors": []
+}

@@ -1,0 +1,18 @@
+{
+  "implementation_commit": "94c1079be9f2c3ce4bc62b4a50f1da3595f02377",
+  "deploy_id": "dep-dbc9uie1egvs739vt040",
+  "status": "live",
+  "finished_at": "2026-10-21T11:19:36.820125Z",
+  "url": "https://company-os-staging-38tn.onrender.com",
+  "service_id": "srv-dbc18bpsrm7s7399skdg",
+  "workspace_id": "tea-dbbj2qbbc2fs73bcelb0",
+  "plan": "free",
+  "paid_plan_upgrade": false,
+  "public_checks": "kingdom-diagnostics-hosted-browser.json",
+  "authenticated_local_checks": [
+    "kingdom-diagnostics-browser.json",
+    "kingdom-diagnostics-regression-browser.json",
+    "realtime-browser.json"
+  ],
+  "hardware_performance_certified": false
+}

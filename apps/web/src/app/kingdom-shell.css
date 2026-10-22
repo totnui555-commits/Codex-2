@@ -1,0 +1,1340 @@
+/* Island-first shell. Scoped to Kingdom; Office and operational consoles retain their layout. */
+.kingdom-mode {
+  --side: 184px;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #ffffff80;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue",
+    Arial, sans-serif;
+  height: 100dvh;
+  min-height: 600px;
+  overflow: hidden;
+  background: #73bdc5;
+  color: #1d1d1f;
+}
+.kingdom-mode .main {
+  margin: 0;
+  min-height: 100dvh;
+}
+.kingdom-mode .main > .page-heading,
+.kingdom-mode .main > .kpis,
+.kingdom-mode .main > footer {
+  display: none;
+}
+.kingdom-mode .sidebar {
+  top: 14px;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  width: 184px;
+  padding: 21px 12px 12px;
+  border: 1px solid #ffffffb3;
+  border-radius: 25px;
+  background: #f8fbffcc;
+  backdrop-filter: blur(28px) saturate(1.35);
+  box-shadow:
+    0 16px 48px #163e5620,
+    inset 0 1px 0 #ffffffd9;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.kingdom-mode .wordmark {
+  font-size: 16px;
+  letter-spacing: -0.6px;
+  gap: 9px;
+  padding: 0 4px;
+}
+.kingdom-mode .wordmark small {
+  font-size: 8px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: #687788;
+  margin-top: 4px;
+}
+.kingdom-mode .brand-icon {
+  background: transparent;
+  color: #f1b735;
+  width: 29px;
+  height: 35px;
+}
+.kingdom-mode .workspace {
+  margin-top: 20px;
+  border: 0;
+  padding: 9px;
+  background: #ffffff69;
+  border-radius: 13px;
+  font-size: 10px;
+}
+.kingdom-mode .workspace-logo {
+  background: #e8eff8;
+  color: #597391;
+  border-radius: 9px;
+}
+.kingdom-mode .nav-label {
+  font-size: 8px;
+  margin: 18px 9px 7px;
+  letter-spacing: 1.2px;
+  color: #8692a1;
+}
+.kingdom-mode .sidebar nav button {
+  height: 35px;
+  padding: 7px 10px;
+  border-radius: 11px;
+  font-size: 11px;
+  gap: 11px;
+  color: #536276;
+}
+.kingdom-mode .sidebar nav button svg {
+  width: 16px;
+  height: 16px;
+  color: #7d8da1;
+}
+.kingdom-mode .sidebar nav button.active {
+  background: #dceaff;
+  color: #155bba;
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 #ffffff80;
+}
+.kingdom-mode .sidebar nav button.active svg {
+  color: #1476ec;
+}
+.kingdom-mode .sidebar nav button:hover {
+  background: #e6eef8;
+}
+.kingdom-mode .tiny {
+  background: #e7edf5;
+  color: #8090a4;
+  border-radius: 4px;
+  font-size: 7px;
+}
+.kingdom-mode .count {
+  color: #1473db;
+  background: #dcecff;
+}
+.kingdom-mode .sidebar-bottom {
+  padding-top: 16px;
+}
+.kingdom-mode .autonomy {
+  background: #ffffff63;
+  border-color: #ffffff96;
+  border-radius: 13px;
+  padding: 10px;
+}
+.kingdom-mode .autonomy p {
+  color: #6d7b89;
+}
+.kingdom-mode .founder {
+  border-color: #ffffffa0;
+  padding-top: 14px;
+}
+.kingdom-mode .founder small {
+  color: #7c8996;
+}
+.kingdom-mode .topbar {
+  position: fixed;
+  z-index: 65;
+  top: 17px;
+  right: 21px;
+  left: auto;
+  height: 43px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.kingdom-mode .topbar .breadcrumb,
+.kingdom-mode .topbar .connection,
+.kingdom-mode .top-divider {
+  display: none;
+}
+.kingdom-mode .top-actions {
+  gap: 9px;
+}
+.kingdom-mode .top-actions .icon-button,
+.kingdom-mode .top-actions .avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f8fbffe6;
+  backdrop-filter: blur(20px);
+  border: 1px solid #ffffffd9;
+  box-shadow: 0 4px 16px #1741530c;
+  color: #526981;
+}
+.kingdom-mode .notification-dot {
+  background: #fa545d;
+  border: 2px solid #fff;
+}
+.kingdom-mode .kingdom-edition {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  color: #1d1d1f;
+  --royal: #007aff;
+  --parchment: #f5f5f7;
+  z-index: 1;
+}
+.kingdom-mode .kingdom-layout {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+.kingdom-mode .kingdom-stage {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+.kingdom-mode .kingdom-world {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  border-radius: 0;
+}
+.kingdom-mode .kingdom-titlebar {
+  position: fixed;
+  z-index: 4;
+  top: 27px;
+  left: 229px;
+  display: block;
+  margin: 0;
+  pointer-events: none;
+}
+.kingdom-mode .kingdom-kicker {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #245a6a;
+}
+.kingdom-mode .kingdom-kicker svg {
+  color: #f6c445;
+}
+.kingdom-mode .kingdom-titlebar h1 {
+  font:
+    600 29px/1.22 -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    sans-serif;
+  letter-spacing: -1px;
+  color: #173f4b;
+  margin-top: 7px;
+  text-shadow: 0 1px 12px #ffffff45;
+}
+.kingdom-mode .kingdom-titlebar h1 em {
+  font: inherit;
+  color: #326777;
+  display: block;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  margin-top: 5px;
+}
+.kingdom-mode .kingdom-health {
+  margin-top: 13px;
+  color: #245d64;
+  font-size: 9px;
+}
+.kingdom-mode .kingdom-seal {
+  display: none;
+}
+.kingdom-mode .kingdom-search {
+  position: fixed;
+  top: 18px;
+  right: 124px;
+  width: 264px;
+  height: 41px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+  background: #f8fbffdb;
+  backdrop-filter: blur(22px);
+  border: 1px solid #ffffffd9;
+  border-radius: 22px;
+  box-shadow: 0 4px 18px #1741530c;
+  color: #8292a7;
+}
+.kingdom-mode .kingdom-search input {
+  width: 100%;
+  min-width: 0;
+  font-size: 11px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #253951;
+}
+.kingdom-mode .kingdom-search input::placeholder {
+  color: #8a98ab;
+}
+.kingdom-mode .kingdom-search:focus-within {
+  box-shadow:
+    0 0 0 3px #007aff26,
+    0 8px 28px #17415312;
+}
+.kingdom-mode .kingdom-search kbd {
+  font:
+    10px -apple-system,
+    sans-serif;
+  color: #a5b0be;
+}
+.kingdom-mode .kingdom-search-results {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  max-height: 390px;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid #ffffffe6;
+  border-radius: 18px;
+  background: #f9fbfff5;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 16px 50px #123e562b;
+}
+.kingdom-mode .kingdom-search-results > span {
+  display: block;
+  padding: 6px;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #8896a5;
+}
+.kingdom-mode .kingdom-search-results button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 10px;
+  padding: 10px 7px;
+  border-radius: 11px;
+  font-size: 11px;
+  color: #354a61;
+}
+.kingdom-mode .kingdom-search-results button:hover {
+  background: #e7f0ff;
+}
+.kingdom-mode .kingdom-search-results button > i {
+  width: 20px;
+  height: 20px;
+  border-radius: 7px;
+}
+.kingdom-mode .kingdom-search-results small {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+  color: #8190a3;
+}
+.kingdom-mode .kingdom-search-results b {
+  margin-left: auto;
+  color: #8797aa;
+}
+.kingdom-mode .kingdom-search-results p {
+  font-size: 11px;
+  padding: 12px 6px;
+}
+.kingdom-mode .kingdom-inspector {
+  position: fixed;
+  z-index: 30;
+  top: 78px;
+  bottom: 18px;
+  right: 18px;
+  width: 296px;
+  max-height: none;
+  border: 1px solid #ffffffbf;
+  border-radius: 25px;
+  padding: 20px 17px;
+  background: #f6faffd9;
+  backdrop-filter: blur(30px) saturate(1.25);
+  box-shadow:
+    0 16px 50px #143e5420,
+    inset 0 1px 0 #ffffffcf;
+  scrollbar-width: thin;
+  scrollbar-color: #afbdce50 transparent;
+}
+.kingdom-mode .kingdom-inspector-heading {
+  color: #354b66;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  margin-bottom: 17px;
+}
+.kingdom-mode .kingdom-inspector-heading > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.kingdom-mode .kingdom-inspector-heading svg {
+  color: #d9a938;
+}
+.kingdom-mode .kingdom-inspector-heading > small {
+  font-size: 9px;
+  margin: 0;
+  color: #32815d;
+  background: #e1f2e9;
+  border-radius: 20px;
+  padding: 3px 7px;
+}
+.kingdom-mode .kingdom-inspector h3 {
+  font:
+    600 21px/1.25 -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    sans-serif;
+  letter-spacing: -0.6px;
+  color: #20364e;
+}
+.kingdom-mode .kingdom-inspector p {
+  color: #708094;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.kingdom-mode .kingdom-inspector dt {
+  color: #8491a1;
+  font-size: 10px;
+}
+.kingdom-mode .kingdom-inspector dd {
+  color: #364e67;
+  font-size: 11px;
+}
+.kingdom-mode .kingdom-inspector small {
+  color: #7b8c9e;
+}
+.kingdom-mode .kingdom-inspector > .kingdom-primary {
+  color: #fff;
+  border-color: #1684ff;
+  border-radius: 11px;
+  background: #007aff;
+  padding: 12px;
+}
+.kingdom-mode .kingdom-inspector > button:not(.kingdom-panel-close),
+.kingdom-mode .kingdom-inspector-actions button {
+  border-color: #e3eaf4;
+  border-radius: 11px;
+  color: #2878ca;
+  background: #ffffffb3;
+}
+.kingdom-mode .kingdom-inspector > .kingdom-primary {
+  color: #fff !important;
+  background: #007aff !important;
+  border-color: #007aff !important;
+}
+.kingdom-mode .landmark-crest {
+  background: #e9f1fd;
+  border-color: #ffffffcf;
+  border-radius: 18px;
+}
+.kingdom-mode .citizen-portrait {
+  border-color: #fff;
+}
+.kingdom-mode .kingdom-state {
+  background: #e8f1fd;
+  border-color: #d9e8fb;
+  color: #2877c8;
+  font-size: 10px;
+}
+.kingdom-mode .kingdom-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.kingdom-mode .kingdom-overview-grid button {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  background: #ffffffa6;
+  border: 1px solid #ffffffb3;
+  border-radius: 16px;
+  padding: 13px 10px;
+  min-height: 87px;
+}
+.kingdom-mode .kingdom-overview-grid i {
+  width: 28px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+.kingdom-mode .kingdom-overview-grid .blue {
+  background: #e7f2ff;
+  color: #2288ff;
+}
+.kingdom-mode .kingdom-overview-grid .purple {
+  background: #efebff;
+  color: #8977e5;
+}
+.kingdom-mode .kingdom-overview-grid .green {
+  background: #e4f6ed;
+  color: #32b985;
+}
+.kingdom-mode .kingdom-overview-grid .orange {
+  background: #fff1d9;
+  color: #e4ad39;
+}
+.kingdom-mode .kingdom-overview-grid span {
+  font-size: 8px;
+  line-height: 1.4;
+  color: #7d8b9c;
+}
+.kingdom-mode .kingdom-overview-grid strong {
+  display: block;
+  font-size: 19px;
+  font-weight: 600;
+  color: #2c425c;
+  letter-spacing: -0.7px;
+  margin-top: 7px;
+  font-variant-numeric: tabular-nums;
+}
+.kingdom-mode .kingdom-overview-grid strong small {
+  display: inline;
+  font-size: 11px;
+  font-weight: 400;
+  color: #8395ab;
+}
+.kingdom-mode .kingdom-overview-grid button:nth-child(3) {
+  grid-column: span 2;
+  min-height: 65px;
+  align-items: center;
+}
+.kingdom-mode .kingdom-overview-grid button:nth-child(3) strong {
+  font-size: 20px;
+  margin-top: 2px;
+}
+.kingdom-mode .kingdom-overview-grid button:nth-child(4) {
+  display: none;
+}
+.kingdom-mode .kingdom-status-line {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 8px;
+  color: #6d8196;
+  padding: 12px 1px;
+  border-bottom: 1px solid #d7e2ef80;
+}
+.kingdom-mode .kingdom-status-line > span {
+  margin-left: auto;
+  color: #8b9aab;
+}
+.kingdom-mode .kingdom-activity {
+  padding-top: 17px;
+}
+.kingdom-mode .kingdom-activity header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.kingdom-mode .kingdom-activity header h3 {
+  font-size: 12px;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+.kingdom-mode .kingdom-activity header button {
+  font-size: 9px;
+  color: #007aff;
+}
+.kingdom-mode .kingdom-activity > button {
+  display: flex;
+  width: 100%;
+  gap: 11px;
+  text-align: left;
+  padding: 9px 3px;
+  align-items: flex-start;
+  color: #3b5168;
+}
+.kingdom-mode .kingdom-activity > button > i {
+  width: 7px;
+  height: 7px;
+  background: #78b5f3;
+  border: 2px solid #dbeeff;
+  border-radius: 50%;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.kingdom-mode .kingdom-activity > button b {
+  font-size: 10px;
+  font-weight: 500;
+  display: block;
+  text-transform: capitalize;
+  line-height: 1.45;
+}
+.kingdom-mode .kingdom-activity > button small {
+  margin-top: 3px;
+  font-size: 8px;
+  display: block;
+  color: #9aa7b6;
+}
+.kingdom-mode .kingdom-quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 13px;
+}
+.kingdom-mode .kingdom-quick-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 3px;
+  font-size: 9px;
+  color: #2775bc;
+  background: #ffffffad;
+  border: 1px solid #ffffffbd;
+  border-radius: 11px;
+}
+.kingdom-mode .kingdom-quick-actions b {
+  font-size: 9px;
+  font-weight: 500;
+  background: #e7f0fd;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.kingdom-mode .kingdom-citizens {
+  margin-top: 19px;
+  padding-top: 9px;
+  border-color: #dce6f0;
+}
+.kingdom-mode .kingdom-citizens h4 {
+  color: #6d7f94;
+  font-size: 11px;
+  font-weight: 500;
+}
+.kingdom-mode .kingdom-citizens > div {
+  max-height: 205px;
+  display: block;
+}
+.kingdom-mode .kingdom-citizens button {
+  border-color: #dbe5f16b;
+  padding: 9px 1px;
+  color: #465d74;
+}
+.kingdom-mode .kingdom-citizens button:hover,
+.kingdom-mode .kingdom-citizens button.selected {
+  background: #e6f0fc;
+  border-radius: 8px;
+}
+.kingdom-mode .kingdom-citizens button i {
+  width: 27px;
+  height: 27px;
+  border-radius: 10px;
+  border: 3px solid #ffffffb3;
+}
+.kingdom-mode .kingdom-citizens button span {
+  font-size: 10px;
+}
+.kingdom-mode .kingdom-citizens button small {
+  font-size: 8px;
+  color: #8a9bae;
+}
+.kingdom-mode .kingdom-toolbar {
+  position: fixed;
+  z-index: 40;
+  bottom: 24px;
+  left: calc(50% - 60px);
+  transform: translateX(-50%);
+  height: 49px;
+  max-width: calc(100vw - 570px);
+  flex-wrap: nowrap;
+  overflow: auto;
+  scrollbar-width: none;
+  gap: 3px;
+  padding: 6px 8px;
+  border: 1px solid #ffffffd9;
+  border-radius: 19px;
+  background: #f8fbffdb;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 6px 28px #123e5422;
+}
+.kingdom-mode .kingdom-toolbar button,
+.kingdom-mode .kingdom-toolbar select {
+  flex-shrink: 0;
+  font-size: 9px;
+  min-height: 34px;
+  color: #566c82;
+  white-space: nowrap;
+  border-radius: 11px;
+}
+.kingdom-mode .kingdom-toolbar select {
+  width: 137px;
+  background: #eaf0f8;
+  color: #3b526b;
+}
+.kingdom-mode .kingdom-toolbar button:hover,
+.kingdom-mode .kingdom-toolbar button[aria-pressed="true"] {
+  background: #dbeaff;
+  color: #007aff;
+}
+.kingdom-mode .kingdom-controls {
+  display: none;
+  position: fixed;
+  z-index: 44;
+  bottom: 84px;
+  left: calc(50% - 60px);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 570px);
+  background: #f7faffef;
+  backdrop-filter: blur(24px);
+  border: 1px solid #fff;
+  border-radius: 17px;
+  padding: 17px;
+  box-shadow: 0 8px 24px #163e5420;
+  font-size: 10px;
+  color: #60738b;
+}
+.kingdom-mode .kingdom-controls.display-open {
+  display: flex;
+}
+.kingdom-mode .kingdom-controls select {
+  background: #e6effb;
+  padding: 6px;
+  border-radius: 7px;
+  color: #3d6ba2;
+}
+.kingdom-mode .kingdom-controls input {
+  accent-color: #007aff;
+}
+.kingdom-mode .kingdom-controls > span {
+  color: #8c9aac;
+  font-size: 9px;
+}
+.kingdom-mode .kingdom-hud {
+  position: fixed;
+  z-index: 12;
+  left: 224px;
+  right: 334px;
+  bottom: 92px;
+  margin: 0;
+  gap: 7px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  pointer-events: none;
+}
+.kingdom-mode .kingdom-hud > div {
+  background: #f8fbffb8;
+  backdrop-filter: blur(20px);
+  border: 1px solid #ffffffbc;
+  border-radius: 14px;
+  padding: 11px 12px;
+  box-shadow: 0 4px 15px #20485d08;
+}
+.kingdom-mode .kingdom-hud span {
+  color: #6d839b;
+  font-size: 8px;
+  line-height: 1.4;
+}
+.kingdom-mode .kingdom-hud b {
+  color: #36516d;
+  font-size: 13px;
+  letter-spacing: -0.3px;
+  font-variant-numeric: tabular-nums;
+}
+.kingdom-mode .kingdom-world-caption {
+  left: 227px;
+  bottom: 164px;
+  color: #e5faff;
+  font-size: 9px;
+  text-shadow: 0 1px 5px #245a6f;
+}
+.kingdom-mode .kingdom-world-caption span {
+  font-size: 8px;
+}
+.kingdom-mode .kingdom-compass {
+  right: 337px;
+  bottom: 181px;
+  color: #e9f8ff;
+}
+.kingdom-mode .kingdom-map-label {
+  background: #fbfdffed;
+  backdrop-filter: blur(16px);
+  border: 1px solid #ffffffd9;
+  box-shadow: 0 5px 15px #16436024;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 8px 11px;
+  gap: 7px;
+  color: #3e5570;
+}
+.kingdom-mode .kingdom-map-label span {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: #e9f2ff;
+  color: #2583e7;
+  font-size: 13px;
+}
+.kingdom-mode .kingdom-map-label b {
+  background: #e8effa;
+  color: #407ab6;
+  font-size: 8px;
+  padding: 3px 5px;
+  border-radius: 6px;
+}
+.kingdom-mode .kingdom-map-label.chosen,
+.kingdom-mode .kingdom-map-label.hovered {
+  background: #e6f1ff;
+  outline: 1px solid #9fc9ff;
+}
+.kingdom-mode .kingdom-destinations {
+  display: none;
+  position: fixed;
+  z-index: 48;
+  bottom: 84px;
+  left: 225px;
+  width: 294px;
+  max-height: 65dvh;
+  overflow: auto;
+  margin: 0;
+  padding: 10px;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  background: #f7fafff0;
+  backdrop-filter: blur(26px);
+  border: 1px solid #fff;
+  border-radius: 19px;
+  box-shadow: 0 12px 38px #123e5429;
+}
+.kingdom-mode .kingdom-destinations.directory-open {
+  display: grid;
+}
+.kingdom-mode .kingdom-destinations button {
+  border: 0;
+  background: transparent;
+  padding: 9px 10px;
+  border-radius: 10px;
+  font:
+    500 11px -apple-system,
+    sans-serif;
+  color: #3c536d;
+}
+.kingdom-mode .kingdom-destinations button:hover {
+  background: #e5effc;
+}
+.kingdom-mode .kingdom-destinations span {
+  font:
+    9px/1.4 -apple-system,
+    sans-serif;
+  color: #8a9bb0;
+  margin-top: 3px;
+}
+.kingdom-mode .kingdom-flat {
+  background: linear-gradient(135deg, #a8d8e4, #d5e8ee);
+  padding: 115px 340px 180px 230px;
+}
+.kingdom-mode .kingdom-flat h3 {
+  font:
+    600 27px -apple-system,
+    sans-serif;
+  color: #34576d;
+  letter-spacing: -0.8px;
+}
+.kingdom-mode .kingdom-flat > div {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.kingdom-mode .kingdom-flat button {
+  background: #ffffffb3;
+  border-color: #fff;
+  border-radius: 18px;
+  color: #4d769b;
+  backdrop-filter: blur(20px);
+}
+.kingdom-mode .kingdom-panel-toggle,
+.kingdom-mode .kingdom-panel-close {
+  display: none;
+}
+.kingdom-mode:has(.island-focus) .sidebar,
+.kingdom-mode:has(.island-focus) .topbar,
+.kingdom-mode .island-focus .kingdom-inspector,
+.kingdom-mode .island-focus .kingdom-hud,
+.kingdom-mode .island-focus .kingdom-titlebar,
+.kingdom-mode .island-focus .kingdom-search {
+  display: none;
+}
+.kingdom-mode .island-focus .kingdom-toolbar {
+  left: 50%;
+  max-width: calc(100vw - 32px);
+}
+.kingdom-mode .island-focus .kingdom-controls {
+  left: 50%;
+  max-width: calc(100vw - 32px);
+}
+.kingdom-mode .island-focus .kingdom-world-caption {
+  left: 24px;
+  bottom: 90px;
+}
+.kingdom-mode .island-focus .kingdom-compass {
+  right: 25px;
+  bottom: 100px;
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .kingdom-mode .sidebar {
+    width: 160px;
+    left: 10px;
+  }
+  .kingdom-mode .wordmark {
+    font-size: 14px;
+  }
+  .kingdom-mode .kingdom-inspector {
+    width: 255px;
+    right: 12px;
+    padding: 17px 14px;
+  }
+  .kingdom-mode .kingdom-titlebar {
+    left: 190px;
+  }
+  .kingdom-mode .kingdom-hud {
+    left: 187px;
+    right: 280px;
+  }
+  .kingdom-mode .kingdom-hud > div:nth-child(n + 4) {
+    display: none;
+  }
+  .kingdom-mode .kingdom-hud {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .kingdom-mode .kingdom-toolbar {
+    max-width: calc(100vw - 465px);
+    left: calc(50% - 42px);
+  }
+  .kingdom-mode .kingdom-controls {
+    max-width: calc(100vw - 465px);
+  }
+  .kingdom-mode .kingdom-destinations {
+    left: 185px;
+  }
+  .kingdom-mode .kingdom-world-caption {
+    left: 188px;
+  }
+  .kingdom-mode .kingdom-compass {
+    right: 280px;
+  }
+  .kingdom-mode .kingdom-flat {
+    padding-left: 190px;
+    padding-right: 280px;
+  }
+  .kingdom-mode .kingdom-flat > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .kingdom-mode {
+    min-height: 0;
+  }
+  .kingdom-mode .sidebar {
+    display: none;
+    left: 10px;
+    top: 10px;
+    bottom: 10px;
+    width: 184px;
+  }
+  .kingdom-mode.sidebar-open .sidebar {
+    display: flex;
+  }
+  .kingdom-mode .topbar {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  .kingdom-mode .topbar .breadcrumb {
+    display: flex;
+  }
+  .kingdom-mode .breadcrumb > svg,
+  .kingdom-mode .breadcrumb > span,
+  .kingdom-mode .breadcrumb > b {
+    display: none;
+  }
+  .kingdom-mode .mobile-menu {
+    display: flex;
+    width: 39px;
+    height: 39px;
+    background: #f9fcffe8;
+    border: 1px solid #fff;
+    border-radius: 14px;
+    backdrop-filter: blur(20px);
+    pointer-events: auto;
+  }
+  .kingdom-mode .top-actions {
+    pointer-events: auto;
+  }
+  .kingdom-mode .top-actions .avatar {
+    display: none;
+  }
+  .kingdom-mode .top-actions .icon-button {
+    width: 39px;
+    height: 39px;
+  }
+  .kingdom-mode .kingdom-search {
+    left: 65px;
+    right: 65px;
+    top: 14px;
+    width: auto;
+    height: 39px;
+  }
+  .kingdom-mode .kingdom-search input {
+    font-size: 10px;
+  }
+  .kingdom-mode .kingdom-titlebar {
+    left: 18px;
+    top: 83px;
+  }
+  .kingdom-mode .kingdom-titlebar h1 {
+    font-size: 25px;
+    margin-top: 6px;
+  }
+  .kingdom-mode .kingdom-titlebar h1 em,
+  .kingdom-mode .kingdom-kicker {
+    display: none;
+  }
+  .kingdom-mode .kingdom-health {
+    font-size: 8px;
+    margin-top: 6px;
+  }
+  .kingdom-mode .kingdom-inspector {
+    display: none;
+    left: 10px;
+    right: 10px;
+    top: auto;
+    bottom: 78px;
+    width: auto;
+    max-height: 64dvh;
+    padding: 21px 18px;
+    border-radius: 24px;
+    z-index: 45;
+    background: #f6faffed;
+  }
+  .kingdom-mode .kingdom-inspector.panel-open {
+    display: block;
+  }
+  .kingdom-mode .kingdom-panel-close {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    background: #e8f0fb;
+    border-radius: 50%;
+    color: #6184ad;
+    z-index: 3;
+  }
+  .kingdom-mode .kingdom-inspector-heading {
+    padding-right: 30px;
+  }
+  .kingdom-mode .kingdom-panel-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: fixed;
+    z-index: 42;
+    right: 14px;
+    bottom: 83px;
+    font-size: 10px;
+    padding: 10px 13px;
+    border-radius: 16px;
+    color: #357abe;
+    border: 1px solid #fff;
+    background: #f8fbffde;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 5px 20px #15465b12;
+  }
+  .kingdom-mode .kingdom-toolbar {
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    transform: none;
+    max-width: none;
+    height: 48px;
+    border-radius: 17px;
+    padding: 6px;
+  }
+  .kingdom-mode .kingdom-toolbar select {
+    width: 125px;
+    font-size: 8px;
+  }
+  .kingdom-mode .kingdom-toolbar button {
+    min-width: 31px;
+    padding: 7px;
+    font-size: 8px;
+  }
+  .kingdom-mode .kingdom-toolbar button span {
+    display: none;
+  }
+  .kingdom-mode .kingdom-controls {
+    left: 12px;
+    right: 12px;
+    bottom: 78px;
+    transform: none;
+    width: auto;
+    max-width: none;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .kingdom-mode .kingdom-controls > span {
+    width: 100%;
+    font-size: 9px;
+  }
+  .kingdom-mode .kingdom-hud {
+    left: 18px;
+    right: auto;
+    bottom: 83px;
+    width: auto;
+    display: flex;
+  }
+  .kingdom-mode .kingdom-hud > div {
+    display: none;
+  }
+  .kingdom-mode .kingdom-hud > div:nth-child(2) {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 15px;
+  }
+  .kingdom-mode .kingdom-hud span {
+    font-size: 7px;
+    margin-bottom: 3px;
+  }
+  .kingdom-mode .kingdom-hud b {
+    font-size: 12px;
+  }
+  .kingdom-mode .kingdom-world-caption {
+    left: 18px;
+    bottom: 145px;
+    font-size: 8px;
+  }
+  .kingdom-mode .kingdom-world-caption span {
+    display: none;
+  }
+  .kingdom-mode .kingdom-compass {
+    right: 18px;
+    bottom: 151px;
+  }
+  .kingdom-mode .kingdom-map-label {
+    font-size: 8px;
+    padding: 5px 7px;
+    gap: 4px;
+    border-radius: 9px;
+  }
+  .kingdom-mode .kingdom-map-label span {
+    width: 15px;
+    height: 15px;
+    font-size: 9px;
+  }
+  .kingdom-mode .kingdom-destinations {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    bottom: 78px;
+  }
+  .kingdom-mode .kingdom-flat {
+    padding: 150px 18px 170px;
+  }
+  .kingdom-mode .kingdom-flat > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kingdom-mode .island-focus .kingdom-toolbar {
+    left: 12px;
+    transform: none;
+  }
+  .kingdom-mode .island-focus .kingdom-controls {
+    left: 12px;
+    transform: none;
+  }
+  .kingdom-mode .island-focus .kingdom-panel-toggle {
+    display: none;
+  }
+}
+@media (max-height: 730px) and (min-width: 761px) {
+  .kingdom-mode .sidebar {
+    padding-top: 15px;
+  }
+  .kingdom-mode .workspace {
+    display: none;
+  }
+  .kingdom-mode .sidebar nav button {
+    height: 31px;
+    font-size: 10px;
+  }
+  .kingdom-mode .nav-label {
+    margin-top: 12px;
+  }
+  .kingdom-mode .autonomy {
+    display: none;
+  }
+  .kingdom-mode .kingdom-titlebar h1 {
+    font-size: 24px;
+  }
+  .kingdom-mode .kingdom-hud {
+    bottom: 86px;
+  }
+  .kingdom-mode .kingdom-hud > div {
+    padding: 8px 10px;
+  }
+  .kingdom-mode .kingdom-hud b {
+    font-size: 11px;
+  }
+}
+.kingdom-mode .kingdom-overview-grid button:nth-child(3) {
+  grid-column: auto;
+  min-height: 87px;
+  align-items: flex-start;
+}
+.kingdom-mode .kingdom-overview-grid button:nth-child(3) i {
+  display: none;
+}
+.kingdom-mode .kingdom-overview-grid button:nth-child(3) strong {
+  font-size: 16px;
+  margin-top: 7px;
+}
+.kingdom-mode .kingdom-overview-grid button:nth-child(4) {
+  display: flex;
+}
+@media (max-width: 760px) {
+  .kingdom-mode .kingdom-toolbar button[aria-label="Zoom into kingdom"],
+  .kingdom-mode .kingdom-toolbar button[aria-label="Zoom out of kingdom"] {
+    display: none;
+  }
+}
+.kingdom-mode .island-focus .kingdom-labels {
+  display: none;
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .kingdom-mode .sidebar,
+  .kingdom-mode .kingdom-inspector,
+  .kingdom-mode .kingdom-toolbar,
+  .kingdom-mode .kingdom-search {
+    background: #f6f9ff;
+  }
+}
+.kingdom-mode .kingdom-event-count {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 8px;
+  font-style: normal;
+  color: #8b9fb7;
+  text-transform: none;
+}
+/* Keep actual safety and staging notices above the immersive canvas, including focus mode. */
+.kingdom-mode .main > .stop-banner {
+  position: fixed;
+  z-index: 90;
+  top: 145px;
+  left: 224px;
+  right: 334px;
+  margin: 0;
+  border: 1px solid #ffb9b9;
+  border-radius: 15px;
+  padding: 12px 15px;
+  background: #fff0f0f2;
+  backdrop-filter: blur(20px);
+  color: #b83a3a;
+  box-shadow: 0 8px 25px #8a32321a;
+  font-size: 11px;
+}
+.kingdom-mode .main > .info-strip {
+  position: fixed;
+  z-index: 89;
+  top: 145px;
+  left: 224px;
+  right: 334px;
+  margin: 0;
+  border: 1px solid #cbdff5;
+  border-radius: 15px;
+  padding: 12px 15px;
+  background: #eff7fff2;
+  backdrop-filter: blur(20px);
+  color: #42688f;
+  font-size: 10px;
+}
+.kingdom-mode .main > .info-strip:has(+ .stop-banner) {
+  top: 205px;
+}
+.kingdom-mode:has(.island-focus) .main > .stop-banner,
+.kingdom-mode:has(.island-focus) .main > .info-strip {
+  left: 24px;
+  right: 24px;
+  top: 24px;
+}
+@media (max-width: 760px) {
+  .kingdom-mode .main > .stop-banner,
+  .kingdom-mode .main > .info-strip {
+    left: 14px;
+    right: 14px;
+    top: 145px;
+  }
+  .kingdom-mode .main > .stop-banner {
+    flex-wrap: wrap;
+  }
+  .kingdom-mode .main > .info-strip:has(+ .stop-banner) {
+    top: 215px;
+  }
+}
+.kingdom-mode:has(.island-focus) .sidebar,
+.kingdom-mode:has(.island-focus) .topbar,
+.kingdom-mode .island-focus .kingdom-inspector {
+  display: none;
+}
+.kingdom-mode:has(.island-focus) .main > .info-strip:has(+ .stop-banner) {
+  top: 122px;
+}
+.kingdom-mode .kingdom-performance {
+  display: grid;
+  gap: 9px;
+  max-width: 260px;
+  padding-top: 10px;
+  border-top: 1px solid #d7e3f2;
+}
+.kingdom-mode .kingdom-performance p {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #516d8b;
+  white-space: normal;
+}
+.kingdom-mode .kingdom-performance button {
+  min-height: 36px;
+  white-space: normal;
+}
+.kingdom-mode .kingdom-controls {
+  max-height: 65dvh;
+  overflow-y: auto;
+}
+.kingdom-mode .kingdom-controls.display-open {
+  display: grid;
+  align-items: stretch;
+  gap: 12px;
+  width: 300px;
+  max-width: calc(100vw - 24px);
+}
+.kingdom-mode .kingdom-controls > label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+.kingdom-mode .kingdom-performance {
+  max-width: none;
+}
+.kingdom-mode .kingdom-performance .secondary {
+  color: #0066d6;
+  border: 1px solid #cbdff5;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 11px;
+}
+@media (max-width: 760px) {
+  .kingdom-mode .kingdom-controls.display-open {
+    width: auto;
+    max-width: none;
+  }
+}

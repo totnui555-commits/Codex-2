@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "actual_scene_measurement",
+    "json_download",
+    "no_company_records_or_credentials_in_report",
+    "explicit_cancel_discards_report",
+    "camera_reset_discards_report",
+    "reduced_motion_disables_measurement",
+    "mobile_no_overflow"
+  ],
+  "page_errors": [],
+  "database_mutations": 0,
+  "model_calls": 0,
+  "scope": "Authenticated local real 3D and API; software renderer. No hardware GPU claim."
+}

@@ -1,0 +1,39 @@
+{
+  "task_id": "7b9f695c-080e-408e-8308-c62f57941581",
+  "workflow_id": "setup-research-7b9f695c-080e-408e-8308-c62f57941581",
+  "status": "waiting_for_approval",
+  "provider": "openrouter/agents",
+  "usage": {
+    "input_tokens": 266,
+    "output_tokens": 217
+  },
+  "cost_thb_estimated": "0.0152",
+  "artifact_id": "61c1c1c9-05eb-4fa8-8d9c-8e33f05e0cfb",
+  "artifact_sha256": "3cfd947742af754fb3080d27b89ef6996e0578233fd698ff78c3b8cc7a04ba75",
+  "storage": "encrypted persistent local filesystem",
+  "owner_review_required": true,
+  "report": {
+    "evidence": [
+      "OpenRouter authenticated",
+      "GitHub private repository totnui555-commits/Codex-2 is accessible with push permission",
+      "PostgreSQL is real",
+      "Temporal is real",
+      "Local artifacts are encrypted and checksummed",
+      "Daytona is not configured",
+      "Hosted gateway is not configured",
+      "Application Gmail OAuth is not configured"
+    ],
+    "limitations": [
+      "No information on completed code or testing status",
+      "No details on revenue or external market conditions",
+      "No confirmation on other infrastructure components beyond those listed"
+    ],
+    "next_steps": [
+      "Configure Daytona",
+      "Set up hosted gateway",
+      "Implement application Gmail OAuth",
+      "Verify integration of all components for hosted coding benchmark readiness"
+    ],
+    "summary": "The current verified setup includes OpenRouter authentication, access to the GitHub private repository 'totnui555-commits/Codex-2' with push permission, real PostgreSQL and Temporal services, and local artifacts that are encrypted and checksummed. However, Daytona, hosted gateway, and application Gmail OAuth are not yet configured. Remaining tasks involve configuring these missing components and any other integrations necessary to achieve a hosted coding benchmark readiness."
+  }
+}

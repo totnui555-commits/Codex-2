@@ -1,0 +1,17 @@
+{
+  "scope": "actual UI persistence; draft hypothesis, no customer validation or prototype",
+  "product_id": "a2287045-ca4e-41da-8ca3-a70490f9490a",
+  "project_id": "43351a80-0c7a-4416-bc11-00dcdfe3d6cd",
+  "experiment_id": "56a90bc6-0131-40b1-94c5-0b072999fb4f",
+  "checks": [
+    "authenticated_create",
+    "same_project_experiment_link",
+    "reload_persistence",
+    "unknown_economics_preserved",
+    "prototype_and_release_gates_visible",
+    "mobile_no_horizontal_overflow",
+    "audit_chain_valid",
+    "paid_execution_disabled"
+  ],
+  "browser_errors": []
+}

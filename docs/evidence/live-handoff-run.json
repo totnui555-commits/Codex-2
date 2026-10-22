@@ -1,0 +1,56 @@
+{
+  "scope": "actual OpenRouter advisory handoff; no customer validation or hosted coding",
+  "task_id": "06ec9a19-2973-48c9-85df-fad2deef493a",
+  "workflow_id": "handoff-verification-06ec9a19-2973-48c9-85df-fad2deef493a",
+  "status": "waiting_for_approval",
+  "sources": [
+    {
+      "task_id": "28d649f0-556a-4afb-b578-a8bbae450341",
+      "artifact_id": "2ddb7ea7-3b47-4fe4-b530-ee9b6c729a8f",
+      "sha256": "c6213ba68dc72bf17ec2c8ab47c215313de88c377629ab63f8797911e0e6f781"
+    }
+  ],
+  "handoff_event_id": "4b36fed7-4a48-4768-883d-64e4ecf9c4b3",
+  "run_id": "d2841805-be32-4894-bf3a-8fd7cef68515",
+  "provider": "openrouter/agents",
+  "usage": {
+    "input_tokens": 706,
+    "output_tokens": 565,
+    "provider_responses": [
+      {
+        "request_id": "gen-1792501029-3g0h0mtKXe0nVq4TkAq8",
+        "model": "openai/gpt-4.1-mini",
+        "cost_usd": "0.0011864"
+      }
+    ],
+    "provider_billed_usd": "0.0011864"
+  },
+  "cost_thb_estimated": "0.0398",
+  "artifact_id": "1ba20d33-2f93-415d-98d2-115bb7c9d56d",
+  "artifact_sha256": "fb4976a72f5ebe467c11165fa977092f7a00ba9feed90d2eac3dfa7a90e28f21",
+  "outcome": {
+    "artifact_id": "1ba20d33-2f93-415d-98d2-115bb7c9d56d",
+    "status": "waiting_for_approval"
+  },
+  "report": {
+    "evidence": [
+      "Artifact source: task ID 28d649f0-556a-4afb-b578-a8bbae450341, artifact ID 2ddb7ea7-3b47-4fe4-b530-ee9b6c729a8f, SHA-256 c6213ba68dc72bf17ec2c8ab47c215313de88c377629ab63f8797911e0e6f781.",
+      "The artifact content details two independent advisory review tasks with defined objectives and acceptance criteria focused on measurement limitations and consent/usability validation respectively.",
+      "The artifact explicitly states no use of external data, testing, or actions beyond the provided evidence.",
+      "The planned tasks identify specific points such as experiment lifecycle stages, Wilson 95% intervals, predeclared statistical thresholds, absence of campaign/spending authorization, consent-related data handling, and missing credentials impacting user trust as key areas of focus."
+    ],
+    "limitations": [
+      "The artifact is untrusted evidence and explicitly not independently verified; thus, its factual accuracy, completeness, and adequacy cannot be assumed.",
+      "No actual review outputs, detailed analyses, or findings are included\u2014only planning details and acceptance criteria are provided.",
+      "The scope excludes any external research, validation, or tests, potentially limiting the thoroughness and practical applicability of the advisory.",
+      "There is no direct linkage to or inclusion of customer research findings, live code, or operational data that might inform or validate the advisory analyses."
+    ],
+    "next_steps": [
+      "Proceed with the planned business analyst advisory task to enumerate measurement limitations strictly using the provided Product Incubator experiment facts as per the artifact's acceptance criteria.",
+      "Conduct the UX researcher advisory task to formulate consent and usability validation questions addressing ethical and user experience considerations, adhering to the defined constraints.",
+      "Maintain strict adherence to the exclusion of external data, verification, and testing as mandated by the artifact and user instructions.",
+      "Document findings comprehensively to enable informed decision-making within the defined advisory scope and limitations."
+    ],
+    "summary": "The prior planner artifact (task ID 28d649f0-556a-4afb-b578-a8bbae450341, artifact ID 2ddb7ea7-3b47-4fe4-b530-ee9b6c729a8f, SHA-256 c6213ba68dc72bf17ec2c8ab47c215313de88c377629ab63f8797911e0e6f781) outlines two advisory review tasks: one focused on identifying measurement limitations by a business analyst, and another on consent and usability validation questions by a UX researcher. Both tasks are strictly confined to evaluation based on provided product incubator experiment facts, without external data or actions. The artifact specifies clear acceptance criteria emphasizing reliance solely on given information and explicitly excludes external validations or data."
+  }
+}
