@@ -1,0 +1,28 @@
+{
+  "scope": "Local production standalone web response; read-only browser check",
+  "requests": [
+    {
+      "http_status": 200,
+      "nonce_length": 48,
+      "script_count": 11,
+      "static_asset_count": 8,
+      "all_scripts_nonce_authorized": true,
+      "script_policy_has_unsafe_inline": false,
+      "script_policy_has_unsafe_eval": false,
+      "csp_violations": 0
+    },
+    {
+      "http_status": 200,
+      "nonce_length": 48,
+      "script_count": 11,
+      "static_asset_count": 8,
+      "all_scripts_nonce_authorized": true,
+      "script_policy_has_unsafe_inline": false,
+      "script_policy_has_unsafe_eval": false,
+      "csp_violations": 0
+    }
+  ],
+  "fresh_nonce_per_request": true,
+  "api_mutations": 0,
+  "model_calls": 0
+}

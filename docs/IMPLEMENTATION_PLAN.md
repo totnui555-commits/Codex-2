@@ -30,3 +30,7 @@ Founder directs preservation of the old Office as a separate version. Kingdom is
 ### 2026-10-21 verification update
 
 Added private on-device frame-report export and reproducible local profiling. Two bounded renderer candidates failed and were reverted; GPU frame-budget acceptance remains open. Corrected SSE proxy compression after a real event-visibility regression; local real event/UI delivery and reload persistence verified with automatic test cleanup. Hosted worker/provider setup and recurring hosting budget gates remain separate from this management-only UI release.
+
+### 2026-10-22 security hardening update
+
+The production Next.js shell now creates a fresh nonce in the Next.js 16 Proxy for every page request, forwards the CSP to SSR, and dynamically renders the root layout so framework scripts receive that nonce. Production script policy removes both `unsafe-inline` and `unsafe-eval`; style attributes remain allowed for R3F/layout behavior. Build and standalone Chromium verification confirm matching script nonces, distinct nonces across requests, successful static assets, and zero browser CSP violations. See `docs/SECURITY.md` and `docs/evidence/csp-browser.json`. Distributed rate limiting and hosted production security review remain open.
